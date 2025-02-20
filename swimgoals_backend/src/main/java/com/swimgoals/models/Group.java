@@ -2,8 +2,12 @@ package com.swimgoals.models;
 
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,8 +15,14 @@ import jakarta.persistence.Table;
 public class Group {
 
     @Id
+    @Column(length = 16, nullable = false, unique = true)
     private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "coach_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_group_coach"))
     private UUID coach;
+
+    @Column(name = "name")
     private String name;
 
     public Group(UUID id, UUID coach, String name) {
