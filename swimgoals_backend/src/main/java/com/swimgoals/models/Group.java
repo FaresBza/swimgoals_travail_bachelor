@@ -20,12 +20,12 @@ public class Group {
 
     @ManyToOne
     @JoinColumn(name = "coach_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_group_coach"))
-    private UUID coach;
+    private User coach;
 
     @Column(name = "name")
     private String name;
 
-    public Group(UUID id, UUID coach, String name) {
+    public Group(UUID id, User coach, String name) {
         this.id = id;
         this.coach = coach;
         this.name = name;
@@ -43,11 +43,11 @@ public class Group {
         this.id = id;
     }
 
-    public UUID getCoach() {
+    public User getCoach() {
         return coach;
     }
 
-    public void setCoach(UUID coach) {
+    public void setCoach(User coach) {
         this.coach = coach;
     }
 
