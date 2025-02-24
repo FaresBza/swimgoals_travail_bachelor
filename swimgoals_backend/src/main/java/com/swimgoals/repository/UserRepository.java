@@ -10,4 +10,5 @@ import com.swimgoals.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
     
+    Boolean existsByEmail(String email);
 }
