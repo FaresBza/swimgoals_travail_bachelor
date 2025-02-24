@@ -12,7 +12,11 @@ import com.swimgoals.interfaces.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User registUser(User user) throws IllegalArgumentException{
