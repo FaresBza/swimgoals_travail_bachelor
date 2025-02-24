@@ -7,8 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.swimgoals.models.User;
 
+
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
     
+    User findByEmail(String email);
+
     Boolean existsByEmail(String email);
 }
