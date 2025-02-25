@@ -1,13 +1,12 @@
 package com.swimgoals.service;
 
-import com.swimgoals.models.User;
-import com.swimgoals.repository.UserRepository;
-
 import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
 
 import com.swimgoals.interfaces.UserService;
+import com.swimgoals.models.User;
+import com.swimgoals.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -20,7 +19,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User registUser(User user) throws IllegalArgumentException{
-        if(userRepository.existsByEmail(user.getEmail()) != null) {
+        var existEmailUser = userRepository.existsByEmail(user.getEmail());
+        if(existEmailUser) {
             throw new IllegalArgumentException("Email is already exists");
         }
         return userRepository.save(user);
