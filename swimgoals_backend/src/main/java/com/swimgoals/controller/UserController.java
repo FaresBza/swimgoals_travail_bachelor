@@ -3,6 +3,7 @@ package com.swimgoals.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.models.User;
@@ -17,6 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "User Authentification", description = "GET and POST methos for users authentification")
 @RestController
+@RequestMapping("/api")
 public class UserController {
 
     private final UserServiceImpl userServiceImpl;
