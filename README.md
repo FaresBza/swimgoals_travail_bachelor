@@ -16,14 +16,6 @@ Une fois chaque objectif atteint, l’entraîneur enregistre la performance du n
 - **Back-end :** Spring Boor (version Java 21)
 - **Base de données :** MySQL
 
-### Dépendances utilisées
-
-- **Back-end :**
-  - `Spring Data JPA`
-  - `Spring Web`
-  - `Spring Security`
-  - `MySQL Driver`
-
 ### Répartition des différentes couches 3-tiers
 
 - **/swimgoals_backend:** contient le back-end de l'application et la configuration
