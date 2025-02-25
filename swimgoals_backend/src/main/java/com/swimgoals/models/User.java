@@ -3,7 +3,6 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,7 +14,7 @@ import jakarta.persistence.Table;
 public class User {
     
     @Id
-    @Column(length = 16, nullable = false, unique = true)
+    @Column(columnDefinition = "BINARY(16)", nullable = false, unique = true)
     private UUID id;
 
     @Column(name = "lastname", nullable = false)
@@ -31,7 +30,7 @@ public class User {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_user_role"))
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
     @PrePersist
