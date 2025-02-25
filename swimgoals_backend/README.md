@@ -27,5 +27,5 @@ cd swimgoals_backend
 ./gradlew bootRun
 ```
 
-L'API REST est accessible à l'adresse suivante : `http://localhost:8080`
-La documentation Swagger sera accessible à l'adresse : `http://localhost:8080/swagger-ui/index.html#/`
+- L'API REST est accessible à l'adresse suivante : `http://localhost:8080`
+- La documentation Swagger sera accessible à l'adresse : `http://localhost:8080/swagger-ui/index.html#/`
