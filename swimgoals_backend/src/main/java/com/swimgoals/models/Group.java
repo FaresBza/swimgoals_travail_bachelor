@@ -17,7 +17,7 @@ public class Group {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "coach_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_group_coach"))
+    @JoinColumn(name = "id", nullable = false)
     private User coach;
 
     @Column(name = "name")
