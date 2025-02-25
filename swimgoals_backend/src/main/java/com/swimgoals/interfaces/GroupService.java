@@ -1,6 +1,7 @@
 package com.swimgoals.interfaces;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.swimgoals.models.Group;
 
@@ -8,7 +9,7 @@ public interface GroupService {
 
     List<Group> getAllGroups();
 
-    List<Group> getGroupsByCoachId(Integer coachId);
+    List<Group> getAllGroupsByCoachId(UUID coachId);
 
     Group createGroup(Group group);
 
