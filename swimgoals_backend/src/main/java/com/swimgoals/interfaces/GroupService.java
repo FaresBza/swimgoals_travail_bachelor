@@ -10,7 +10,7 @@ public interface GroupService {
 
     List<Group> getGroupsByCoachId(Integer coachId);
 
-    Group createGroupe(Group group);
+    Group createGroup(Group group);
 
     Group updateGroup(Integer groupId, Group group);
 
