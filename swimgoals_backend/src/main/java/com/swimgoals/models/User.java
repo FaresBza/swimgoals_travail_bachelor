@@ -1,4 +1,5 @@
 package com.swimgoals.models;
+
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -6,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,8 +14,8 @@ import jakarta.persistence.Table;
 public class User {
     
     @Id
-    @Column(columnDefinition = "BINARY(16)", nullable = false, unique = true)
-    private UUID id;
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false, unique = true)
+    private String id;
 
     @Column(name = "lastname", nullable = false)
     private String lastname;
@@ -33,18 +33,11 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    @PrePersist
-    public void generateId() {
-        if (this.id == null) {
-            this.id = UUID.randomUUID();
-        }
-    }
-
     public User() {
-        this(UUID.randomUUID(), "", "", "", "", null);
+        this(UUID.randomUUID().toString(), "", "", "", "", null);
     }
 
-    public User(UUID id, String lastname, String firstname, String email, String password, Role role) {
+    public User(String id, String lastname, String firstname, String email, String password, Role role) {
         this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
@@ -53,11 +46,11 @@ public class User {
         this.role = role;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

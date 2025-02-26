@@ -52,16 +52,16 @@ public class GroupController {
     @ApiResponse(responseCode = "200", description = "Group retrieved successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
     @GetMapping("/groups/{coachId}")
-public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId") UUID coachId) {
-    try {
-        List<Group> groups = groupService.getAllGroupsByCoachId(coachId);
-        return ResponseEntity.ok(groups);
-    } catch (IllegalArgumentException e) {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'ID du coach ne peut pas être nul");
-    } catch (Exception e) {
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR_MESSAGE, e);
+    public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId") String coachId) {
+        try {
+            List<Group> groups = groupService.getAllGroupsByCoachId(coachId);
+            return ResponseEntity.ok(groups);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'ID du coach ne peut pas être nul");
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR_MESSAGE, e);
+        }
     }
-}
 
     @Operation(summary = "Create a new group", description = "Creates a new group in the database and returns the created group object", tags = {
             "Group" })

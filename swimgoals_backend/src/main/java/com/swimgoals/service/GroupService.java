@@ -24,7 +24,7 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public List<Group> getAllGroupsByCoachId(UUID coachId) {
+    public List<Group> getAllGroupsByCoachId(String coachId) {
         return groupRepository.findByCoachId(coachId);
     }
 

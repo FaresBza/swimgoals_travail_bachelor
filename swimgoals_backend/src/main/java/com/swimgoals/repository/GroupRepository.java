@@ -1,7 +1,6 @@
 package com.swimgoals.repository;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -13,5 +12,5 @@ import com.swimgoals.models.Group;
 @Repository
 public interface GroupRepository extends JpaRepository<Group, Integer>{
 
-    List<Group> findByCoachId(UUID coach);
+    List<Group> findByCoachId(String coach);
 }
