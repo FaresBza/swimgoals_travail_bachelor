@@ -41,7 +41,7 @@ public class GroupController {
             "Group" })
     @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @GetMapping
+    @GetMapping("/groups")
     public ResponseEntity<List<Group>> getAllGroups() {
         List<Group> groups = groupService.getAllGroups();
         return ResponseEntity.ok(groups);
