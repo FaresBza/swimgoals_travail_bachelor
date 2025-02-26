@@ -45,7 +45,7 @@ public class GroupService implements IGroupService {
         return groupRepository.findById(groupId)
                 .map(existingGroup -> {
                     existingGroup.setName(group.getName());
-                    existingGroup.setCoach(group.getCoach());
+                    existingGroup.setCoachId(group.getCoachId());
                     return groupRepository.save(existingGroup);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Groupe non trouvé avec l'ID: " + groupId));
