@@ -19,7 +19,7 @@ public class Group {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "coach_id", nullable = false)
     private User coachId;
 
     @Column(name = "name")
