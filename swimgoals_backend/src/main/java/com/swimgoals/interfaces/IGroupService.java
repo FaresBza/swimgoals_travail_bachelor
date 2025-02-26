@@ -1,15 +1,15 @@
 package com.swimgoals.interfaces;
 
 import java.util.List;
-import java.util.UUID;
 
 import com.swimgoals.models.Group;
+import com.swimgoals.models.User;
 
 public interface IGroupService {
 
     List<Group> getAllGroups();
 
-    List<Group> getAllGroupsByCoachId(UUID coachId);
+    List<Group> getAllGroupsByCoachId(User coach);
 
     Group createGroup(Group group);
 

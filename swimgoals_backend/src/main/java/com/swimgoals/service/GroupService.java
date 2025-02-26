@@ -1,12 +1,12 @@
 package com.swimgoals.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.swimgoals.interfaces.IGroupService;
 import com.swimgoals.models.Group;
+import com.swimgoals.models.User;
 import com.swimgoals.repository.GroupRepository;
 
 @Service
@@ -24,8 +24,8 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public List<Group> getAllGroupsByCoachId(UUID coachId) {
-        return groupRepository.findByCoach(coachId);
+    public List<Group> getAllGroupsByCoachId(User coach) {
+        return groupRepository.findByCoachId(coach);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GroupService implements IGroupService {
         return groupRepository.findById(groupId)
                 .map(existingGroup -> {
                     existingGroup.setName(group.getName());
-                    existingGroup.setCoachId(group.getCoachId());
+                    existingGroup.setCoach(group.getCoach());
                     return groupRepository.save(existingGroup);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Groupe non trouvé avec l'ID: " + groupId));
