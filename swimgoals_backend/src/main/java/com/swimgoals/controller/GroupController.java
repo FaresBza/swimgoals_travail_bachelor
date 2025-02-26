@@ -27,7 +27,7 @@ import com.swimgoals.models.User;
 
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/api")
 public class GroupController {
 
     private static final String INTERNAL_SERVER_ERROR_MESSAGE = "Erreur interne du serveur";
@@ -51,7 +51,7 @@ public class GroupController {
             "Group" })
     @ApiResponse(responseCode = "200", description = "Group retrieved successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @GetMapping("/{coachId}")
+    @GetMapping("/groups/{coachId}")
 public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId") UUID coachId) {
     try {
         List<Group> groups = groupService.getAllGroupsByCoachId(coachId);
@@ -67,7 +67,7 @@ public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId"
             "Group" })
     @ApiResponse(responseCode = "200", description = "Group created successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @PostMapping("/create")
+    @PostMapping("/groups/create")
     public ResponseEntity<Group> createGroup(@RequestBody Group group) {
         try {
             Group createdGroup = groupService.createGroup(group);
@@ -83,7 +83,7 @@ public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId"
             "Group" })
     @ApiResponse(responseCode = "200", description = "Group updated successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @PostMapping("/update/{groupId}")
+    @PostMapping("/groups/update/{groupId}")
     public ResponseEntity<Group> updateGroup(@PathVariable("groupId") int groupId, @RequestBody Group group) {
         try {
             Group updatedGroup = groupService.updateGroup(groupId, group);
@@ -99,7 +99,7 @@ public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId"
             "Group" })
     @ApiResponse(responseCode = "200", description = "Group deleted successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @DeleteMapping("/{groupId}")
+    @DeleteMapping("/groups/{groupId}")
     public ResponseEntity<Void> deleteGroup(@PathVariable("groupId") int groupId) {
         try {
             groupService.deleteGroup(groupId);
