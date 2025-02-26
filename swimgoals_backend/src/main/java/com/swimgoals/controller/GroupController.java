@@ -83,7 +83,7 @@ public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId"
             "Group" })
     @ApiResponse(responseCode = "200", description = "Group updated successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @PutMapping("/groups/update/{groupId}")
+    @PutMapping("/groups/{groupId}")
     public ResponseEntity<Group> updateGroup(@PathVariable("groupId") int groupId, @RequestBody Group group) {
         try {
             Group updatedGroup = groupService.updateGroup(groupId, group);
