@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.swimgoals.models.Group;
 import com.swimgoals.models.User;
-
 
 @RestController
 @RequestMapping("/api")
@@ -83,7 +83,7 @@ public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId"
             "Group" })
     @ApiResponse(responseCode = "200", description = "Group updated successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @PostMapping("/groups/update/{groupId}")
+    @PutMapping("/groups/update/{groupId}")
     public ResponseEntity<Group> updateGroup(@PathVariable("groupId") int groupId, @RequestBody Group group) {
         try {
             Group updatedGroup = groupService.updateGroup(groupId, group);
