@@ -5,16 +5,16 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.swimgoals.interfaces.GroupService;
+import com.swimgoals.interfaces.IGroupService;
 import com.swimgoals.models.Group;
 import com.swimgoals.repository.GroupRepository;
 
 @Service
-public class GroupServiceImpl implements GroupService {
+public class GroupService implements IGroupService {
 
     private final GroupRepository groupRepository;
 
-    public GroupServiceImpl(GroupRepository groupRepository) {
+    public GroupService(GroupRepository groupRepository) {
         this.groupRepository = groupRepository;
     }
 

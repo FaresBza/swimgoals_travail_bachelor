@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 import com.swimgoals.models.User;
 
-public interface UserService {
+public interface IUserService {
 
     /**
      * 

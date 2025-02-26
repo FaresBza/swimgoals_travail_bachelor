@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.models.User;
-import com.swimgoals.service.UserServiceImpl;
+import com.swimgoals.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -21,10 +21,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
 
-    public UserController(UserServiceImpl userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @Operation(summary = "Register a new user", description = "Creates a new user in the database and returns the created user object.", tags = {
@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         try {
-            User registeredUser = userServiceImpl.registUser(user);
+            User registeredUser = userService.registUser(user);
             return ResponseEntity.ok(registeredUser);
         } catch (IllegalArgumentException | IllegalStateException e) {
             return ResponseEntity.badRequest().body(null);
@@ -48,7 +48,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<User> loginUser(@RequestBody User user) {
         try {
-            User loggedUser = userServiceImpl.loginUser(user.getEmail(), user.getPassword());
+            User loggedUser = userService.loginUser(user.getEmail(), user.getPassword());
             return ResponseEntity.ok(loggedUser);
         } catch (IllegalArgumentException | IllegalStateException e) {
             return ResponseEntity.badRequest().body(null);

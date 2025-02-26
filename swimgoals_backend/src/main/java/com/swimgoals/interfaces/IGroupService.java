@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.swimgoals.models.Group;
 
-public interface GroupService {
+public interface IGroupService {
 
     List<Group> getAllGroups();
 
