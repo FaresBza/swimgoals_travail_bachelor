@@ -9,10 +9,12 @@ export default function Home() {
   return (
     <div className="container">
       <Header />
-      <div className="button-container">
-        <Button txt="Connexion" />
-        <Button txt="Inscription" />
-      </div>
+      <main className="home-main">
+        <div className="button-container">
+          <Button txt="Connexion" />
+          <Button txt="Inscription" />
+        </div>
+      </main>
     </div>
   )
 }

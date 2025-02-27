@@ -8,4 +8,14 @@
     font-weight: variables.$text-bold-800;
     cursor: pointer;
     border: none;
+
+    &:first-child {
+        background-color: variables.$global-blue;
+        color: variables.$white;
+    }
+
+    &:last-child {
+        background-color: variables.$white;
+        color: variables.$global-blue;
+    }
 }
