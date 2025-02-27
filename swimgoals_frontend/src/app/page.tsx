@@ -5,11 +5,13 @@ import './styles/Home.scss'
 import './styles/BackgroundImage.scss'
 
 export default function Home() {
+
   return (
     <div className="container">
       <Header />
       <div className="button-container">
-        <Button />
+        <Button txt="Connexion" />
+        <Button txt="Inscription" />
       </div>
     </div>
   )
