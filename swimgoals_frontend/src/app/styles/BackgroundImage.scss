@@ -1,0 +1,15 @@
+@use 'variables';
+
+.container {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: variables.$align-center;
+    justify-content: flex-end;
+    height: 100vh;
+    width: 100%;
+    background: variables.$image-background;
+    color: variables.$white;
+    text-align: variables.$text-center;
+    font-family: variables.$global-font-family;
+}
