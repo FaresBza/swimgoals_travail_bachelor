@@ -3,7 +3,7 @@ interface UserData {
     lastname: string;
     email: string;
     password: string;
-    role: number;
+    role: string;
 }
 
 const useUserApi = () => {
