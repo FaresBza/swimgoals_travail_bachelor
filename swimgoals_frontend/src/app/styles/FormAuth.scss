@@ -30,15 +30,15 @@
         .role-buttons {
             display: flex;
             flex-direction: row;
-            width: 60%;
+            width: 100%;
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
             border-radius: 15px;
     
             button {
-                width: 60%;
-                padding: 10px;
+                width: 100%;
+                padding: 7px;
                 border: 1px solid variables.$global-blue;
                 border-radius: 15px;
                 background-color: variables.$white;

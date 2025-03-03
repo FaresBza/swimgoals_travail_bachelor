@@ -1,5 +1,14 @@
+"use client"
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 const FormAuth = () => {
+
+    useEffect(() => {
+        AOS.init();
+    })
 
     return (
         <div
@@ -12,9 +21,9 @@ const FormAuth = () => {
                 </div>
                 <main className="main">
                     <div className="role-buttons">
-                        <button></button>
-                        <button></button>
-                        <button></button>
+                        <button>Admin</button>
+                        <button>Coach</button>
+                        <button>Nageur</button>
                     </div>
                     <form
                         className="form"
