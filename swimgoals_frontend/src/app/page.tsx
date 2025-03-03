@@ -4,10 +4,11 @@ import { useState } from "react";
 
 import ButtonAuth from "./components/ButtonAuth";
 import Header from "./components/Header";
+import FormAuth from "./components/FormAuth";
 
 import './styles/Home.scss'
 import './styles/BackgroundImage.scss'
-import FormAuth from "./components/FormAuth";
+import './styles/FormAuth.scss'
 
 export default function Home() {
 
@@ -27,10 +28,12 @@ export default function Home() {
             onClick={() => setOpenForm(true)}
             />
         </div>
+      </main>
+      <footer className="footer">
         {openForm && (
           <FormAuth />
         )}
-      </main>
+      </footer>
     </div>
   )
 }

@@ -1,0 +1,104 @@
+@use 'variables';
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: variables.$align-center;
+    padding: 15px;
+    background: variables.$white;
+    border-radius: 15px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+
+    .title-container {
+        text-align: variables.$text-center;
+        margin-bottom: 15px;
+
+        .title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+    }
+
+    .role-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid variables.$global-blue;
+            border-radius: 15px;
+            background-color: variables.$white;
+            color: variables.$global-blue;
+            font-weight: variables.$text-bold-800;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+            &.active {
+                background-color: variables.$global-blue;
+                color: variables.$white;
+            }
+        }
+    }
+
+    .form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        label {
+            font-size: 0.85rem;
+            color: variables.$global-blue;
+            text-align: left;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 0.9rem;
+            border: none;
+            border-bottom: 1px solid variables.$global-blue;
+            outline: none;
+        }
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        background-color: variables.$global-blue;
+        color: variables.$white;
+        font-weight: variables.$text-bold-800;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        text-align: variables.$text-center;
+    }
+
+    footer {
+        text-align: variables.$text-center;
+        margin-top: 10px;
+
+        a {
+            color: variables.$global-blue;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
