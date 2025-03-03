@@ -1,6 +1,6 @@
 
 import UserData from "../data/UserData";
-import RoleMapping from "../mapping/roleMapping";
+import RoleMapping from "../mapping/RoleMapping";
 
 const useUserApi = () => {
     
