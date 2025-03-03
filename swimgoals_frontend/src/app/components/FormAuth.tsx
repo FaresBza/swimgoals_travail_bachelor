@@ -5,10 +5,11 @@ import 'aos/dist/aos.css';
 import React, { useEffect } from 'react';
 
 interface FormAuthProps {
-    mainTitle: string
+    mainTitle: string;
+    buttonTitle: string;
 }
 
-const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
+const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
 
     useEffect(() => {
         AOS.init();
@@ -64,7 +65,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="submit-button">S&apos;inscrire</button>
+                        <button type="submit" className="submit-button">{buttonTitle}</button>
                     </form>
                 </main>
             </div>
