@@ -13,6 +13,7 @@ import './styles/FormAuth.scss'
 export default function Home() {
 
   const [openForm, setOpenForm] = useState(false);
+  const [formText, setFormText] = useState("");
 
   return (
     <div className="container">
@@ -21,17 +22,25 @@ export default function Home() {
         <div className="button-container">
           <ButtonAuth 
             txt="Connexion" 
-            onClick={() => setOpenForm(true)}
+            onClick={() => {
+              setOpenForm(true);
+              setFormText("Connexion")
+            }}
             />
           <ButtonAuth 
             txt="Inscription" 
-            onClick={() => setOpenForm(true)}
+            onClick={() => {
+              setOpenForm(true)
+              setFormText("Inscription")
+            }}
             />
         </div>
       </main>
       <footer className="footer">
         {openForm && (
-          <FormAuth />
+          <FormAuth 
+            mainTitle={formText}
+          />
         )}
       </footer>
     </div>

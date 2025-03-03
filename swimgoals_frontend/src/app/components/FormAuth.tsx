@@ -2,9 +2,13 @@
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-const FormAuth = () => {
+interface FormAuthProps {
+    mainTitle: string
+}
+
+const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
 
     useEffect(() => {
         AOS.init();
@@ -17,7 +21,7 @@ const FormAuth = () => {
                 data-aos-duration="500"
             >
                 <div className="title-container">
-                    <h1 className="title">Inscription</h1>
+                    <h1 className="title">{mainTitle}</h1>
                 </div>
                 <main className="main">
                     <div className="role-buttons">
