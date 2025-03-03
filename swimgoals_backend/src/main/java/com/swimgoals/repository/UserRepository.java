@@ -8,8 +8,7 @@ import com.swimgoals.models.User;
 
 @RepositoryRestResource(exported = false)
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
-    
+public interface UserRepository extends JpaRepository<User, Integer> {
     User findByEmail(String email);
 
     Boolean existsByEmail(String email);

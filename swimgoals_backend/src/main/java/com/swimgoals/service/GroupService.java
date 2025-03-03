@@ -23,7 +23,7 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public List<Group> getAllGroupsByCoachId(String coachId) {
+    public List<Group> getAllGroupsByCoachId(Integer coachId) {
         return groupRepository.findByCoachId(coachId);
     }
 
@@ -45,7 +45,7 @@ public class GroupService implements IGroupService {
         return groupRepository.findById(groupId)
                 .map(existingGroup -> {
                     existingGroup.setName(group.getName());
-                    existingGroup.setCoachId(group.getCoachId());
+                    existingGroup.setCoach(group.getCoach());
                     return groupRepository.save(existingGroup);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Groupe non trouvé avec l'ID: " + groupId));

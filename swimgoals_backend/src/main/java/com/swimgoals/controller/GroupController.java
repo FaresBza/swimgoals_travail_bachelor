@@ -48,7 +48,7 @@ public class GroupController {
     @ApiResponse(responseCode = "200", description = "Group retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
     @GetMapping("/groups/{coachId}")
-    public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId") String coachId) {
+    public ResponseEntity<List<Group>> getAllGroupsByCoachId(@PathVariable("coachId") int coachId) {
         try {
             List<Group> groups = groupService.getAllGroupsByCoachId(coachId);
             return ResponseEntity.ok(groups);

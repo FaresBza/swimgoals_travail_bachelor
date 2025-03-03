@@ -1,9 +1,9 @@
 package com.swimgoals.models;
 
-import java.util.UUID;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,8 +14,9 @@ import jakarta.persistence.Table;
 public class User {
     
     @Id
-    @Column(columnDefinition = "VARCHAR(255)", nullable = false, unique = true)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
+    private Integer id;
 
     @Column(name = "lastname", nullable = false)
     private String lastname;
@@ -34,10 +35,10 @@ public class User {
     private Role role;
 
     public User() {
-        this(UUID.randomUUID().toString(), "", "", "", "", null);
+        this(0, "", "", "", "", null);
     }
 
-    public User(String id, String lastname, String firstname, String email, String password, Role role) {
+    public User(Integer id, String lastname, String firstname, String email, String password, Role role) {
         this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
@@ -46,11 +47,11 @@ public class User {
         this.role = role;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

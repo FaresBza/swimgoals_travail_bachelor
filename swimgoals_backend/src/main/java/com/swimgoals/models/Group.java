@@ -20,14 +20,14 @@ public class Group {
 
     @ManyToOne
     @JoinColumn(name = "coach_id", nullable = false)
-    private String coachId;
+    private User coach;
 
     @Column(name = "name")
     private String name;
 
-    public Group(int id, String coachId, String name) {
+    public Group(int id, User coachId, String name) {
         this.id = id;
-        this.coachId = coachId;
+        this.coach = coachId;
         this.name = name;
     }
 
@@ -43,12 +43,12 @@ public class Group {
         this.id = id;
     }
 
-    public String getCoachId() {
-        return coachId;
+    public User getCoach() {
+        return coach;
     }
 
-    public void setCoachId(String coachId) {
-        this.coachId = coachId;
+    public void setCoach(User coachId) {
+        this.coach = coachId;
     }
 
     public String getName() {

@@ -8,7 +8,7 @@ public interface IGroupService {
 
     List<Group> getAllGroups();
 
-    List<Group> getAllGroupsByCoachId(String coachId);
+    List<Group> getAllGroupsByCoachId(Integer coachId);
 
     Group createGroup(Group group);
 

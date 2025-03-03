@@ -4,7 +4,7 @@ CREATE TABLE roles (
 );
 
 CREATE TABLE users (
-    id VARCHAR(255) PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     lastname VARCHAR(255) NOT NULL,
     firstname VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -15,13 +15,13 @@ CREATE TABLE users (
 
 CREATE TABLE groups (
     id INT PRIMARY KEY,
-    coach_id VARCHAR(255),
+    coach_id INT,
     name VARCHAR(255) NOT NULL,
     FOREIGN KEY (coach_id) REFERENCES Users(id)
 );
 
 CREATE TABLE swimmers_group (
-    swimmer_id VARCHAR(255),
+    swimmer_id INT,
     group_id INT,
     PRIMARY KEY (swimmer_id, group_id),
     FOREIGN KEY (swimmer_id) REFERENCES users(id),
@@ -35,7 +35,7 @@ CREATE TABLE swims (
 
 CREATE TABLE objectives (
     id INT PRIMARY KEY,
-    swimmer_id  VARCHAR(255),
+    swimmer_id INT,
     swim_id INT,
     distance VARCHAR(255) NOT NULL,
     time TIME NOT NULL,
