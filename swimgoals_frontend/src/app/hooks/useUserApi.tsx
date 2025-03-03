@@ -1,11 +1,9 @@
-
 import UserData from "../data/UserData";
 import RoleMapping from "../mapping/RoleMapping";
 
 const useUserApi = () => {
     
     const handleRegister = async ({ firstname, lastname, email, password, role }: UserData): Promise<void> => {
-
         const roleId = RoleMapping[role];
 
         if (!roleId) {
@@ -36,7 +34,29 @@ const useUserApi = () => {
         }
     };
 
-    return { handleRegister };
+    const handleLogin = async ({ email, password }: { email: string, password: string }) => {
+        try {
+            const response = await fetch("http://localhost:8080/api/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("Connexion réussie !");
+            } else {
+                console.error("Erreur lors de la connexion", data.message);
+            }
+        } catch (error) {
+            console.error("Erreur réseau :", error);
+        }
+    };
+
+    return { handleRegister, handleLogin };
 };
 
 export default useUserApi;

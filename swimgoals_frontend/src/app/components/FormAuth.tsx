@@ -19,13 +19,13 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
     const [password, setPassword] = useState("");
     const [role, setRole] = useState("");
 
-    const { handleRegister } = useUserApi();
+    const { handleRegister, handleLogin } = useUserApi();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (mainTitle === "Connexion"){
-            console.log("Login")
+            handleLogin({ email, password });
         } else {
             handleRegister({ firstname, lastname, email, password, role });
         }
