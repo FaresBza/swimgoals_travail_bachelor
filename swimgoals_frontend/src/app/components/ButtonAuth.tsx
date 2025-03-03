@@ -1,4 +1,4 @@
-import './../styles/Button.scss'
+import './../styles/ButtonAuth.scss'
 
 import React from 'react';
 

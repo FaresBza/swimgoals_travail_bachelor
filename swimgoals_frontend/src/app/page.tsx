@@ -1,4 +1,4 @@
-import Button from "./components/Button";
+import ButtonAuth from "./components/ButtonAuth";
 import Header from "./components/Header";
 
 import './styles/Home.scss'
@@ -11,8 +11,8 @@ export default function Home() {
       <Header />
       <main className="home-main">
         <div className="button-container">
-          <Button txt="Connexion" />
-          <Button txt="Inscription" />
+          <ButtonAuth txt="Connexion" />
+          <ButtonAuth txt="Inscription" />
         </div>
       </main>
     </div>
