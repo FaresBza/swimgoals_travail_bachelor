@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swimgoals.dto.UserDTO;
 import com.swimgoals.models.User;
 import com.swimgoals.service.UserService;
 
@@ -32,14 +33,15 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "User registered successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema()))
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
+    public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
         try {
-            User registeredUser = userService.registUser(user);
+            User registeredUser = userService.registUser(userDTO);
             return ResponseEntity.ok(registeredUser);
         } catch (IllegalArgumentException | IllegalStateException e) {
             return ResponseEntity.badRequest().body(null);
         }
     }
+
 
     @Operation(summary = "User login", description = "Authenticates the user and returns the user object if successful.", tags = {
             "User Authentication" })
