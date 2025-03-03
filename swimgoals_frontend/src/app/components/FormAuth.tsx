@@ -10,7 +10,7 @@ const FormAuth = () => {
                 <div className="title-container">
                     <h1 className="title">Inscription</h1>
                 </div>
-                <main>
+                <main className="main">
                     <div className="role-buttons">
                         <button></button>
                         <button></button>
