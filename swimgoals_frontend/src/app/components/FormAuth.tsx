@@ -32,13 +32,13 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
 
     return (
         <div
-                className="register-container"
-                data-aos="fade-up"
-                data-aos-duration="500"
-            >
-                <div className="title-container">
-                    <h1 className="title">{mainTitle}</h1>
-                </div>
+            className="register-container"
+            data-aos="fade-up"
+            data-aos-duration="500"
+        >
+            <div className="title-container">
+                <h1 className="title">{mainTitle}</h1>
+            </div>
                 <main className="main">
                     <div className="role-buttons">
                         <button
@@ -104,10 +104,10 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="submit-button">{buttonTitle}</button>
-                    </form>
-                </main>
-            </div>
+                    <button type="submit" className="submit-button">{buttonTitle}</button>
+                </form>
+            </main>
+        </div>
     )
 }
 

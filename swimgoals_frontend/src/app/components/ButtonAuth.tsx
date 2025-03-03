@@ -13,7 +13,6 @@ const Button: React.FC<ButtonProps> = ({ txt, onClick }) => {
             {txt}
         </button>
     )
-    
 }
 
 export default Button;
