@@ -1,8 +1,10 @@
 "use client"
 
+import useUserApi from '../hooks/useUserApi';
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface FormAuthProps {
     mainTitle: string;
@@ -10,6 +12,18 @@ interface FormAuthProps {
 }
 
 const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
+
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const { handleRegister } = useUserApi();
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        handleRegister({ firstname, lastname, email, password });
+    };
 
     useEffect(() => {
         AOS.init();
@@ -32,12 +46,15 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                     </div>
                     <form
                         className="form"
+                        onSubmit={onSubmit}
                     >
                         <div className="form-group">
                             <label>Nom</label>
                             <input
                                 type="text"
                                 placeholder="Nom"
+                                value={lastname}
+                                onChange={(e) => setLastname(e.target.value)}
                                 required
                             />
                         </div>
@@ -46,6 +63,8 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             <input
                                 type="text"
                                 placeholder="Prénom"
+                                value={firstname}
+                                onChange={(e) => setFirstname(e.target.value)}
                                 required
                             />
                         </div>
@@ -54,6 +73,8 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             <input
                                 type="email"
                                 placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
@@ -62,6 +83,8 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             <input
                                 type="password"
                                 placeholder="Mot de passe"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                         </div>
