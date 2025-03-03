@@ -13,11 +13,11 @@ interface FormAuthProps {
 
 const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
 
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = useState("");
+    const [firstname, setFirstname] = useState<string>("");
+    const [lastname, setLastname] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [role, setRole] = useState<string>("");
 
     const { handleRegister, handleLogin } = useUserApi();
 
