@@ -3,11 +3,12 @@ interface UserData {
     lastname: string;
     email: string;
     password: string;
+    role: string;
 }
 
 const useUserApi = () => {
-    const handleRegister = async ({ firstname, lastname, email, password }: UserData): Promise<void> => {
-        const newUser = { firstname, lastname, email, password };
+    const handleRegister = async ({ firstname, lastname, email, password, role }: UserData): Promise<void> => {
+        const newUser = { firstname, lastname, email, password, role };
 
         try {
             const response = await fetch("http://localhost:8080/api/register", {

@@ -17,12 +17,13 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("");
 
     const { handleRegister } = useUserApi();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        handleRegister({ firstname, lastname, email, password });
+        handleRegister({ firstname, lastname, email, password, role });
     };
 
     useEffect(() => {
@@ -40,9 +41,24 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                 </div>
                 <main className="main">
                     <div className="role-buttons">
-                        <button>Admin</button>
-                        <button>Coach</button>
-                        <button>Nageur</button>
+                        <button
+                            onClick={() => setRole("admin")}
+                            className={role === "admin" ? "active" : ""}
+                        >
+                            Admin
+                        </button>
+                        <button
+                            onClick={() => setRole("coach")}
+                            className={role === "coach" ? "active" : ""}
+                        >
+                            Coach
+                        </button>
+                        <button
+                            onClick={() => setRole("swimmer")}
+                            className={role === "swimmer" ? "active" : ""}
+                        >
+                            Nageur
+                        </button>
                     </div>
                     <form
                         className="form"
