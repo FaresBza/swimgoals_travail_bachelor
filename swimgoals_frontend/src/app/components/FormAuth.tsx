@@ -19,6 +19,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
     const [password, setPassword] = useState<string>("");
     const [role, setRole] = useState<string>("");
     const [isLogin, setIsLogin] = useState<boolean>(mainTitle === "Connexion");
+    const [isButtonLogin, setIsButtonLogin] = useState<boolean>(buttonTitle === "Se connecter");
 
     const { handleRegister, handleLogin } = useUserApi();
 
@@ -112,7 +113,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="submit-button">{buttonTitle}</button>
+                            <button type="submit" className="submit-button">{isButtonLogin ? "S'inscrire" : "Se connecter"}</button>
                         </form>
                         <footer>
                             <h5 className='footer-txt'>
@@ -147,7 +148,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="submit-button">{buttonTitle}</button>
+                            <button type="submit" className="submit-button">{isButtonLogin ? "Se connecter" : "S'inscrire"}</button>
                         </form>
                         <footer>
                             <h5 className='footer-txt'>
