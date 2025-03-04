@@ -12,9 +12,9 @@ import './styles/FormAuth.scss'
 
 export default function Home() {
 
-  const [openForm, setOpenForm] = useState(false);
-  const [formText, setFormText] = useState("");
-  const [formButtonText, setFormButtonText] = useState("");
+  const [openForm, setOpenForm] = useState<boolean>(false);
+  const [formText, setFormText] = useState<string>("");
+  const [formButtonText, setFormButtonText] = useState<string>("");
 
   return (
     <div className="container">
