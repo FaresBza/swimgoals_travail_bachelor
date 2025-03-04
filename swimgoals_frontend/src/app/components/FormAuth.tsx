@@ -18,6 +18,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [role, setRole] = useState<string>("");
+    const [isLogin, setIsLogin] = useState<boolean>(mainTitle === "Connexion");
 
     const { handleRegister, handleLogin } = useUserApi();
 
@@ -29,7 +30,6 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
         } else {
             handleRegister({ firstname, lastname, email, password, role });
         }
-
     };
 
     useEffect(() => {
@@ -43,12 +43,12 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
             data-aos-duration="500"
         >
             <div className="title-container">
-                <h1 className="title">{mainTitle}</h1>
+                <h1 className="title">{isLogin ? "Connexion" : "Inscription"}</h1>
             </div>
-                <main className="main">
-                    {mainTitle === "Inscription" && (
-                        <>
-                            <div className="role-buttons">
+            <main className="main">
+                {!isLogin && (
+                    <>
+                        <div className="role-buttons">
                             <button
                                 onClick={() => setRole("admin")}
                                 className={role === "admin" ? "active" : ""}
@@ -73,81 +73,89 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             onSubmit={onSubmit}
                         >
                             <div className="form-group">
-                                    <label>Nom</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Nom"
-                                        value={lastname}
-                                        onChange={(e) => setLastname(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Prénom</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Prénom"
-                                        value={firstname}
-                                        onChange={(e) => setFirstname(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Adresse mail</label>
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Mot de passe</label>
-                                        <input
-                                            type="password"
-                                            placeholder="Mot de passe"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                            </form>
+                                <label>Nom</label>
+                                <input
+                                    type="text"
+                                    placeholder="Nom"
+                                    value={lastname}
+                                    onChange={(e) => setLastname(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Prénom</label>
+                                <input
+                                    type="text"
+                                    placeholder="Prénom"
+                                    value={firstname}
+                                    onChange={(e) => setFirstname(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Adresse mail</label>
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Mot de passe</label>
+                                <input
+                                    type="password"
+                                    placeholder="Mot de passe"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
                             <button type="submit" className="submit-button">{buttonTitle}</button>
-                        </>
-                    )}
-                    {mainTitle === "Connexion" && (
-                        <div>
-                            <form
-                                className="form"
-                                onSubmit={onSubmit}
-                            >
-                                <div className="form-group">
-                                    <div className="form-group">
-                                        <label>Adresse mail</label>
-                                        <input
-                                            type="email"
-                                            placeholder="Email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Mot de passe</label>
-                                            <input
-                                                type="password"
-                                                placeholder="Mot de passe"
-                                                value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                <button type="submit" className="submit-button">{buttonTitle}</button>
-                            </form>
-                        </div>
-                    )}
+                        </form>
+                        <footer>
+                            <h5 className='footer-txt'>
+                                Déjà un compte ? <a onClick={() => setIsLogin(true)}>Se connecter</a>
+                            </h5>
+                        </footer>
+                    </>
+                )}
+                {isLogin && (
+                    <>
+                        <form
+                            className="form"
+                            onSubmit={onSubmit}
+                        >
+                            <div className="form-group">
+                                <label>Adresse mail</label>
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Mot de passe</label>
+                                <input
+                                    type="password"
+                                    placeholder="Mot de passe"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <button type="submit" className="submit-button">{buttonTitle}</button>
+                        </form>
+                        <footer>
+                            <h5 className='footer-txt'>
+                                Nouveau compte ? <a onClick={() => setIsLogin(false)}>S&apos;inscrire</a>
+                            </h5>
+                        </footer>
+                    </>
+                )}
             </main>
         </div>
     )
