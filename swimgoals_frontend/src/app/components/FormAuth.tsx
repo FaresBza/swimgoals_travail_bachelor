@@ -112,39 +112,41 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                             required
                                         />
                                     </div>
-                                <button type="submit" className="submit-button">{buttonTitle}</button>
                             </form>
+                            <button type="submit" className="submit-button">{buttonTitle}</button>
                         </>
                     )}
                     {mainTitle === "Connexion" && (
-                        <form
-                            className="form"
-                            onSubmit={onSubmit}
-                        >
-                            <div className="form-group">
+                        <div>
+                            <form
+                                className="form"
+                                onSubmit={onSubmit}
+                            >
                                 <div className="form-group">
-                                    <label>Adresse mail</label>
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label>Mot de passe</label>
+                                    <div className="form-group">
+                                        <label>Adresse mail</label>
                                         <input
-                                            type="password"
-                                            placeholder="Mot de passe"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            type="email"
+                                            placeholder="Email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                             required
                                         />
                                     </div>
+                                    <div className="form-group">
+                                        <label>Mot de passe</label>
+                                            <input
+                                                type="password"
+                                                placeholder="Mot de passe"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
                                 <button type="submit" className="submit-button">{buttonTitle}</button>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     )}
             </main>
         </div>
