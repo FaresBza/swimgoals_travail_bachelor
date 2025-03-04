@@ -49,11 +49,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
             </div>
             <main className="main">
                 {!isLogin && (
-                    <div
-                        className="register-container"
-                        data-aos="fade-up"
-                        data-aos-duration="500"
-                    >
+                    <div>
                         <div className="role-buttons">
                             <button
                                 onClick={() => setRole("admin")}
