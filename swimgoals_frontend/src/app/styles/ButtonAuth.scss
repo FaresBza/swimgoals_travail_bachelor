@@ -3,7 +3,7 @@
 .button {
     width: 100%;
     padding: 15px 0;
-    border-radius: 25px;
+    border-radius: 50px;
     font-size: 1rem;
     font-weight: variables.$text-bold-800;
     cursor: pointer;
@@ -17,5 +17,13 @@
     &:last-child {
         background-color: variables.$white;
         color: variables.$global-blue;
+    }
+}
+
+@media screen and (min-width: 780px) {
+    .button {
+        font-size: 1.2rem;
+        padding: 20px 0;
+        width: 105%;
     }
 }
