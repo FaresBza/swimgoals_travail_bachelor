@@ -4,10 +4,10 @@
     display: flex;
     flex-direction: column;
     align-items: variables.$align-center;
-    padding: 15px;
+    padding: 15px -11px 15px 15px;
     background: variables.$white;
     border-radius: 15px 15px 0 0;
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
@@ -112,5 +112,25 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (min-width: 485px) {
+    .register-container {
+        .title-container {
+            .title {
+                font-size: 1.3rem;
+            }
+        }
+
+        .main {
+            width: 330px;
+        }
+    }
+}
+
+@media screen and (min-width: 630px) {
+    .register-container {
+        width: 500px;
     }
 }

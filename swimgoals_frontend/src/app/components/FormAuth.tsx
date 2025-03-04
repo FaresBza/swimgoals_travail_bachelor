@@ -24,9 +24,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
 
     const { handleRegister, handleLogin } = useUserApi();
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
+    const onSubmit = () => {
         if (mainTitle === "Connexion"){
             handleLogin({ email, password });
         } else {
@@ -72,7 +70,6 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                         </div>
                         <form
                             className="form"
-                            onSubmit={onSubmit}
                         >
                             <div className="form-group">
                                 <label>Nom</label>
@@ -114,13 +111,14 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                     required
                                 />
                             </div>
-                            <button 
-                                type="submit" 
-                                className="submit-button"
-                            >
-                                {isButtonLogin ? "S'inscrire" : "Se connecter"}
-                            </button>
                         </form>
+                        <button 
+                            type="submit" 
+                            className="submit-button"
+                            onClick={onSubmit}
+                        >
+                            {isButtonLogin ? "S'inscrire" : "Se connecter"}
+                        </button>
                         <footer>
                             <h5 className='footer-txt'>
                                 Déjà un compte ? <a onClick={() => setIsLogin(true)}>Se connecter</a>
@@ -154,13 +152,14 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                     required
                                 />
                             </div>
-                            <button
-                                type="submit" 
-                                className="submit-button"
-                            >
-                                {isButtonLogin ? "Se connecter" : "S'inscrire"}
-                                </button>
                         </form>
+                        <button
+                            type="submit" 
+                            className="submit-button"
+                            onClick={onSubmit}
+                        >
+                            {isButtonLogin ? "Se connecter" : "S'inscrire"}
+                        </button>
                         <footer>
                             <h5 className='footer-txt'>
                                 Nouveau compte ? <a onClick={() => setIsLogin(false)}>S&apos;inscrire</a>
