@@ -18,8 +18,9 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [role, setRole] = useState<string>("");
+
     const [isLogin, setIsLogin] = useState<boolean>(mainTitle === "Connexion");
-    const [isButtonLogin, setIsButtonLogin] = useState<boolean>(buttonTitle === "Se connecter");
+    const [isButtonLogin] = useState<boolean>(buttonTitle === "Se connecter");
 
     const { handleRegister, handleLogin } = useUserApi();
 
@@ -48,7 +49,11 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
             </div>
             <main className="main">
                 {!isLogin && (
-                    <>
+                    <div
+                        className="register-container"
+                        data-aos="fade-up"
+                        data-aos-duration="500"
+                    >
                         <div className="role-buttons">
                             <button
                                 onClick={() => setRole("admin")}
@@ -113,14 +118,19 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="submit-button">{isButtonLogin ? "S'inscrire" : "Se connecter"}</button>
+                            <button 
+                                type="submit" 
+                                className="submit-button"
+                            >
+                                {isButtonLogin ? "S'inscrire" : "Se connecter"}
+                            </button>
                         </form>
                         <footer>
                             <h5 className='footer-txt'>
                                 Déjà un compte ? <a onClick={() => setIsLogin(true)}>Se connecter</a>
                             </h5>
                         </footer>
-                    </>
+                    </div>
                 )}
                 {isLogin && (
                     <>
@@ -148,7 +158,12 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="submit-button">{isButtonLogin ? "Se connecter" : "S'inscrire"}</button>
+                            <button
+                                type="submit" 
+                                className="submit-button"
+                            >
+                                {isButtonLogin ? "Se connecter" : "S'inscrire"}
+                                </button>
                         </form>
                         <footer>
                             <h5 className='footer-txt'>
