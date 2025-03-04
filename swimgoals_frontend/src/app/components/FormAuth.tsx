@@ -51,19 +51,19 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                         <div className="role-buttons">
                             <button
                                 onClick={() => setRole("admin")}
-                                className={role === "admin" ? "active" : ""}
+                                className={role === "admin" ? "role-button active" : "role-button"}
                             >
                                 Admin
                             </button>
                             <button
                                 onClick={() => setRole("coach")}
-                                className={role === "coach" ? "active" : ""}
+                                className={role === "coach" ? "role-button active" : "role-button"}
                             >
                                 Coach
                             </button>
                             <button
                                 onClick={() => setRole("swimmer")}
-                                className={role === "swimmer" ? "active" : ""}
+                                className={role === "swimmer" ? "role-button active" : "role-button"}
                             >
                                 Nageur
                             </button>
@@ -72,9 +72,10 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             className="form"
                         >
                             <div className="form-group">
-                                <label>Nom</label>
+                                <label className="name-label">Nom</label>
                                 <input
                                     type="text"
+                                    className="input"
                                     placeholder="Nom"
                                     value={lastname}
                                     onChange={(e) => setLastname(e.target.value)}
@@ -82,9 +83,10 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Prénom</label>
+                                <label className="name-label">Prénom</label>
                                 <input
                                     type="text"
+                                    className="input"
                                     placeholder="Prénom"
                                     value={firstname}
                                     onChange={(e) => setFirstname(e.target.value)}
@@ -92,9 +94,10 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Adresse mail</label>
+                                <label className="name-label">Adresse mail</label>
                                 <input
                                     type="email"
+                                    className="input"
                                     placeholder="Email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -102,9 +105,10 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Mot de passe</label>
+                                <label className="name-label">Mot de passe</label>
                                 <input
                                     type="password"
+                                    className="input"
                                     placeholder="Mot de passe"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -119,7 +123,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                         >
                             {isButtonLogin ? "S'inscrire" : "Se connecter"}
                         </button>
-                        <footer>
+                        <footer className="footer-section">
                             <h5 className='footer-txt'>
                                 Déjà un compte ? <a onClick={() => setIsLogin(true)}>Se connecter</a>
                             </h5>
@@ -133,9 +137,10 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             onSubmit={onSubmit}
                         >
                             <div className="form-group">
-                                <label>Adresse mail</label>
+                                <label className="name-label">Adresse mail</label>
                                 <input
                                     type="email"
+                                    className="input"
                                     placeholder="Email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -143,9 +148,10 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>Mot de passe</label>
+                                <label className="name-label">Mot de passe</label>
                                 <input
                                     type="password"
+                                    className="input"
                                     placeholder="Mot de passe"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}

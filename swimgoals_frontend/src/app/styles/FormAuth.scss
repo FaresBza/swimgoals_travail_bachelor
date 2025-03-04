@@ -34,12 +34,13 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
-            border-radius: 15px;
+            border-radius: 25px;
+            border: 1px solid variables.$global-blue;
     
-            button {
+            .role-button {
                 width: 100%;
                 padding: 7px;
-                border: 1px solid variables.$global-blue;
+                border: 0;
                 border-radius: 15px;
                 background-color: variables.$white;
                 color: variables.$global-blue;
@@ -65,13 +66,13 @@
                 flex-direction: column;
                 width: 100%;
                 
-                label {
+                .name-label {
                     font-size: 0.75rem;
                     color: variables.$global-blue;
                     text-align: left;
                 }
                 
-                input {
+                .input {
                     padding: 8px;
                     font-size: 0.75rem;
                     border: none;
@@ -99,7 +100,7 @@
             text-align: variables.$text-center;
         }
 
-        footer {
+        .footer-section {
             text-align: variables.$text-center;
             margin-top: 15px;
 
