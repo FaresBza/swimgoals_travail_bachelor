@@ -21,22 +21,26 @@ export default function Home() {
       <Header />
       <main className="home-main">
         <div className="button-container">
-          <ButtonAuth 
-            txt="Connexion" 
-            onClick={() => {
-              setOpenForm(true);
-              setFormText("Connexion")
-              setFormButtonText("Se connecter")
-            }}
-            />
-          <ButtonAuth 
-            txt="Inscription" 
-            onClick={() => {
-              setOpenForm(true)
-              setFormText("Inscription")
-              setFormButtonText("S'inscrire")
-            }}
-            />
+          {!openForm && (
+            <>
+              <ButtonAuth 
+                txt="Connexion" 
+                onClick={() => {
+                  setOpenForm(true);
+                  setFormText("Connexion")
+                  setFormButtonText("Se connecter")
+                }}
+              />
+              <ButtonAuth 
+                txt="Inscription" 
+                onClick={() => {
+                  setOpenForm(true)
+                  setFormText("Inscription")
+                  setFormButtonText("S'inscrire")
+                }}
+              />
+            </>
+          )}
         </div>
       </main>
       <footer className="footer">
