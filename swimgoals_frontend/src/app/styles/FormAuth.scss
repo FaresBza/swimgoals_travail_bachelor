@@ -86,7 +86,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 10px 0 0 0;
+            margin: 20px 0 0 0;
             width: 100%;
             padding: 10px;
             border-radius: 20px;
@@ -98,19 +98,18 @@
             font-size: 1rem;
             text-align: variables.$text-center;
         }
-    }
 
+        footer {
+            text-align: variables.$text-center;
+            margin-top: 15px;
 
-    footer {
-        text-align: variables.$text-center;
-        margin-top: 10px;
+            a {
+                color: variables.$global-blue;
+                text-decoration: none;
 
-        a {
-            color: variables.$global-blue;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }
