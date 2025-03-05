@@ -8,10 +8,9 @@ import React, { useEffect, useState } from 'react';
 
 interface FormAuthProps {
     mainTitle: string;
-    buttonTitle: string;
 }
 
-const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
+const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
 
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");
@@ -20,7 +19,6 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
     const [role, setRole] = useState<string>("");
 
     const [isLogin, setIsLogin] = useState<boolean>(mainTitle === "Connexion");
-    const [isButtonLogin] = useState<boolean>(buttonTitle === "Se connecter");
 
     const { handleRegister, handleLogin } = useUserApi();
 
@@ -121,11 +119,11 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             className="submit-button"
                             onClick={onSubmit}
                         >
-                            {isButtonLogin ? "S'inscrire" : "Se connecter"}
+                            S&apos;inscrire
                         </button>
                         <footer className="footer-section">
-                            <h5 className='footer-txt'>
-                                Déjà un compte ? <a onClick={() => setIsLogin(true)}>Se connecter</a>
+                            <h5 className="footer-txt">
+                                Déjà un compte ? <a onClick={() => setIsLogin(true)} className="txt-link">Se connecter</a>
                             </h5>
                         </footer>
                     </div>
@@ -164,11 +162,11 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle, buttonTitle }) => {
                             className="submit-button"
                             onClick={onSubmit}
                         >
-                            {isButtonLogin ? "Se connecter" : "S'inscrire"}
+                            Se connecter
                         </button>
-                        <footer>
-                            <h5 className='footer-txt'>
-                                Nouveau compte ? <a onClick={() => setIsLogin(false)}>S&apos;inscrire</a>
+                        <footer className="footer-section">
+                            <h5 className="footer-txt">
+                                Nouveau compte ? <a onClick={() => setIsLogin(false)} className="txt-link">S&apos;inscrire</a>
                             </h5>
                         </footer>
                     </>

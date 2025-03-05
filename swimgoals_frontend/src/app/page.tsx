@@ -14,7 +14,6 @@ export default function Home() {
 
   const [openForm, setOpenForm] = useState<boolean>(false);
   const [formText, setFormText] = useState<string>("");
-  const [formButtonText, setFormButtonText] = useState<string>("");
 
   return (
     <div className="container">
@@ -28,7 +27,6 @@ export default function Home() {
                 onClick={() => {
                   setOpenForm(true);
                   setFormText("Connexion")
-                  setFormButtonText("Se connecter")
                 }}
               />
               <ButtonAuth 
@@ -36,7 +34,6 @@ export default function Home() {
                 onClick={() => {
                   setOpenForm(true)
                   setFormText("Inscription")
-                  setFormButtonText("S'inscrire")
                 }}
               />
             </>
@@ -47,7 +44,6 @@ export default function Home() {
         {openForm && (
           <FormAuth 
             mainTitle={formText}
-            buttonTitle={formButtonText}
           />
         )}
       </footer>
