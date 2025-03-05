@@ -24,7 +24,7 @@ public class UserService implements IUserService{
     }
     @Override
     public User registUser(UserDTO userDTO) throws IllegalArgumentException {
-        var existEmailUser = userRepository.existsByEmail(userDTO.email);
+        boolean existEmailUser = userRepository.existsByEmail(userDTO.email);
 
         if (existEmailUser) {
             throw new IllegalArgumentException("Email already exists");
