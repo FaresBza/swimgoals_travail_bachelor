@@ -14,10 +14,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 
-@Tag(name = "User Authentification", description = "GET and POST methos for users authentification")
 @RestController
 @RequestMapping("/api")
 public class UserController {

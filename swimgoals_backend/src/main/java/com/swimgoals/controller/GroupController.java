@@ -21,11 +21,9 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api")
-@Tag(name = "Group Management", description = "HTTP methods for managing groups")
 public class GroupController {
 
     private static final String INTERNAL_SERVER_ERROR_MESSAGE = "Erreur interne du serveur";
