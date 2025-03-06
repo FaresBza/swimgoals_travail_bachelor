@@ -23,7 +23,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
     const { handleRegister, handleLogin } = useUserApi();
 
     const onSubmit = () => {
-        if (mainTitle === "Connexion"){
+        if (isLogin){
             handleLogin({ email, password });
         } else {
             handleRegister({ firstname, lastname, email, password, role });
@@ -40,74 +40,83 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
             data-aos="fade-up"
             data-aos-duration="500"
         >
-            <div className="title-container">
-                <h1 className="title">{isLogin ? "Connexion" : "Inscription"}</h1>
+            <div className="title-container" aria-labelledby="main-title">
+                <h1 className="title" id="main-title">{isLogin ? "Connexion" : "Inscription"}</h1>
             </div>
             <main className="main">
                 {!isLogin && (
                     <div>
-                        <div className="role-buttons">
+                        <fieldset className="role-buttons" aria-labelledby="role-selection">
+                            <legend className="legend" id="role-selection">Choisissez votre rôle</legend>
                             <button
                                 onClick={() => setRole("admin")}
                                 className={role === "admin" ? "role-button active" : "role-button"}
+                                aria-pressed={role === "admin"}
                             >
                                 Admin
                             </button>
                             <button
                                 onClick={() => setRole("coach")}
                                 className={role === "coach" ? "role-button active" : "role-button"}
+                                aria-pressed={role === "coach"}
                             >
                                 Coach
                             </button>
                             <button
                                 onClick={() => setRole("swimmer")}
                                 className={role === "swimmer" ? "role-button active" : "role-button"}
+                                aria-pressed={role === "swimmer"}
                             >
                                 Nageur
                             </button>
-                        </div>
+                        </fieldset>
                         <form
                             className="form"
+                            aria-labelledby="form-title"
                         >
                             <div className="form-group">
-                                <label className="name-label">Nom</label>
+                                <label className="name-label" htmlFor="nom">Nom</label>
                                 <input
                                     type="text"
                                     className="input"
                                     placeholder="Nom"
+                                    id="nom"
                                     value={lastname}
                                     onChange={(e) => setLastname(e.target.value)}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label className="name-label">Prénom</label>
+                                <label className="name-label" htmlFor="prenom">Prénom</label>
                                 <input
                                     type="text"
                                     className="input"
                                     placeholder="Prénom"
+                                    id="prenom"
                                     value={firstname}
                                     onChange={(e) => setFirstname(e.target.value)}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label className="name-label">Adresse mail</label>
+                                <label className="name-label" htmlFor="email">Adresse mail</label>
                                 <input
                                     type="email"
                                     className="input"
                                     placeholder="Email"
+                                    id="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label className="name-label">Mot de passe</label>
+                                <label className="name-label" htmlFor="password">Mot de passe</label>
                                 <input
                                     type="password"
                                     className="input"
                                     placeholder="Mot de passe"
+                                    id="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
@@ -135,22 +144,24 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
                             onSubmit={onSubmit}
                         >
                             <div className="form-group">
-                                <label className="name-label">Adresse mail</label>
+                                <label className="name-label" htmlFor="email">Adresse mail</label>
                                 <input
                                     type="email"
                                     className="input"
                                     placeholder="Email"
+                                    id="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label className="name-label">Mot de passe</label>
+                                <label className="name-label" htmlFor="password">Mot de passe</label>
                                 <input
                                     type="password"
                                     className="input"
                                     placeholder="Mot de passe"
+                                    id="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
