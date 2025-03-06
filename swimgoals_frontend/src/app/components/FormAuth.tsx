@@ -38,7 +38,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
         <div
             className="register-container"
             data-aos="fade-up"
-            data-aos-duration="500"
+            data-aos-duration="800"
         >
             <div className="title-container" aria-labelledby="main-title">
                 <h1 className="title" id="main-title">{isLogin ? "Connexion" : "Inscription"}</h1>

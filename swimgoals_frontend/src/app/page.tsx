@@ -1,19 +1,42 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import ButtonAuth from "./components/ButtonAuth";
 import Header from "./components/Header";
 import FormAuth from "./components/FormAuth";
 
-import './styles/Home.scss'
-import './styles/BackgroundImage.scss'
-import './styles/FormAuth.scss'
+import './styles/Home.scss';
+import './styles/BackgroundImage.scss';
+import './styles/FormAuth.scss';
 
 export default function Home() {
+  const [openForm, setOpenForm] = useState(false);
+  const [formText, setFormText] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
 
-  const [openForm, setOpenForm] = useState<boolean>(false);
-  const [formText, setFormText] = useState<string>("");
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutsideToCloseForm = (event: MouseEvent) => {
+      if (
+        openForm &&
+        formRef.current &&
+        !formRef.current.contains(event.target as Node)
+      ) {
+        setIsVisible(false);
+        setTimeout(() => setOpenForm(false), 500);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutsideToCloseForm);
+    return () => document.removeEventListener("mousedown", handleClickOutsideToCloseForm);
+  }, [openForm]);
 
   return (
     <div className="container">
@@ -26,14 +49,16 @@ export default function Home() {
                 txt="Connexion" 
                 onClick={() => {
                   setOpenForm(true);
-                  setFormText("Connexion")
+                  setFormText("Connexion");
+                  setIsVisible(true);
                 }}
               />
               <ButtonAuth 
                 txt="Inscription" 
                 onClick={() => {
-                  setOpenForm(true)
-                  setFormText("Inscription")
+                  setOpenForm(true);
+                  setFormText("Inscription");
+                  setIsVisible(true);
                 }}
               />
             </>
@@ -42,11 +67,14 @@ export default function Home() {
       </main>
       <footer className="footer">
         {openForm && (
-          <FormAuth 
-            mainTitle={formText}
-          />
+          <div 
+            ref={formRef} 
+            className={`form-container ${isVisible ? "fade-in" : "fade-out"}`}
+          >
+            <FormAuth mainTitle={formText} />
+          </div>
         )}
       </footer>
     </div>
-  )
+  );
 }
