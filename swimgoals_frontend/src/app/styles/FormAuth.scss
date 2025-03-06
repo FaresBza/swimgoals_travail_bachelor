@@ -14,10 +14,11 @@
 
     .title-container {
         text-align: variables.$text-center;
+        color: variables.$global-blue;
         margin-bottom: 15px;
 
         .title {
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: bold;
         }
     }
@@ -30,12 +31,18 @@
         .role-buttons {
             display: flex;
             flex-direction: row;
-            width: 100%;
+            width: 87%;
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
             border-radius: 25px;
             border: 1px solid variables.$global-blue;
+
+            .legend {
+                font-size: 0.75rem;
+                color: variables.$global-blue;
+                text-align: center;
+            }
     
             .role-button {
                 width: 100%;
