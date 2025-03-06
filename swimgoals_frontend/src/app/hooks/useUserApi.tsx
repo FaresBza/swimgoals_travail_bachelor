@@ -1,8 +1,10 @@
+// import { useState } from "react";
 import UserData from "../data/UserData";
 import RoleMapping from "../mapping/RoleMapping";
 
 const useUserApi = () => {
-    
+    // const [userData, setUserData] = useState({});
+
     const handleRegister = async ({ firstname, lastname, email, password, role }: UserData): Promise<void> => {
         const roleId = RoleMapping[role];
 
@@ -12,6 +14,13 @@ const useUserApi = () => {
         }
 
         const newUser = { firstname, lastname, email, password, roleId }; 
+
+        localStorage.setItem("user", JSON.stringify({ 
+            firstname: newUser.firstname, 
+            lastname: newUser.lastname, 
+            roleId: newUser.roleId 
+        }));
+        // setUserData(newUser);
 
         try {
             const response = await fetch("http://localhost:8080/api/register", {
