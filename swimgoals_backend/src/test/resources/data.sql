@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS ROLES ( id INT PRIMARY KEY, name VARCHAR(255) NOT NULL );
+
+
+INSERT INTO ROLES(id, name) VALUES (1, 'admin');
+INSERT INTO ROLES(id, name) VALUES (2, 'coach');
+INSERT INTO ROLES(id, name) VALUES (3, 'swimmer');
