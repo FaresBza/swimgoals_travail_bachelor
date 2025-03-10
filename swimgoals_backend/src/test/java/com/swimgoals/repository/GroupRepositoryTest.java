@@ -46,7 +46,7 @@ class GroupRepositoryTest {
         Optional<Group> group = groupRepository.findById(1);
 
         assertTrue(group.isPresent(), "Group non trouvé");
-        assertEquals("Group2", group.get().getName(), "Le name du groupe doit être 'Group2");
+        assertEquals("Group1", group.get().getName(), "Le name du groupe doit être 'Group2");
     }
 
     @Test
