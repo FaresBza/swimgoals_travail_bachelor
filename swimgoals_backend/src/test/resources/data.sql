@@ -7,3 +7,8 @@ INSERT INTO USERS (lastname, firstname, email, password, role_id) VALUES ('Smith
 INSERT INTO USERS (lastname, firstname, email, password, role_id) VALUES ('Brown', 'Michael', 'michael.brown@example.com', 'mypassword789', 3);
 INSERT INTO USERS (lastname, firstname, email, password, role_id) VALUES ('Johnson', 'Emily', 'emily.johnson@example.com', 'strongpass321', 3);
 INSERT INTO USERS (lastname, firstname, email, password, role_id) VALUES ('Williams', 'David', 'david.williams@example.com', 'supersecret654', 3);
+
+INSERT INTO GROUPS(coach_id, name) VALUES (2, 'Group1');
+INSERT INTO GROUPS(coach_id, name) VALUES (2, 'Group2');
+INSERT INTO GROUPS(coach_id, name) VALUES (2, 'Group3');
+INSERT INTO GROUPS(coach_id, name) VALUES (2, 'Group4');
