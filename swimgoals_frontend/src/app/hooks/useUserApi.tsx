@@ -37,7 +37,12 @@ const useUserApi = () => {
             const data = await response.json().catch(() => null);
 
             if (response.ok) {
-                route.push("/home");
+                if (newUser.roleId === 1) {
+                    route.push("/home-admin");
+                } else {
+                    route.push("/home");
+                }
+
                 console.log("Création de compte REUSSI !");
             } else {
                 console.error("Erreur lors de l'inscription", data);
