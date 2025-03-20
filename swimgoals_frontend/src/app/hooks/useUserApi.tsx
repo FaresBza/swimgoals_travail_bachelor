@@ -1,9 +1,12 @@
 // import { useState } from "react";
+import { useRouter } from "next/navigation";
 import UserData from "../data/UserData";
 import RoleMapping from "../mapping/RoleMapping";
 
 const useUserApi = () => {
     // const [userData, setUserData] = useState({});
+
+    const route = useRouter();
 
     const handleRegister = async ({ firstname, lastname, email, password, role }: UserData): Promise<void> => {
         const roleId = RoleMapping[role];
@@ -34,6 +37,7 @@ const useUserApi = () => {
             const data = await response.json().catch(() => null);
 
             if (response.ok) {
+                route.push("/home");
                 console.log("Création de compte REUSSI !");
             } else {
                 console.error("Erreur lors de l'inscription", data);
