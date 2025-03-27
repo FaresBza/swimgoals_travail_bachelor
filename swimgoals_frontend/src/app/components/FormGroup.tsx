@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface FormGroupProp {
     name: string;
 }
 
 const FormGroup: React.FC<FormGroupProp> = () => {
+
+    const [name, setName] = useState<string>("");
 
     return(
         <div
@@ -26,6 +28,8 @@ const FormGroup: React.FC<FormGroupProp> = () => {
                                     className="input"
                                     placeholder="Name"
                                     id="name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                     required
                                 />
                             </div>
@@ -34,7 +38,7 @@ const FormGroup: React.FC<FormGroupProp> = () => {
                             type="submit" 
                             className="submit-button"
                         >
-                            Se connecter
+                            Ajouter
                         </button>
             </main>
         </div>
