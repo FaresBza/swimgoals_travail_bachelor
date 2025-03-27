@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import useGroupApi from "../hooks/useGroupApi";
 
 import GroupCard from "../components/GroupCard";
+import AddButton from "../components/AddButton";
+import FormGroup from "../components/FormGroup";
 
 import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
 import './../styles/Scroll.scss'
-import AddButton from "../components/AddButton";
-import FormGroup from "../components/FormGroup";
+import './../styles/FormGroup.scss';
 
 const Home = () => {
     const [groups, setGroups] = useState<{ name: string }[]>([]);
