@@ -6,6 +6,7 @@ import useGroupApi from "../hooks/useGroupApi";
 import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
 import './../styles/Scroll.scss'
+import GroupCard from "../components/GroupCard";
 
 const Home = () => {
     const [groups, setGroups] = useState<{ name: string }[]>([]);
@@ -35,13 +36,14 @@ const Home = () => {
                 <div className="scrollable-container">
                     <main className="list-groups">
                         <h1 className="main-title">Groupes</h1>
-                        <ul>
-                            {groups.length > 0 ? (
-                                groups.map((group, index) => <li key={index}>{group.name}</li>)
-                            ) : (
-                                <p>Aucun groupe trouvé.</p>
-                            )}
-                        </ul>
+                        {groups.map((group, index) => {
+                            return (
+                                <GroupCard
+                                    key={index}
+                                    name={group.name}
+                                />
+                            )
+                        })}
                     </main>
                 </div>
             </div>
