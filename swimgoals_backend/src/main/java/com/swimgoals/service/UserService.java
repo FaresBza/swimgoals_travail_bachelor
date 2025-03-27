@@ -49,7 +49,7 @@ public class UserService implements IUserService{
         if (user == null){
             throw new NoSuchElementException("User not found");
         }
-        if (passwordEncoder.matches(hashPassword, user.getPassword())){
+        if (!passwordEncoder.matches(hashPassword, user.getPassword())){
             throw new IllegalArgumentException("Invalid credentials");
         }
         return user;

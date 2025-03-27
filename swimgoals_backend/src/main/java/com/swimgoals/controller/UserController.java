@@ -1,5 +1,9 @@
 package com.swimgoals.controller;
 
+import java.util.Map;
+import java.util.NoSuchElementException;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,12 +50,15 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "User logged in successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody User user) {
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
         try {
             User loggedUser = userService.loginUser(user.getEmail(), user.getPassword());
             return ResponseEntity.ok(loggedUser);
-        } catch (IllegalArgumentException | IllegalStateException e) {
-            return ResponseEntity.badRequest().body(null);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Utilisateur non trouvé"));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Identifiants invalides"));
         }
     }
+
 }

@@ -62,10 +62,15 @@ const useUserApi = () => {
                 body: JSON.stringify({ email, password })
             });
 
-            const data = await response.json();
+            const text = await response.text();
+            const data = JSON.parse(text);
+
+            console.log(data);
 
             if (response.ok) {
-                console.log("Connexion réussie !");
+                if(data.role.id === 2){
+                    route.push("/home");
+                }
             } else {
                 console.error("Erreur lors de la connexion", data.message);
             }

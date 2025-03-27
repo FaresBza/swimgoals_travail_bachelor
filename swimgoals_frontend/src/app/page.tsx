@@ -39,7 +39,7 @@ export default function Home() {
   }, [openForm]);
 
   return (
-    <div className="container">
+    <div className="container auth">
       <Header />
       <main className="home-main">
         <div className="button-container">
