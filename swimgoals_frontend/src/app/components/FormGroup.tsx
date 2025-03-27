@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const FormGroup = () => {
 
     const [name, setName] = useState<string>("");
 
+    useEffect(() => {
+        AOS.init();
+    })
+
     return(
         <div
             className="add-group-container"
+            data-aos="fade-up"
+            data-aos-duration="800"
         >
             <main className="main-container">
                 <div className="add-group-card">
