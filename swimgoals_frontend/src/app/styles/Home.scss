@@ -1,0 +1,19 @@
+@use "variables";
+
+.container {
+    .list-groups {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    
+        .main-title {
+                margin: -20px 0 10px 0;
+                font-size: 2.3rem;
+                color: variables.$white;
+                text-align: variables.$text-center;
+            }
+    }   
+}

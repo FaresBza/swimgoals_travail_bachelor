@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import useGroupApi from "../hooks/useGroupApi";
 
 import './../styles/BackgroundImage.scss'
+import './../styles/Home.scss'
+import './../styles/Scroll.scss'
 
 const Home = () => {
     const [groups, setGroups] = useState<{ name: string }[]>([]);
