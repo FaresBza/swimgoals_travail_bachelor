@@ -68,9 +68,8 @@ const useUserApi = () => {
             console.log(data);
 
             if (response.ok) {
-                if(data.role.id === 2){
-                    route.push("/home");
-                }
+                if(data.role.id === 1) route.push("/home-admin");
+                else route.push("/home");
             } else {
                 console.error("Erreur lors de la connexion", data.message);
             }
