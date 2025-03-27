@@ -8,7 +8,7 @@ import ButtonAuth from "./components/ButtonAuth";
 import Header from "./components/Header";
 import FormAuth from "./components/FormAuth";
 
-import './styles/Home.scss';
+import './styles/Auth.scss';
 import './styles/BackgroundImage.scss';
 import './styles/FormAuth.scss';
 
