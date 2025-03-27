@@ -2,18 +2,30 @@
 
 .container {
     .list-groups {
-        width: 100%;
         max-width: 400px;
         display: flex;
         flex-direction: column;
         gap: 15px;
-        margin-top: 20px;
+        margin: 20px auto 0 auto;
     
         .main-title {
-                margin: -20px 0 10px 0;
-                font-size: 2.3rem;
-                color: variables.$white;
-                text-align: variables.$text-center;
+            margin: -20px 0 10px 0;
+            font-size: 2.3rem;
+            color: variables.$white;
+            text-align: variables.$text-center;
+        }
+    
+        .group-card {
+            background: variables.$global-background-card;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 220px;
+
+            .group-title {
+                color: variables.$black;
+                font-size: 20px;
             }
-    }   
+        }
+    } 
 }

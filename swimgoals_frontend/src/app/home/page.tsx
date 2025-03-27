@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import useGroupApi from "../hooks/useGroupApi";
 
+import GroupCard from "../components/GroupCard";
+
 import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
 import './../styles/Scroll.scss'
-import GroupCard from "../components/GroupCard";
 
 const Home = () => {
     const [groups, setGroups] = useState<{ name: string }[]>([]);
@@ -34,8 +35,8 @@ const Home = () => {
         <div>
             <div className="container blur">
                 <div className="scrollable-container">
-                    <main className="list-groups">
                         <h1 className="main-title">Groupes</h1>
+                    <main className="list-groups">
                         {groups.map((group, index) => {
                             return (
                                 <GroupCard
