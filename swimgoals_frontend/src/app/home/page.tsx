@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import useGroupApi from "../hooks/useGroupApi";
 
+import './../styles/BackgroundImage.scss'
+
 const Home = () => {
     const [groups, setGroups] = useState<{ name: string }[]>([]);
     const { fetchAllGroups } = useGroupApi();
@@ -27,14 +29,20 @@ const Home = () => {
 
     return (
         <div>
-            <h1>Bienvenue sur la page des coachs et swimmers</h1>
-            <ul>
-                {groups.length > 0 ? (
-                    groups.map((group, index) => <li key={index}>{group.name}</li>)
-                ) : (
-                    <p>Aucun groupe trouvé.</p>
-                )}
-            </ul>
+            <div className="container blur">
+                <div className="scrollable-container">
+                    <main className="list-groups">
+                        <h1 className="main-title">Groupes</h1>
+                        <ul>
+                            {groups.length > 0 ? (
+                                groups.map((group, index) => <li key={index}>{group.name}</li>)
+                            ) : (
+                                <p>Aucun groupe trouvé.</p>
+                            )}
+                        </ul>
+                    </main>
+                </div>
+            </div>
         </div>
     );
 };
