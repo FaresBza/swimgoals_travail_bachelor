@@ -18,12 +18,6 @@ const useUserApi = () => {
 
         const newUser = { firstname, lastname, email, password, roleId }; 
 
-        localStorage.setItem("user", JSON.stringify({ 
-            firstname: newUser.firstname, 
-            lastname: newUser.lastname, 
-            roleId: newUser.roleId 
-        }));
-        // setUserData(newUser);
 
         try {
             const response = await fetch("http://localhost:8080/api/register", {
@@ -35,6 +29,14 @@ const useUserApi = () => {
             });
 
             const data = await response.json().catch(() => null);
+            const userId = data.id;
+
+            localStorage.setItem("user", JSON.stringify({
+            id: userId,
+            firstname: newUser.firstname, 
+            lastname: newUser.lastname, 
+            roleId: newUser.roleId 
+        }));
 
             if (response.ok) {
                 if (newUser.roleId === 1) {
