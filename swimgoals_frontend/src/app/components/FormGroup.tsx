@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
-interface FormGroupProp {
-    name: string;
-}
-
-const FormGroup: React.FC<FormGroupProp> = () => {
+const FormGroup = () => {
 
     const [name, setName] = useState<string>("");
 

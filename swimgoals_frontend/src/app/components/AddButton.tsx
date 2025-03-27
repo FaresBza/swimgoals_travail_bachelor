@@ -1,14 +1,17 @@
 "use client"
 
-import Image from 'next/image';
-
+import React from 'react';
 import './../styles/AddButton.scss';
 
-const AddButton = () => {
+interface AddGroupButtonProp {
+    onClick: () => void;
+}
+
+const AddButton: React.FC<AddGroupButtonProp> = ({onClick}) => {
     return (
         <>
-            <a className="add-button">
-                <Image src="/icons/add.svg" alt="Add button" width={38} height={388} />
+            <a className="add-button" onClick={onClick}>
+                <img src="/icons/add.svg" />
             </a>
         </>
     )

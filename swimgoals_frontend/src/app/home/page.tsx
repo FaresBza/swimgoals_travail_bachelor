@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useGroupApi from "../hooks/useGroupApi";
 
 import GroupCard from "../components/GroupCard";
@@ -9,9 +9,32 @@ import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
 import './../styles/Scroll.scss'
 import AddButton from "../components/AddButton";
+import FormGroup from "../components/FormGroup";
 
 const Home = () => {
     const [groups, setGroups] = useState<{ name: string }[]>([]);
+    const [openForm, setOpenForm] = useState<boolean>(false);
+    const [isVisible, setIsVisible] = useState(false);
+
+
+    const formRef = useRef<HTMLDivElement>(null);
+    
+    useEffect(() => {
+    const handleClickOutsideToCloseForm = (event: MouseEvent) => {
+        if (
+            openForm &&
+            formRef.current &&
+            !formRef.current.contains(event.target as Node)
+        ) {
+            setIsVisible(false);
+            setTimeout(() => setOpenForm(false), 500);
+        }
+        };
+
+        document.addEventListener("mousedown", handleClickOutsideToCloseForm);
+        return () => document.removeEventListener("mousedown", handleClickOutsideToCloseForm);
+    }, [openForm]);
+
     const { fetchAllGroups } = useGroupApi();
 
     const loadGroups = async () => {
@@ -47,10 +70,23 @@ const Home = () => {
                             )
                         })}
                     </main>
+                    {openForm && (
+                        <div 
+                            ref={formRef} 
+                            className={`form-container ${isVisible ? "fade-in" : "fade-out"}`}
+                        >
+                            <FormGroup />
+                        </div>
+                    )}
                 </div>
             </div>
             <footer>
-                <AddButton />
+                <AddButton 
+                    onClick={() => {
+                        setOpenForm(true);
+                        setIsVisible(true);
+                    }}
+                />
             </footer>
         </div>
     );
