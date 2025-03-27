@@ -8,6 +8,7 @@ import GroupCard from "../components/GroupCard";
 import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
 import './../styles/Scroll.scss'
+import AddButton from "../components/AddButton";
 
 const Home = () => {
     const [groups, setGroups] = useState<{ name: string }[]>([]);
@@ -48,6 +49,9 @@ const Home = () => {
                     </main>
                 </div>
             </div>
+            <footer>
+                <AddButton />
+            </footer>
         </div>
     );
 };
