@@ -1,13 +1,35 @@
 import React, { useEffect, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useGroupApi from "../hooks/useGroupApi";
 
 const FormGroup = () => {
-
     const [name, setName] = useState<string>("");
+    const [coachId, setCoachId] = useState<null>(null);
+
+    const { createGroup } = useGroupApi();
+
+    const recoverCoachId = () => {
+        const storedUser = localStorage.getItem("user");
+
+        if (!storedUser) {
+            console.error("Aucun utilisateur trouvé dans le localStorage");
+            return;
+        }
+
+        const user = JSON.parse(storedUser);
+        if (user && user.roleId === 2) {
+            setCoachId(user.id);
+        } else {
+            console.error("Utilisateur non valide ou non connecté");
+        }
+    };
+
+    
 
     useEffect(() => {
         AOS.init();
+        recoverCoachId();
     })
 
     return(
