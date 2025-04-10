@@ -1,6 +1,7 @@
 
 
 const useGroupApi = () => {
+    
 
     const fetchAllGroups = async () => {
         try {
@@ -22,7 +23,13 @@ const useGroupApi = () => {
         }
     }
 
-    return { fetchAllGroups }
+    const createGroup = async ({ coachId, name }) => {
+        return 0;
+    }
+
+
+
+    return { fetchAllGroups, createGroup }
 }
 
 export default useGroupApi;
