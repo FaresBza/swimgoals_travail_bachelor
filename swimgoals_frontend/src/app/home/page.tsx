@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import useGroupApi from "../hooks/useGroupApi";
+// import useGroupApi from "../hooks/useGroupApi";
 
 import GroupCard from "../components/GroupCard";
 import AddButton from "../components/AddButton";
-import FormGroup from "../components/FormGroup";
+// import FormGroup from "../components/FormGroup";
 
 import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
@@ -36,24 +36,24 @@ const Home = () => {
         return () => document.removeEventListener("mousedown", handleClickOutsideToCloseForm);
     }, [openForm]);
 
-    const { fetchAllGroups } = useGroupApi();
+    // const { fetchAllGroups } = useGroupApi();
 
-    const loadGroups = async () => {
-        try {
-            const data = await fetchAllGroups();
-            if (data && Array.isArray(data)) {
-                setGroups(data);
-            } else {
-                setGroups([]);
-            }
-        } catch (error) {
-            console.error("Erreur lors de la récupération des groupes :", error);
-            setGroups([]);
-        };
-    };
+    // const loadGroups = async () => {
+    //     try {
+    //         const data = await fetchAllGroups();
+    //         if (data && Array.isArray(data)) {
+    //             setGroups(data);
+    //         } else {
+    //             setGroups([]);
+    //         }
+    //     } catch (error) {
+    //         console.error("Erreur lors de la récupération des groupes :", error);
+    //         setGroups([]);
+    //     };
+    // };
 
     useEffect(() => {
-        loadGroups();
+        // loadGroups();
     }, []);
 
     return (
@@ -76,7 +76,7 @@ const Home = () => {
                             ref={formRef} 
                             className={`form-container ${isVisible ? "fade-in" : "fade-out"}`}
                         >
-                            <FormGroup />
+                            {/* <FormGroup /> */}
                         </div>
                     )}
                 </div>
