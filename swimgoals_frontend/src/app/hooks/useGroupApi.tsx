@@ -35,6 +35,15 @@ const useGroupApi = () => {
                 body: JSON.stringify(newGroup)
             });
 
+            const data = await response.json().catch(() => null);
+            const groupId = data.id;
+
+            localStorage.setItem("group", JSON.stringify({
+            id: groupId,
+            name: newGroup.name, 
+            coachId: coachId
+        }));
+
             if (response.ok) {
                 console.log("Le groupe a été créé avec succès !");
             } else {

@@ -1,6 +1,7 @@
 package com.swimgoals.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.swimgoals.dto.GroupDTO;
 import com.swimgoals.models.Group;
+import com.swimgoals.models.User;
+import com.swimgoals.repository.GroupRepository;
+import com.swimgoals.repository.UserRepository;
 import com.swimgoals.service.GroupService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,9 +33,13 @@ public class GroupController {
 
     private static final String INTERNAL_SERVER_ERROR_MESSAGE = "Erreur interne du serveur";
     private final GroupService groupService;
+    private final UserRepository userRepository;
+    private final GroupRepository groupRepository;
 
-    public GroupController(GroupService groupService) {
+    public GroupController(GroupService groupService, UserRepository userRepository, GroupRepository groupRepository) {
         this.groupService = groupService;
+        this.userRepository = userRepository;
+        this.groupRepository = groupRepository;
     }
 
     @Operation(summary = "Retrieve all groups", description = "Retrieves a list of all groups available in the database", tags = {
@@ -64,15 +73,19 @@ public class GroupController {
     @ApiResponse(responseCode = "200", description = "Group created successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
     @PostMapping("/groups")
-    public ResponseEntity<Group> createGroup(@RequestBody Group group) {
-        try {
-            Group createdGroup = groupService.createGroup(group);
-            return ResponseEntity.ok(createdGroup);
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Les données du groupe sont invalides");
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR_MESSAGE, e);
-        }
+    public ResponseEntity<?> createGroup(@RequestBody GroupDTO groupDto) {
+        Optional<User> coachOptional = userRepository.findById(groupDto.getCoachId());
+
+        if (coachOptional.isEmpty()) {
+        return ResponseEntity.badRequest().body("Coach not found"); // <-- À CHANGER
+    }
+
+        Group group = new Group();
+        group.setCoach(coachOptional.get());
+        group.setName(groupDto.getName());
+
+        groupRepository.save(group);
+        return ResponseEntity.ok(group);
     }
 
     @Operation(summary = "Update a group", description = "Update group informations in the database and returns the updated group object", tags = {

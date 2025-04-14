@@ -70,6 +70,14 @@ const useUserApi = () => {
             console.log(data);
 
             if (response.ok) {
+
+                localStorage.setItem("user", JSON.stringify({
+                    id: data.id,
+                    firstname: data.firstname,
+                    lastname: data.lastname,
+                    roleId: data.role.id
+                }));
+
                 if(data.role.id === 1) route.push("/home-admin");
                 else route.push("/home");
             } else {
