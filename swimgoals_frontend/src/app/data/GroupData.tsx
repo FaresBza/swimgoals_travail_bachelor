@@ -1,5 +1,9 @@
 interface GroupData {
-    name: string
+    name: string;
+    coach: {
+        id: number;
+    };
 }
+
 
 export default GroupData;

@@ -5,7 +5,7 @@ import useGroupApi from "../hooks/useGroupApi";
 
 const FormGroup = () => {
     const [name, setName] = useState<string>("");
-    const [coachId, setCoachId] = useState<null>(null);
+    const [coachId, setCoachId] = useState<number>(0);
 
     const { createGroup } = useGroupApi();
 
@@ -25,7 +25,9 @@ const FormGroup = () => {
         }
     };
 
-    
+    const onSubmit = () => {
+        createGroup({ name, coach: { id: coachId } });
+    }
 
     useEffect(() => {
         AOS.init();
@@ -43,6 +45,7 @@ const FormGroup = () => {
                     <h2 className="title-card">Ajouter un groupe</h2>
                     <form
                         className="form-add-group"
+                        onSubmit={onSubmit}
                     >
                         <label className="label-group" htmlFor="group-name">Nom</label>
                         <input
