@@ -25,9 +25,11 @@ const FormGroup = () => {
         }
     };
 
-    const onSubmit = () => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         createGroup({ name, coach: { id: coachId } });
-    }
+    };
+
 
     useEffect(() => {
         AOS.init();
