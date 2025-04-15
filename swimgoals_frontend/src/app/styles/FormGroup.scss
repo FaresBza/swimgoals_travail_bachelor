@@ -1,10 +1,9 @@
 @use 'variables';
 
 .add-group-container {
-    position: fixed; // ou absolute si tu veux par rapport à un parent positionné
-        top: 20%;
+    position: fixed;
         left: 5%;
-        transform: translate(-50%, -50%); // Centre parfaitement
+        transform: translate(-50%, -50%);
         margin: 10px;
         font-family: variables.$global-font-family;
 
