@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import AddButton from "../components/AddButton";
 import FormGroup from "../components/FormGroup";
@@ -11,37 +11,29 @@ import './../styles/Scroll.scss'
 import './../styles/FormGroup.scss';
 
 import useGroupApi from "../hooks/useGroupApi";
-
-type Group = {
-  id: number;
-  name: string;
-  coachId: number;
-};
+import GroupData from "../data/GroupData";
 
 const Home = () => {
     const [openForm, setOpenForm] = useState<boolean>(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [groups, setGroups] = useState<Group[]>([]); // ⬅️ 1. State pour stocker les groupes
+    const [groups, setGroups] = useState<GroupData[]>([]);
 
     const formRef = useRef<HTMLDivElement>(null);
+    const { fetchAllGroups } = useGroupApi();
 
-    const { fetchAllGroups } = useGroupApi(); // Ton hook perso
-
-    // ⬅️ 2. Appel API pour récupérer tous les groupes
-    useEffect(() => {
-        const loadGroups = async () => {
-            try {
-                const data = await fetchAllGroups();
-                setGroups(data); // Stocke les groupes récupérés
-            } catch (error) {
-                console.error("Erreur lors du chargement des groupes :", error);
-            }
-        };
-
-        loadGroups();
+    const loadGroups = useCallback(async () => {
+        try {
+            const data = await fetchAllGroups();
+            setGroups(data);
+        } catch (error) {
+            console.error("Erreur lors du chargement des groupes :", error);
+        }
     }, [fetchAllGroups]);
 
-    // Fermer le formulaire si on clique en dehors
+    useEffect(() => {
+        loadGroups();
+    }, [loadGroups]);
+
     useEffect(() => {
         const handleClickOutsideToCloseForm = (event: MouseEvent) => {
             if (
@@ -64,8 +56,8 @@ const Home = () => {
                 <div className="scrollable-container">
                     <h1 className="main-title">Groupes</h1>
                     <main className="list-groups">
-                        {groups.map(group => (
-                            <div key={group.id} className="group-card">
+                        {groups.map((group, index) => (
+                            <div key={index} className="group-card">
                                 <h2>{group.name}</h2>
                                 <p>Coach ID : {group.coachId}</p>
                             </div>
