@@ -1,6 +1,5 @@
 package com.swimgoals.models;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,40 +14,21 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
-    private int id;
+    private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "coach_id", nullable = false)
-    private User coach;
-
-    @Column(name = "name")
     private String name;
 
-    public Group(int id, User coachId, String name) {
-        this.id = id;
-        this.coach = coachId;
-        this.name = name;
-    }
+    @ManyToOne
+    @JoinColumn(name = "coach_id")
+    private User coach;
 
-    public Group() {
-        this(0, null, "");
-    }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getCoach() {
-        return coach;
-    }
-
-    public void setCoach(User coachId) {
-        this.coach = coachId;
     }
 
     public String getName() {
@@ -58,5 +38,12 @@ public class Group {
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    public User getCoach() {
+        return coach;
+    }
+
+    public void setCoach(User coach) {
+        this.coach = coach;
+    }
 }
