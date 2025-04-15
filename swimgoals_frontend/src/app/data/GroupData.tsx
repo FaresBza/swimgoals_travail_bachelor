@@ -1,8 +1,6 @@
 interface GroupData {
     name: string;
-    coach: {
-        id: number;
-    };
+    coachId: number
 }
 
 

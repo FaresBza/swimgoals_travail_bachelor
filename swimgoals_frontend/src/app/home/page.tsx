@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-// import useGroupApi from "../hooks/useGroupApi";
 
-import GroupCard from "../components/GroupCard";
 import AddButton from "../components/AddButton";
-// import FormGroup from "../components/FormGroup";
+import FormGroup from "../components/FormGroup";
 
 import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
@@ -13,7 +11,6 @@ import './../styles/Scroll.scss'
 import './../styles/FormGroup.scss';
 
 const Home = () => {
-    const [groups, setGroups] = useState<{ name: string }[]>([]);
     const [openForm, setOpenForm] = useState<boolean>(false);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -36,25 +33,6 @@ const Home = () => {
         return () => document.removeEventListener("mousedown", handleClickOutsideToCloseForm);
     }, [openForm]);
 
-    // const { fetchAllGroups } = useGroupApi();
-
-    // const loadGroups = async () => {
-    //     try {
-    //         const data = await fetchAllGroups();
-    //         if (data && Array.isArray(data)) {
-    //             setGroups(data);
-    //         } else {
-    //             setGroups([]);
-    //         }
-    //     } catch (error) {
-    //         console.error("Erreur lors de la récupération des groupes :", error);
-    //         setGroups([]);
-    //     };
-    // };
-
-    useEffect(() => {
-        // loadGroups();
-    }, []);
 
     return (
         <div>
@@ -62,21 +40,14 @@ const Home = () => {
                 <div className="scrollable-container">
                         <h1 className="main-title">Groupes</h1>
                     <main className="list-groups">
-                        {groups.map((group, index) => {
-                            return (
-                                <GroupCard
-                                    key={index}
-                                    name={group.name}
-                                />
-                            )
-                        })}
+                        
                     </main>
                     {openForm && (
                         <div 
                             ref={formRef} 
                             className={`form-container ${isVisible ? "fade-in" : "fade-out"}`}
                         >
-                            {/* <FormGroup /> */}
+                            <FormGroup />
                         </div>
                     )}
                 </div>
