@@ -22,16 +22,14 @@ public class GroupService implements IGroupService {
 
     @Override
     public Group createGroup(GroupDTO groupDTO) throws IllegalArgumentException {
-        
         Group group = new Group();
-        group.setName(groupDTO.name);
+        group.setName(groupDTO.getName());
 
-        User coach = userRepository.findById(groupDTO.coachId)
+        User coach = userRepository.findById(groupDTO.getCoachId())
                 .orElseThrow(() -> new IllegalArgumentException("Coach with the given ID does not exist"));
+
         group.setCoach(coach);
 
         return groupRepository.save(group);
     }
-
-    
 }
