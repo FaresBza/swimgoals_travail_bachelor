@@ -1,0 +1,44 @@
+package com.swimgoals.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.swimgoals.dto.GroupDTO;
+import com.swimgoals.models.Group;
+import com.swimgoals.service.GroupService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
+@RestController
+@RequestMapping("/api")
+public class GroupController {
+    
+    private final GroupService groupService;
+
+    public GroupController(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
+    @Operation(summary = "Create a new group", description = "Creates a new group in the database and returns the created group object", tags = {
+            "Group" })
+    @ApiResponse(responseCode = "200", description = "Group created successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
+    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @PostMapping("/groups")
+    public ResponseEntity<?> createGroup(@RequestBody GroupDTO groupDTO) {
+        try {
+            Group createdGroup = groupService.createGroup(groupDTO);
+            return ResponseEntity.ok(createdGroup);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+}
