@@ -14,11 +14,12 @@ CREATE TABLE users (
 );
 
 CREATE TABLE groups (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
     coach_id INT,
-    name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (coach_id) REFERENCES Users(id)
+    FOREIGN KEY (coach_id) REFERENCES users(id)
 );
+
 
 CREATE TABLE swimmers_group (
     swimmer_id INT,
