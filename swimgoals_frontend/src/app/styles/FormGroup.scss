@@ -1,8 +1,12 @@
 @use 'variables';
 
 .add-group-container {
-    margin: 10px;
-    font-family: variables.$global-font-family;
+    position: fixed; // ou absolute si tu veux par rapport à un parent positionné
+        top: 20%;
+        left: 5%;
+        transform: translate(-50%, -50%); // Centre parfaitement
+        margin: 10px;
+        font-family: variables.$global-font-family;
 
     .main-container {
         display: flex;
@@ -10,7 +14,7 @@
         align-items: variables.$align-center;
 
         .add-group-card {
-            background: rgba(255, 255, 255, 0.7);
+            background: variables.$white;
             border-radius: 15px;
             padding: 20px;
             width: 90%;
