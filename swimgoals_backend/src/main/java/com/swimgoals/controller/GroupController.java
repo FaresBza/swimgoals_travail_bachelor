@@ -1,7 +1,10 @@
 package com.swimgoals.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,16 @@ public class GroupController {
 
     public GroupController(GroupService groupService) {
         this.groupService = groupService;
+    }
+
+    @Operation(summary = "Retrieve all groups", description = "Retrieves a list of all groups available in the database", tags = {
+        "Group" })
+    @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
+    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @GetMapping("/groups")
+    public ResponseEntity<List<Group>> getAllGroups() {
+        List<Group> groups = groupService.getAllGroups();
+        return ResponseEntity.ok(groups);
     }
 
     @Operation(summary = "Create a new group", description = "Creates a new group in the database and returns the created group object", tags = {

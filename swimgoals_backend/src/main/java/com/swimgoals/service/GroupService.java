@@ -1,5 +1,7 @@
 package com.swimgoals.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.swimgoals.dto.GroupDTO;
@@ -18,6 +20,11 @@ public class GroupService implements IGroupService {
     public GroupService(GroupRepository groupRepository, UserRepository userRepository) {
         this.groupRepository = groupRepository;
         this.userRepository = userRepository;
+    }
+
+    @Override
+    public List<Group> getAllGroups() {
+        return groupRepository.findAll();
     }
 
     @Override
