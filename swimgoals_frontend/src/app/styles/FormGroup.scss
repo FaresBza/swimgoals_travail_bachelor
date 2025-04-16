@@ -2,11 +2,12 @@
 
 .add-group-container {
     position: fixed;
-        top: 20%;
-        left: 5%;
-        transform: translate(-50%, -50%);
-        margin: 10px;
-        font-family: variables.$global-font-family;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    transform: translate(-50%, -50%);
+    margin: 10px;
+    font-family: variables.$global-font-family;
 
     .main-container {
         display: flex;
@@ -18,13 +19,13 @@
             border-radius: 15px;
             padding: 20px;
             width: 90%;
-            min-width: 320px;
+            min-width: 100px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             margin-top: 50px;
             text-align: center;
 
             .title-card {
-                font-size: 30px;
+                font-size: 1.5rem;
                 margin-bottom: 15px;
                 font-weight: 700;
                 color: variables.$global-blue;
