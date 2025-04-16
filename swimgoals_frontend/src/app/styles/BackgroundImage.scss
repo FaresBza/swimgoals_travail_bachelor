@@ -11,7 +11,11 @@
     text-align: variables.$text-center;
     font-family: variables.$global-font-family;
 
-    &.auth, &.blur {
+    &.auth {
         background: variables.$image-background-desktop;
+    }
+
+    &.blur {
+        background: variables.$image-background-blur;
     }
 }
