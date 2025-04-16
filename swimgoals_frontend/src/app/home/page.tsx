@@ -15,10 +15,23 @@ import { useRouter } from "next/navigation";
 
 const Home = () => {
     const [groups, setGroups] = useState<GroupData[]>([]);
+    const [roleId, setRoleId] = useState<number>(0);
 
     const route = useRouter();
 
     const { fetchAllGroups } = useGroupApi();
+
+    const recoverRoleId = () => {
+        const storedUser = localStorage.getItem("user");
+
+        if (!storedUser) {
+            console.error("Aucun utilisateur trouvé dans le localStorage");
+            return;
+        }
+
+        const user = JSON.parse(storedUser);
+        setRoleId(user.roleId);
+    };
 
     const loadGroups = async () => {
         try {
@@ -36,6 +49,7 @@ const Home = () => {
 
     useEffect(() => {
         loadGroups();
+        recoverRoleId();
     }, []);
 
     return (
@@ -47,6 +61,11 @@ const Home = () => {
                         {groups.map((group, index) => (
                             <div key={index} className="group-card">
                                 <h2 className="group-title">{group.name}</h2>
+                                { roleId === 2 ? 
+                                    <button className="btn-group">Voir les nageurs</button>
+                                    : 
+                                    <button className="btn-group">Rejoindre</button> 
+                                }
                             </div>
                         ))}
                     </main>
@@ -54,11 +73,13 @@ const Home = () => {
             </div>
 
             <footer>
-                <AddButton
-                    onClick={() => {
-                        route.push("/add-group")
-                    }}
-                />
+                {roleId === 2 && (
+                    <AddButton
+                        onClick={() => {
+                            route.push("/add-group");
+                        }}
+                    />
+                )}
             </footer>
         </div>
     );
