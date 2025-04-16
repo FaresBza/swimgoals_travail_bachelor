@@ -21,18 +21,23 @@ const Home = () => {
     const formRef = useRef<HTMLDivElement>(null);
     const { fetchAllGroups } = useGroupApi();
 
-    const loadGroups = useCallback(async () => {
+    const loadGroups = async () => {
         try {
             const data = await fetchAllGroups();
-            setGroups(data);
+            if (data && Array.isArray(data)) {
+                setGroups(data);
+            } else {
+                setGroups([]);
+            }
         } catch (error) {
-            console.error("Erreur lors du chargement des groupes :", error);
-        }
-    }, [fetchAllGroups]);
+            console.error("Erreur lors de la récupération des groupes :", error);
+            setGroups([]);
+        };
+    };
 
     useEffect(() => {
         loadGroups();
-    }, [loadGroups]);
+    }, []);
 
     useEffect(() => {
         const handleClickOutsideToCloseForm = (event: MouseEvent) => {
