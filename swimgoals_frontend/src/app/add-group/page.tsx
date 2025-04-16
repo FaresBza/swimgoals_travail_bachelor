@@ -2,10 +2,12 @@
 
 import FormGroup from "../components/FormGroup";
 
+import './../styles/BackgroundImage.scss'
+
 const AddGroup = () => {
+
     return(
-        <div>
-            <h1>Hello</h1>
+        <div className="container blur">
             <FormGroup />
         </div>
     )
