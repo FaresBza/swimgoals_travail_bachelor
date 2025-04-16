@@ -1,6 +1,9 @@
+import { useRouter } from "next/navigation";
 import GroupData from "../data/GroupData";
 
 const useGroupApi = () => {
+
+    const route = useRouter();
     
     const fetchAllGroups = async () => {
         try {
@@ -46,6 +49,7 @@ const useGroupApi = () => {
 
             if (response.ok) {
                 console.log("Le groupe a été créé avec succès !");
+                route.push("home");
             } else {
                 console.error("Erreur lors de la création :", response.status, " ", response.statusText);
             }

@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddButton from "../components/AddButton";
-import FormGroup from "../components/FormGroup";
 
 import './../styles/BackgroundImage.scss'
 import './../styles/Home.scss'
@@ -12,13 +11,13 @@ import './../styles/FormGroup.scss';
 
 import useGroupApi from "../hooks/useGroupApi";
 import GroupData from "../data/GroupData";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
-    const [openForm, setOpenForm] = useState<boolean>(false);
-    const [isVisible, setIsVisible] = useState(false);
     const [groups, setGroups] = useState<GroupData[]>([]);
 
-    const formRef = useRef<HTMLDivElement>(null);
+    const route = useRouter();
+
     const { fetchAllGroups } = useGroupApi();
 
     const loadGroups = async () => {
@@ -39,22 +38,6 @@ const Home = () => {
         loadGroups();
     }, []);
 
-    useEffect(() => {
-        const handleClickOutsideToCloseForm = (event: MouseEvent) => {
-            if (
-                openForm &&
-                formRef.current &&
-                !formRef.current.contains(event.target as Node)
-            ) {
-                setIsVisible(false);
-                setTimeout(() => setOpenForm(false), 500);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutsideToCloseForm);
-        return () => document.removeEventListener("mousedown", handleClickOutsideToCloseForm);
-    }, [openForm]);
-
     return (
         <div>
             <div className="container blur">
@@ -67,23 +50,13 @@ const Home = () => {
                             </div>
                         ))}
                     </main>
-
-                    {openForm && (
-                        <div
-                            ref={formRef}
-                            className={`form-container ${isVisible ? "fade-in" : "fade-out"}`}
-                        >
-                            <FormGroup />
-                        </div>
-                    )}
                 </div>
             </div>
 
             <footer>
                 <AddButton
                     onClick={() => {
-                        setOpenForm(true);
-                        setIsVisible(true);
+                        route.push("/add-group")
                     }}
                 />
             </footer>
