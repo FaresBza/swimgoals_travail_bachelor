@@ -16,15 +16,16 @@
         }
     
         .group-card {
-            background: variables.$global-background-card;
-            padding: 20px;
-            border-radius: 15px;
+            background: variables.$global-blue;
+            padding: 1cqmax;
+            border-radius: 50px;
             text-align: center;
             width: 220px;
 
             .group-title {
-                color: variables.$black;
+                color: variables.$white;
                 font-size: 20px;
+                margin: 0;
             }
         }
     } 

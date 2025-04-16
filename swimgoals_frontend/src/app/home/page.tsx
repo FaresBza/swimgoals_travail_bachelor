@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import AddButton from "../components/AddButton";
 import FormGroup from "../components/FormGroup";
@@ -63,8 +63,7 @@ const Home = () => {
                     <main className="list-groups">
                         {groups.map((group, index) => (
                             <div key={index} className="group-card">
-                                <h2>{group.name}</h2>
-                                <p>Coach ID : {group.coachId}</p>
+                                <h2 className="group-title">{group.name}</h2>
                             </div>
                         ))}
                     </main>
