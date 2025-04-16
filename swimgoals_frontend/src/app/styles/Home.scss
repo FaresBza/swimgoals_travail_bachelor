@@ -40,3 +40,39 @@
         }
     } 
 }
+
+@media screen and (min-width: 550px) {
+    .container {
+        .list-groups {
+            .group-card {
+                width: 320px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .container {
+        .list-groups {
+            position: fixed;
+            top: 30%;
+            left: 39%;
+            transform: translate(-50%, -50%);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            .group-card {
+                width: 250px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        .list-groups {
+            left: 34%;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
