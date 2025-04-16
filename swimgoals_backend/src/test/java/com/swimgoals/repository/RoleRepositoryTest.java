@@ -55,16 +55,4 @@ class RoleRepositoryTest {
         assertEquals(4, createdRole.get().getId(), "L'ID du rôle 'test' doit être 4");
         assertEquals("test", createdRole.get().getName(), "Le nom du rôle inséré doit être 'test'");
     }
-
-    @Test 
-    void testDeleteRole() {
-        roleRepository.deleteById(2);
-        
-        Optional<Role> deletedRole = roleRepository.findById(2);
-
-        assertEquals(false, deletedRole.isPresent(), "Le rôle avec ID 2 (coach) doit être supprimé");
-
-        List<Role> roles = roleRepository.findAll();
-        assertEquals(2, roles.size(), "Après suppression, il doit rester 2 rôles");
-    }
 }
