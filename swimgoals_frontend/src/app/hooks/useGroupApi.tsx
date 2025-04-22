@@ -1,8 +1,10 @@
 import { useRouter } from "next/navigation";
 import GroupData from "../data/GroupData";
+import { useState } from "react";
 
 const useGroupApi = () => {
-
+    
+    const [groups, setGroups] = useState<GroupData[]>([]); 
     const route = useRouter();
     
     const fetchAllGroups = async () => {
@@ -18,6 +20,7 @@ const useGroupApi = () => {
                 throw new Error(`Erreur HTTP: ${response.status}`);
             }
 
+            setGroups(await response.json());
             return await response.json();
         } catch (e) {
             console.error(e);
@@ -37,7 +40,8 @@ const useGroupApi = () => {
             if(!response.ok) {
                 throw new Error(`Erreur HTTP: ${response.status}`);
             }
-                
+
+            setGroups(await response.json());    
             return await response.json();
 
         } catch (e) {
@@ -79,7 +83,7 @@ const useGroupApi = () => {
         }
     };
 
-    return { fetchAllGroups, fetchGroupsByCoachId, createGroup } 
+    return { groups, fetchAllGroups, fetchGroupsByCoachId, createGroup } 
 }
 
 export default useGroupApi;
