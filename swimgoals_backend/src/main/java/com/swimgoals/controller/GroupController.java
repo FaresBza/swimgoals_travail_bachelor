@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,12 +40,12 @@ public class GroupController {
         return ResponseEntity.ok(groups);
     }
 
-    @Operation(summary = "Retrieve all groups", description = "Retrieves a list of all groups available in the database", tags = {
+    @Operation(summary = "Retrieve all groups created by a coach", description = "Retrieves a list of all groups created by a coach available in the database", tags = {
         "Group" })
     @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
     @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
-    @GetMapping("/groups/swimmers")
-    public ResponseEntity<List<Group>> getGroupsByCoachId(int coachId) {
+    @GetMapping("/groups/coach/{coachId}")
+    public ResponseEntity<List<Group>> getGroupsByCoachId(@PathVariable int coachId) {
         List<Group> groups = groupService.getGroupsByCoachId(coachId);
         return ResponseEntity.ok(groups);
     }

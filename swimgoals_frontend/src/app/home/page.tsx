@@ -16,10 +16,27 @@ import { useRouter } from "next/navigation";
 const Home = () => {
     const [groups, setGroups] = useState<GroupData[]>([]);
     const [roleId, setRoleId] = useState<number>(0);
+    const [coachId, setCoachId] = useState<number>(0);
 
     const route = useRouter();
 
-    const { fetchAllGroups } = useGroupApi();
+    const { fetchGroupsByCoachId } = useGroupApi();
+
+    const recoverCoachId = () => {
+        const storedUser = localStorage.getItem("user");
+
+        if (!storedUser) {
+            console.error("Aucun utilisateur trouvé dans le localStorage");
+            return;
+        }
+
+        const user = JSON.parse(storedUser);
+        if (user && user.roleId === 2) {
+            setCoachId(user.id);
+        } else {
+            console.error("Utilisateur non valide ou non connecté");
+        }
+    };
 
     const recoverRoleId = () => {
         const storedUser = localStorage.getItem("user");
@@ -35,7 +52,7 @@ const Home = () => {
 
     const loadGroups = async () => {
         try {
-            const data = await fetchAllGroups();
+            const data = await fetchGroupsByCoachId({ coachId });
             if (data && Array.isArray(data)) {
                 setGroups(data);
             } else {
@@ -52,9 +69,12 @@ const Home = () => {
     }
 
     useEffect(() => {
-        loadGroups();
+        if (coachId) {
+            loadGroups();
+        }
         recoverRoleId();
-    }, []);
+        recoverCoachId();
+    }, [coachId]);
 
     return (
         <div>

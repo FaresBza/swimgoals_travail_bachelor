@@ -25,6 +25,26 @@ const useGroupApi = () => {
         }
     }
 
+    const fetchGroupsByCoachId = async ({ coachId }: {coachId: number}) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/groups/coach/${coachId}`, {
+                method: "GET",
+                headers: {
+                        Accept: "application/json",
+                    },
+            });
+
+            if(!response.ok) {
+                throw new Error(`Erreur HTTP: ${response.status}`);
+            }
+                
+            return await response.json();
+
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     const createGroup = async ({ coachId, name}: GroupData): Promise<void> => {
         
         const newGroup = { coachId, name };
@@ -59,7 +79,7 @@ const useGroupApi = () => {
         }
     };
 
-    return { fetchAllGroups, createGroup } 
+    return { fetchAllGroups, fetchGroupsByCoachId, createGroup } 
 }
 
 export default useGroupApi;
