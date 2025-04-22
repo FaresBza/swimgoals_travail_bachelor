@@ -47,6 +47,10 @@ const Home = () => {
         };
     };
 
+    const goToSwimmersGroupPage = () => {
+        route.push("/group");
+    }
+
     useEffect(() => {
         loadGroups();
         recoverRoleId();
@@ -62,7 +66,7 @@ const Home = () => {
                             <div key={index} className="group-card">
                                 <h2 className="group-title">{group.name}</h2>
                                 { roleId === 2 ? 
-                                    <button className="btn-group">Voir les nageurs</button>
+                                    <button className="btn-group" onClick={goToSwimmersGroupPage}>Voir les nageurs</button>
                                     : 
                                     <button className="btn-group">Rejoindre</button> 
                                 }
