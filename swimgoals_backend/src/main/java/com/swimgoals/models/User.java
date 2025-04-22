@@ -34,6 +34,10 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
     public User() {
         this(0, "", "", "", "", null);
     }
@@ -93,6 +97,14 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
     
 }

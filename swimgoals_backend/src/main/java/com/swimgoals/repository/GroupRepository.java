@@ -12,4 +12,6 @@ import com.swimgoals.models.Group;
 public interface GroupRepository extends JpaRepository<Group, Integer>{
 
     List<Group> findByCoachId(int coachId);
+
+    
 }

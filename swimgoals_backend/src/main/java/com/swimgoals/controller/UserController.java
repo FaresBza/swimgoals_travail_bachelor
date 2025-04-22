@@ -1,17 +1,22 @@
 package com.swimgoals.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.dto.UserDTO;
+import com.swimgoals.models.Group;
 import com.swimgoals.models.User;
+import com.swimgoals.repository.UserRepository;
 import com.swimgoals.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,9 +30,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @Operation(summary = "Register a new user", description = "Creates a new user in the database and returns the created user object.", tags = {
@@ -59,6 +66,15 @@ public class UserController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Identifiants invalides"));
         }
+    }
+
+    @Operation(summary = "Retrieve all groups", description = "Retrieves a list of all swimmers of a group available in the database", tags = {
+        "Group" })
+    @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
+    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @GetMapping("/groups/{groupId}")
+    public List<User> getSwimmersByGroup(@PathVariable Integer groupId) {
+        return userRepository.findByGroupIdAndRoleId(groupId, 3); 
     }
 
 }
