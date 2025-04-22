@@ -39,4 +39,9 @@ public class GroupService implements IGroupService {
 
         return groupRepository.save(group);
     }
+
+    @Override
+    public List<Group> getGroupsByCoachId(int coachId) {
+        return groupRepository.findByCoachId(coachId);
+    }
 }

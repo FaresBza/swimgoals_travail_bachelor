@@ -39,6 +39,16 @@ public class GroupController {
         return ResponseEntity.ok(groups);
     }
 
+    @Operation(summary = "Retrieve all groups", description = "Retrieves a list of all groups available in the database", tags = {
+        "Group" })
+    @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
+    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @GetMapping("/groups/swimmers")
+    public ResponseEntity<List<Group>> getGroupsByCoachId(int coachId) {
+        List<Group> groups = groupService.getGroupsByCoachId(coachId);
+        return ResponseEntity.ok(groups);
+    }
+
     @Operation(summary = "Create a new group", description = "Creates a new group in the database and returns the created group object", tags = {
             "Group" })
     @ApiResponse(responseCode = "200", description = "Group created successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
