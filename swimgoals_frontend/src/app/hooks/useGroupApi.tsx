@@ -42,7 +42,7 @@ const useGroupApi = () => {
             }
 
             setGroups(await response.json());    
-            return await response.json();
+            return groups;
 
         } catch (e) {
             console.error(e);
