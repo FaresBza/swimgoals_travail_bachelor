@@ -1,6 +1,7 @@
 package com.swimgoals.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -88,7 +89,7 @@ public class GroupController {
     public ResponseEntity<?> joinGroup(@RequestBody JoinGroupDTO joinGroupDTO) {
         try {
             groupService.joinGroup(joinGroupDTO.getSwimmerId(), joinGroupDTO.getGroupId());
-            return ResponseEntity.ok().body("Swimmer ajouté au groupe");
+            return ResponseEntity.ok(Map.of("message", "Swimmer ajouté au groupe avec succès"));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
