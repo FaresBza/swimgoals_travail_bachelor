@@ -44,4 +44,16 @@ public class GroupService implements IGroupService {
     public List<Group> getGroupsByCoachId(int coachId) {
         return groupRepository.findByCoachId(coachId);
     }
+
+    @Override
+    public void joinGroup(int swimmerId, int groupId) {
+        User user = userRepository.findById(swimmerId)
+            .orElseThrow(() -> new RuntimeException("Nageur non trouvé"));
+
+        Group group = groupRepository.findById(groupId)
+            .orElseThrow(() -> new RuntimeException("Groupe non trouvé"));
+
+        user.setGroup(group);
+        userRepository.save(user);
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.dto.GroupDTO;
+import com.swimgoals.dto.JoinGroupDTO;
 import com.swimgoals.models.Group;
 import com.swimgoals.service.GroupService;
 
@@ -64,6 +65,32 @@ public class GroupController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur est survenue");
+        }
+    }
+
+    @Operation(
+        summary = "Join a group",
+        description = "Adds a swimmer to an existing group using swimmerId and groupId.",
+        tags = { "Group" }
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "Swimmer successfully added to the group",
+        content = @Content(mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400",
+        description = "Invalid swimmerId or groupId",
+        content = @Content(mediaType = "application/json")
+    )
+    @PostMapping("/join-group")
+
+    public ResponseEntity<?> joinGroup(@RequestBody JoinGroupDTO joinGroupDTO) {
+        try {
+            groupService.joinGroup(joinGroupDTO.getSwimmerId(), joinGroupDTO.getGroupId());
+            return ResponseEntity.ok().body("Swimmer ajouté au groupe");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 }

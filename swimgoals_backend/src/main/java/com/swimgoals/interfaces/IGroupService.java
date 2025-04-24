@@ -12,4 +12,6 @@ public interface IGroupService {
     List<Group> getGroupsByCoachId(int coachId);
     
     Group createGroup(GroupDTO groupDTO);
+
+    void joinGroup(int swimmerId, int groupId);
 }
