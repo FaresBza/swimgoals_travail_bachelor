@@ -16,7 +16,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Home = () => {
     const route = useRouter();
 
-    const { groups, fetchGroupsByCoachId } = useGroupApi();
+    const { groups, fetchGroupsByCoachId, fetchAllGroups } = useGroupApi();
     const { coachId, roleId, recoverCoachId, recoverRoleId } = useLocalStorage();
 
     const goToSwimmersGroupPage = () => {
@@ -24,13 +24,17 @@ const Home = () => {
     }
 
     useEffect(() => {
-        recoverCoachId();
+        if(coachId) { 
+            recoverCoachId();
+        }
         recoverRoleId();
     }, []);
 
     useEffect(() => {
         if (coachId) {
             fetchGroupsByCoachId({coachId});
+        } else {
+            fetchAllGroups();
         }
     }, [coachId]);
 
