@@ -16,14 +16,21 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Home = () => {
     const route = useRouter();
 
-    const { groups, fetchGroupsByCoachId, fetchAllGroups } = useGroupApi();
+    const { groups, fetchGroupsByCoachId, fetchAllGroups, joinGroup } = useGroupApi();
     const { coachId, swimmerId, roleId, recoverUserId, recoverRoleId } = useLocalStorage();
 
     const goToSwimmersGroupPage = () => {
         route.push("/group");
     }
 
-    useEffect(() => { 
+    const goToObjectivesPage = (groupId: number ) => {
+        if (groupId) {
+            joinGroup(groupId, swimmerId);
+            route.push("/objectives");
+        }
+    }
+
+    useEffect(() => {
         recoverRoleId();
         if(roleId) { recoverUserId(); }
         if (coachId) { fetchGroupsByCoachId({coachId}); } 
@@ -40,9 +47,19 @@ const Home = () => {
                             <div key={index} className="group-card">
                                 <h2 className="group-title">{group.name}</h2>
                                 { roleId === 2 ? 
-                                    <button className="btn-group" onClick={goToSwimmersGroupPage}>Voir les nageurs</button>
+                                    <button 
+                                        className="btn-group" 
+                                        onClick={goToSwimmersGroupPage}
+                                    >
+                                        Voir les nageurs
+                                    </button>
                                     : 
-                                    <button className="btn-group">Rejoindre</button> 
+                                    <button 
+                                        className="btn-group" 
+                                        onClick={() => goToObjectivesPage(group.id)}
+                                    >
+                                        Rejoindre
+                                    </button> 
                                 }
                             </div>
                         ))}

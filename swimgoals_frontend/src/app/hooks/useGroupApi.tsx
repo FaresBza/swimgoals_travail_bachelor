@@ -81,9 +81,30 @@ const useGroupApi = () => {
         } catch (e) {
             console.error("Erreur de création du groupe :", e);
         }
+    }
+
+    const joinGroup = async (groupId: number, swimmerId: number) => {
+        try {
+            const response = await fetch("http://localhost:8080/api/join-group", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    swimmerId: swimmerId,
+                    groupId: groupId,
+                }),
+            });
+
+            if (!response.ok) console.error("Erreur lors de l'ajout au groupe");
+            return await response.json();
+        } catch (error) {
+            console.error("Erreur lors de la tentative de rejoindre un groupe :", error);
+        }
     };
 
-    return { groups, fetchAllGroups, fetchGroupsByCoachId, createGroup } 
+
+    return { groups, fetchAllGroups, fetchGroupsByCoachId, createGroup, joinGroup } 
 }
 
 export default useGroupApi;
