@@ -23,17 +23,12 @@ const Home = () => {
         route.push("/group");
     }
 
-    useEffect(() => {
-        if(roleId) { 
-            recoverUserId();
-        }
-        recoverRoleId();
-    }, []);
-
     useEffect(() => { 
+        recoverRoleId();
+        if(roleId) { recoverUserId(); }
         if (coachId) { fetchGroupsByCoachId({coachId}); } 
         if (swimmerId) { fetchAllGroups(); }
-    }, [coachId]);
+    }, [coachId, swimmerId, roleId]);
 
     return (
         <div>
