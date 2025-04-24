@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react";
+import { userRoleEnum } from "../enum/userRoleEnum";
 
 const useLocalStorage = () => {
 
     const [roleId, setRoleId] = useState<number>(0);
     const [coachId, setCoachId] = useState<number>(0);
+    // const [swimmerId, setSwimmerId] = useState<number>(0);
 
     const recoverCoachId = () => {
         const storedUser = localStorage.getItem("user");
@@ -16,10 +18,16 @@ const useLocalStorage = () => {
         }
 
         const user = JSON.parse(storedUser);
-        if (user && user.roleId === 2) {
-            setCoachId(user.id);
-        } else {
-            console.error("Utilisateur non valide ou non connecté");
+
+        switch (user.roleId) {
+            case userRoleEnum.coach:
+                setCoachId(user.id)
+                break;
+            case userRoleEnum.swimmer:
+                // setSwimmerId(user.id);
+                break;
+            default:
+                console.error("Utilisateur non valide ou non connecté");
         }
     };
 
