@@ -7,9 +7,9 @@ const useLocalStorage = () => {
 
     const [roleId, setRoleId] = useState<number>(0);
     const [coachId, setCoachId] = useState<number>(0);
-    // const [swimmerId, setSwimmerId] = useState<number>(0);
+    const [swimmerId, setSwimmerId] = useState<number>(0);
 
-    const recoverCoachId = () => {
+    const recoverUserId = () => {
         const storedUser = localStorage.getItem("user");
 
         if (!storedUser) {
@@ -24,7 +24,7 @@ const useLocalStorage = () => {
                 setCoachId(user.id)
                 break;
             case userRoleEnum.swimmer:
-                // setSwimmerId(user.id);
+                setSwimmerId(user.id);
                 break;
             default:
                 console.error("Utilisateur non valide ou non connecté");
@@ -41,7 +41,7 @@ const useLocalStorage = () => {
         setRoleId(user.roleId);
     };
 
-    return {coachId, roleId, recoverCoachId, recoverRoleId}
+    return {coachId, swimmerId, roleId, recoverUserId, recoverRoleId}
 
 }
 

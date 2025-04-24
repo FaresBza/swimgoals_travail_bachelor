@@ -17,25 +17,22 @@ const Home = () => {
     const route = useRouter();
 
     const { groups, fetchGroupsByCoachId, fetchAllGroups } = useGroupApi();
-    const { coachId, roleId, recoverCoachId, recoverRoleId } = useLocalStorage();
+    const { coachId, swimmerId, roleId, recoverUserId, recoverRoleId } = useLocalStorage();
 
     const goToSwimmersGroupPage = () => {
         route.push("/group");
     }
 
     useEffect(() => {
-        if(coachId) { 
-            recoverCoachId();
+        if(roleId) { 
+            recoverUserId();
         }
         recoverRoleId();
     }, []);
 
-    useEffect(() => {
-        if (coachId) {
-            fetchGroupsByCoachId({coachId});
-        } else {
-            fetchAllGroups();
-        }
+    useEffect(() => { 
+        if (coachId) { fetchGroupsByCoachId({coachId}); } 
+        if (swimmerId) { fetchAllGroups(); }
     }, [coachId]);
 
     return (
