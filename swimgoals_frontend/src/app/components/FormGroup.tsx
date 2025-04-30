@@ -8,17 +8,17 @@ const FormGroup = () => {
     const [name, setName] = useState<string>("");
 
     const { createGroup } = useGroupApi();
-    const { coachId, recoverCoachId } = useLocalStorage();
+    const { coachId, recoverUserId } = useLocalStorage();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        createGroup({ name, coachId });
+        createGroup({ coachId, name });
     };
 
 
     useEffect(() => {
         AOS.init();
-        recoverCoachId();
+        recoverUserId();
     })
 
     return(

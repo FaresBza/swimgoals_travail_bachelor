@@ -49,7 +49,7 @@ const useGroupApi = () => {
         }
     }
 
-    const createGroup = async ({ coachId, name}: GroupData): Promise<void> => {
+    const createGroup = async ({ coachId, name}: {coachId: number, name: string}): Promise<void> => {
         
         const newGroup = { coachId, name };
 
