@@ -19,8 +19,8 @@ const Home = () => {
     const { groups, fetchGroupsByCoachId, fetchAllGroups, joinGroup } = useGroupApi();
     const { coachId, swimmerId, roleId, recoverUserId, recoverRoleId } = useLocalStorage();
 
-    const goToSwimmersGroupPage = () => {
-        route.push("/group");
+    const goToSwimmersGroupPage = (groupId: number) => {
+        route.push(`group/${groupId}`);
     }
 
     const goToObjectivesPage = (groupId: number ) => {
@@ -49,7 +49,7 @@ const Home = () => {
                                 { roleId === 2 ? 
                                     <button 
                                         className="btn-group" 
-                                        onClick={goToSwimmersGroupPage}
+                                        onClick={() => goToSwimmersGroupPage(group.id)}
                                     >
                                         Voir les nageurs
                                     </button>
