@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import { useRouter } from "next/navigation";
-import UserData from "../data/UserData";
+import UserAuthData from "../data/UserAuthData";
 import RoleMapping from "../mapping/RoleMapping";
 
 const useUserApi = () => {
@@ -8,7 +8,7 @@ const useUserApi = () => {
 
     const route = useRouter();
 
-    const handleRegister = async ({ firstname, lastname, email, password, role }: UserData): Promise<void> => {
+    const handleRegister = async ({ firstname, lastname, email, password, role }: UserAuthData): Promise<void> => {
         const roleId = RoleMapping[role];
 
         if (!roleId) {
