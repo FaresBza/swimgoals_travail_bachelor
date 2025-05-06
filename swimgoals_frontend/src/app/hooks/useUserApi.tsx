@@ -2,9 +2,9 @@
 import { useRouter } from "next/navigation";
 import UserAuthData from "../data/UserAuthData";
 import RoleMapping from "../mapping/RoleMapping";
+import { userRoleEnum } from "../enum/userRoleEnum";
 
 const useUserApi = () => {
-    // const [userData, setUserData] = useState({});
 
     const route = useRouter();
 
@@ -17,7 +17,6 @@ const useUserApi = () => {
         }
 
         const newUser = { firstname, lastname, email, password, roleId }; 
-
 
         try {
             const response = await fetch("http://localhost:8080/api/register", {
@@ -39,7 +38,7 @@ const useUserApi = () => {
         }));
 
             if (response.ok) {
-                if (newUser.roleId === 1) {
+                if (newUser.roleId === userRoleEnum.admin) {
                     route.push("/home-admin");
                 } else {
                     route.push("/home");
@@ -55,19 +54,20 @@ const useUserApi = () => {
     };
 
     const handleLogin = async ({ email, password }: { email: string, password: string }) => {
+
+        const loginUserDetails = { email, password };
+
         try {
             const response = await fetch("http://localhost:8080/api/login", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify(loginUserDetails)
             });
 
             const text = await response.text();
             const data = JSON.parse(text);
-
-            console.log(data);
 
             if (response.ok) {
 
@@ -88,7 +88,10 @@ const useUserApi = () => {
         }
     };
 
-    return { handleRegister, handleLogin };
+    return { 
+        handleRegister,
+        handleLogin 
+    };
 };
 
 export default useUserApi;

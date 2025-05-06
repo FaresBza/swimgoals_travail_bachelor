@@ -25,6 +25,7 @@ const useGroupApi = () => {
 
             setGroups(await response.json());
             return await response.json();
+
         } catch (e) {
             console.error(e);
             return null;
@@ -61,11 +62,11 @@ const useGroupApi = () => {
             const resGroup = await fetch(`http://localhost:8080/api/group/${groupId}`);
             const groupData = await resGroup.json();
             setGroupName(groupData.name);
+
         } catch (error) {
             console.error("Erreur lors de la récupération du groupe :", error);
         }
     };
-
 
     const createGroup = async ({ coachId, name}: {coachId: number, name: string}): Promise<void> => {
         
@@ -121,8 +122,16 @@ const useGroupApi = () => {
         }
     };
 
-
-    return { groups, swimmers, groupName, fetchAllGroups, fetchGroupsByCoachId, fetchGroupDetails, createGroup, joinGroup } 
+    return { 
+        groups, 
+        swimmers, 
+        groupName, 
+        fetchAllGroups, 
+        fetchGroupsByCoachId, 
+        fetchGroupDetails, 
+        createGroup, 
+        joinGroup 
+    }
 }
 
 export default useGroupApi;

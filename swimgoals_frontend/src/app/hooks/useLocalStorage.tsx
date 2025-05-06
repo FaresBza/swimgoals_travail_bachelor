@@ -41,8 +41,13 @@ const useLocalStorage = () => {
         setRoleId(user.roleId);
     };
 
-    return {coachId, swimmerId, roleId, recoverUserId, recoverRoleId}
-
+    return { 
+        coachId, 
+        swimmerId, 
+        roleId, 
+        recoverUserId, 
+        recoverRoleId 
+    }
 }
 
 export default useLocalStorage;
