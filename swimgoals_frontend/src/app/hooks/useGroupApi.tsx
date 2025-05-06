@@ -1,10 +1,13 @@
 import { useRouter } from "next/navigation";
 import GroupData from "../data/GroupData";
 import { useState } from "react";
+import { UserGroupData } from "../data/userGroupData";
 
 const useGroupApi = () => {
     
     const [groups, setGroups] = useState<GroupData[]>([]); 
+    const [swimmers, setSwimmers] = useState<UserGroupData[]>([]);
+    const [groupName, setGroupName] = useState<string>("");
     const route = useRouter();
     
     const fetchAllGroups = async () => {
@@ -48,6 +51,21 @@ const useGroupApi = () => {
             console.error(e);
         }
     }
+
+    const fetchGroupDetails = async (groupId: string) => {
+        try {
+            const resSwimmers = await fetch(`http://localhost:8080/api/groups/${groupId}`);
+            const swimmersData = await resSwimmers.json();
+            setSwimmers(swimmersData);
+
+            const resGroup = await fetch(`http://localhost:8080/api/group/${groupId}`);
+            const groupData = await resGroup.json();
+            setGroupName(groupData.name);
+        } catch (error) {
+            console.error("Erreur lors de la récupération du groupe :", error);
+        }
+    };
+
 
     const createGroup = async ({ coachId, name}: {coachId: number, name: string}): Promise<void> => {
         
@@ -104,7 +122,7 @@ const useGroupApi = () => {
     };
 
 
-    return { groups, fetchAllGroups, fetchGroupsByCoachId, createGroup, joinGroup } 
+    return { groups, swimmers, groupName, fetchAllGroups, fetchGroupsByCoachId, fetchGroupDetails, createGroup, joinGroup } 
 }
 
 export default useGroupApi;
