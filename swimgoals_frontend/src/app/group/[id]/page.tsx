@@ -4,6 +4,11 @@ import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import useGroupApi from "@/app/hooks/useGroupApi";
 
+import './../../styles/BackgroundImage.scss';
+import './../../styles/Scroll.scss';
+import './../../styles/Card.scss';
+
+
 const GroupPage = () => {
     const { id } = useParams();
     const { swimmers, groupName, fetchGroupDetails } = useGroupApi();
@@ -15,14 +20,17 @@ const GroupPage = () => {
     }, [id]);
 
     return (
-        <div>
-            <h1>Groupe : {groupName}</h1>
-            <h2>Liste des nageurs</h2>
-            <ul>
-                {swimmers.map((user) => (
-                    <li key={user.id}>{user.firstname} {user.lastname}</li>
-                ))}
-            </ul>
+        <div className="container blur">
+            <div className="scrollable-container">
+                <h1>{groupName}</h1>
+                <main className="list-swimmers">
+                    {swimmers.map((user) => (
+                        <div key={user.id} className="swimmer-card">
+                            <p className="swimmer-name">{user.lastname}</p>
+                        </div>
+                    ))}
+                </main>
+            </div>
         </div>
     );
 };

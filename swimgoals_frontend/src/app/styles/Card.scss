@@ -1,0 +1,26 @@
+@use 'variables';
+
+.list-swimmers{
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto 0 auto;
+    
+    .swimmer-card {
+        background: variables.$global-background-card;
+        padding: 10px;
+        border-radius: 50px;
+        text-align: center;
+        justify-content: center;
+        width: 250px;
+        margin: 0 0 10px 0;
+        
+        .swimmer-name {
+            color: variables.$black;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+    }
+}
