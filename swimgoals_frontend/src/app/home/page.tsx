@@ -26,7 +26,7 @@ const Home = () => {
     const goToObjectivesPage = (groupId: number ) => {
         if (groupId) {
             joinGroup(groupId, swimmerId);
-            route.push("/objectives");
+            route.push(`/objectives/swimmer/${swimmerId}`);
         }
     }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import useGroupApi from "@/app/hooks/useGroupApi";
 
 import './../../styles/BackgroundImage.scss';
@@ -12,6 +12,12 @@ import './../../styles/Card.scss';
 const GroupPage = () => {
     const { id } = useParams();
     const { swimmers, groupName, fetchGroupDetails } = useGroupApi();
+
+    const route = useRouter();
+
+    const goToSwimmerObjectivesPage = (swimmerId: number) => {
+        route.push(`/objectives/swimmer/${swimmerId}`);
+    };
 
     useEffect(() => {
         if (id) {
@@ -25,7 +31,11 @@ const GroupPage = () => {
                 <h1>{groupName}</h1>
                 <main className="list-swimmers">
                     {swimmers.map((user) => (
-                        <div key={user.id} className="swimmer-card">
+                        <div 
+                            key={user.id} 
+                            className="swimmer-card"
+                            onClick={() => goToSwimmerObjectivesPage(user.id)}
+                        >
                             <p className="swimmer-name">{user.lastname}</p>
                         </div>
                     ))}
