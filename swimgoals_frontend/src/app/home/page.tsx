@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import AddButton from "../components/AddButton";
 
 import './../styles/BackgroundImage.scss'
-import './../styles/Home.scss'
+import './../styles/Card.scss'
 import './../styles/Scroll.scss'
 import './../styles/FormGroup.scss';
 
