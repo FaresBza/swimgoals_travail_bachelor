@@ -1,7 +1,5 @@
 package com.swimgoals.models;
 
-import java.util.UUID;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
@@ -12,7 +10,7 @@ public class Objective {
     
     @Id
     @Column(length = 16, nullable = false, unique = true)
-    private UUID id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "swimmer_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_objective_swimmer"))
@@ -30,7 +28,7 @@ public class Objective {
 
     
 
-    public Objective(UUID id, User swimmer, Swim swim, String distance, String time) {
+    public Objective(Integer id, User swimmer, Swim swim, String distance, String time) {
         this.id = id;
         this.swimmer = swimmer;
         this.swim = swim;
@@ -39,14 +37,14 @@ public class Objective {
     }
 
     public Objective() {
-        this(UUID.randomUUID(), null, null, "", "");
+        this(0, null, null, "", "");
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
