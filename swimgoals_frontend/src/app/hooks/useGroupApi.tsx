@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import GroupData from "../data/GroupData";
 import { useState } from "react";
-import { UserGroupData } from "../data/userGroupData";
+import { UserGroupData } from "../data/UserGroupData";
 
 const useGroupApi = () => {
     
