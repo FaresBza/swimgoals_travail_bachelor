@@ -78,8 +78,18 @@ const useUserApi = () => {
                     roleId: data.role.id
                 }));
 
-                if(data.role.id === 1) route.push("/home-admin");
-                else route.push("/home");
+                switch (data.role.id) {
+                    case userRoleEnum.admin:
+                        route.push("/home-admin");
+                        break;
+                    case userRoleEnum.coach:
+                        route.push("/home");
+                        break;
+                    case userRoleEnum.swimmer:
+                        route.push(`/objectives/swimmer/${data.id}`);
+                        break;
+                }
+                
             } else {
                 console.error("Erreur lors de la connexion", data.message);
             }
