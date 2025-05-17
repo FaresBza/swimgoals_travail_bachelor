@@ -27,6 +27,8 @@ const useObjectiveApi = () => {
         }
     }
 
+    
+
     return {
         objectives,
         fetchObjectivesBySwimmerId,
