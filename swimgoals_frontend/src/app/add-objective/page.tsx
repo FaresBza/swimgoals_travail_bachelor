@@ -1,9 +1,12 @@
 "use client"
 
+import FormObjective from '../add-group/FormObjective';
+import './../styles/BackgroundImage.scss'
+
 const AddObjective = () => {
     return (
-        <div>
-            <h1>Hello</h1>
+        <div className="container blur">
+            <FormObjective />
         </div>
     )
 }
