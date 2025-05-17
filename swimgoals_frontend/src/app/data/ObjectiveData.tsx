@@ -1,7 +1,7 @@
 interface ObjectiveData {
     id: number,
     swimmerId: number
-    swimId: number
+    swim: number
     distance: string,
     time: string
 }
