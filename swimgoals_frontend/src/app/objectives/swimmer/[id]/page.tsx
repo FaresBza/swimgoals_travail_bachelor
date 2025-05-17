@@ -1,8 +1,13 @@
 "use client";
 
-import useObjectiveApi from "@/app/hooks/useObjectiveApi";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
+import useObjectiveApi from "@/app/hooks/useObjectiveApi";
+
+import './../../../styles/BackgroundImage.scss';
+import './../../../styles/Scroll.scss';
+import './../../../styles/Card.scss';
+
 
 const Objectives = () => {
     const { id } = useParams();
@@ -16,16 +21,18 @@ const Objectives = () => {
     }, [id])
 
     return (
-        <div>
-            {objectives.map((objective) => (
-                <div
-                    key={objective.id}
-                >
-                    <h2>{objective.swimId}</h2>
-                    <p>{objective.distance}</p>
-                    <p>{objective.time}</p>
-                </div>
-            ))}
+        <div className="container blur">
+            <div className="scrollable-container">
+                {objectives.map((objective) => (
+                    <div
+                        key={objective.id}
+                    >
+                        <h2>{objective.swimId}</h2>
+                        <p>{objective.distance}</p>
+                        <p>{objective.time}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
