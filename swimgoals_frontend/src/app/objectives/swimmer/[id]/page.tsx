@@ -26,6 +26,10 @@ const Objectives = () => {
     const { objectives, fetchObjectivesBySwimmerId } = useObjectiveApi();
     const { roleId, recoverRoleId } = useLocalStorage();
 
+    const goToAddResultPage = (objectiveId: number) => {
+        route.push(`/objectives/result/${objectiveId}`);
+    }
+
     useEffect(() => {
         recoverRoleId();
         if (id && typeof id === "string") {
@@ -43,6 +47,7 @@ const Objectives = () => {
                             <h2>{getSwimNameById(objective.swim)}</h2>
                             <p>Distance : {objective.distance} m</p>
                             <p>Temps : {objective.time}</p>
+                            <button onClick={() => goToAddResultPage(objective.id)}>Résultat</button>
                         </div>
                     );
                 })}
