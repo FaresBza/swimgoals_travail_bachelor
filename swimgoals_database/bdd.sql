@@ -35,7 +35,7 @@ CREATE TABLE swims (
 );
 
 CREATE TABLE objectives (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     swimmer_id INT,
     swim_id INT,
     distance VARCHAR(255) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE objectives (
 );
 
 CREATE TABLE goals (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     objective_id INT,
     time TIME NOT NULL,
     date DATE NOT NULL,
