@@ -1,11 +1,11 @@
-const SwimMapping: Record<string, number> = {
-    papillon: 1,   
-    dos: 2,   
-    brasse: 3,   
-    crawl: 4,   
-    QuatreNages: 5,   
-    Jambes: 6,   
-    NageLibre: 7,   
-}
+const SwimMapping = [
+    { name: "papillon", id: 1 },
+    { name: "dos", id: 2 },
+    { name: "brasse", id: 3 },
+    { name: "crawl", id: 4 },
+    { name: "4 Nages", id: 5 },
+    { name: "Jambes", id: 6 },
+    { name: "Nage Libre", id: 7 },
+];
 
 export default SwimMapping;
