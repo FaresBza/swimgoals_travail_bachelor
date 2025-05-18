@@ -1,7 +1,7 @@
 "use client"
 
-import FormObjective from '../add-group/FormObjective';
-import './../styles/BackgroundImage.scss'
+import FormObjective from './FormObjective';
+import './../../styles/BackgroundImage.scss'
 
 const AddObjective = () => {
     return (
