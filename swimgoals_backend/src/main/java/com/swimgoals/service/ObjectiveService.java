@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.swimgoals.dto.ObjectiveDTO;
+import com.swimgoals.interfaces.IObjectiveService;
 import com.swimgoals.models.Objective;
 import com.swimgoals.models.Swim;
 import com.swimgoals.models.User;
@@ -13,7 +14,7 @@ import com.swimgoals.repository.SwimRepository;
 import com.swimgoals.repository.UserRepository;
 
 @Service
-public class ObjectiveService {
+public class ObjectiveService implements IObjectiveService {
     
     private final ObjectiveRepository objectiveRepository;
     private final SwimRepository swimRepository;
@@ -25,10 +26,12 @@ public class ObjectiveService {
         this.userRepository = userRepository;
     }
 
+    @Override
     public List<Objective> getObjectiveBySwimmerId(int swimmerId) {
         return objectiveRepository.findBySwimmerId(swimmerId);
     }
 
+    @Override
     public Objective creaObjective(ObjectiveDTO objectiveDTO) {
         Objective objective = new Objective();
 
