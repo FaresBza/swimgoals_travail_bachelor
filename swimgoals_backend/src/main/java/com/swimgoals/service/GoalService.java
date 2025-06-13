@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.swimgoals.dto.GoalDTO;
 import com.swimgoals.interfaces.IGoalService;
 import com.swimgoals.models.Goal;
+import com.swimgoals.models.Objective;
 import com.swimgoals.repository.GoalRepository;
 import com.swimgoals.repository.ObjectiveRepository;
 
@@ -21,7 +22,16 @@ public class GoalService implements IGoalService {
 
     @Override
     public Goal createGoal(GoalDTO goalDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createGoal'");
+        Goal goal = new Goal();
+
+        goal.setTime(goalDTO.getTime());
+        goal.setDate(goalDTO.getDate());
+
+        Objective objective = objectiveRepository.findById(goalDTO.getObjectiveId())
+            .orElseThrow(() -> new IllegalArgumentException("Objective with given Id does not exist"));
+        
+        goal.setObjective(objective);
+
+        return goalRepository.save(goal);
     }
 }

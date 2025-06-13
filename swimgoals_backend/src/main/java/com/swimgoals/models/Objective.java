@@ -33,7 +33,9 @@ public class Objective {
     @Column(name = "time", nullable = false)
     private String time;
 
-    
+    // @OneToMany(mappedBy = "objective")
+    // @JsonIgnore
+    // private List<Goal> goals;
 
     public Objective(Integer id, User swimmer, Swim swim, String distance, String time) {
         this.id = id;
@@ -86,4 +88,12 @@ public class Objective {
     public void setTime(String time) {
         this.time = time;
     }
+
+    // public List<Goal> getGoals() {
+    //     return goals;
+    // }
+
+    // public void setGoals(List<Goal> goals) {
+    //     this.goals = goals;
+    // }
 }

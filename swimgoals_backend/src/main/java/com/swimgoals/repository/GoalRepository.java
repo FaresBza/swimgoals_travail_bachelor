@@ -8,6 +8,6 @@ import com.swimgoals.models.Goal;
 
 @RepositoryRestResource(exported = false)
 @Repository
-public interface  GoalRepository extends JpaRepository<Goal, Integer> {
+public interface GoalRepository extends JpaRepository<Goal, Integer> {
     
 }
