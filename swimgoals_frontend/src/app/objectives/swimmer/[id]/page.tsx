@@ -47,7 +47,9 @@ const Objectives = () => {
                             <h2>{getSwimNameById(objective.swim)}</h2>
                             <p>Distance : {objective.distance} m</p>
                             <p>Temps : {objective.time}</p>
-                            <button onClick={() => goToAddResultPage(objective.id)}>Résultat</button>
+                            {roleId === 2 && 
+                                <button onClick={() => goToAddResultPage(objective.id)}>Résultat</button>
+                            }
                         </div>
                     );
                 })}
