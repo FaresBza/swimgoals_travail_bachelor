@@ -70,7 +70,7 @@ const useObjectiveApi = () => {
         }
 
         console.log("L'objectif a bien été créé");
-        route.push(`/objectives/swimmer/${swimmerId}`); // ← attention: tu n'as pas défini `route` dans ce fichier
+        route.push(`/objectives/swimmer/${swimmerId}`);
     } catch (error) {
         console.error("Erreur réseau :", error);
     }
