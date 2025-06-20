@@ -3,8 +3,8 @@
 import useGoalsApi from "@/app/hooks/useGoalsAPI";
 import { useParams } from "next/navigation";
 import { useState, useRef } from "react";
-import TimerDisplay from "@/app/components/TimeDisplay";
-import TimerControls from "@/app/components/TimerControls";
+import TimerDisplay from "@/app/objectives/result/[objectiveId]/TimeDisplay";
+import TimerControls from "@/app/objectives/result/[objectiveId]/TimerControls";
 
 const ObjectiveResult = () => {
     const { objectiveId } = useParams();
