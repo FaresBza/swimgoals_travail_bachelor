@@ -1,6 +1,6 @@
 "use client"
 
-import FormGroup from "../components/FormGroup";
+import FormGroup from "./FormGroup";
 
 import './../styles/BackgroundImage.scss'
 
