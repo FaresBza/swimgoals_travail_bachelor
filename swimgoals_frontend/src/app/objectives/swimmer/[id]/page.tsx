@@ -40,19 +40,25 @@ const Objectives = () => {
     return (
         <div className="container blur">
             <div className="scrollable-container">
-                {objectives.map((objective) => {
-                    console.log("Rendering objective:", objective);
-                    return (
-                        <div key={objective.id} className="card">
-                            <h2>{getSwimNameById(objective.swim)}</h2>
-                            <p>Distance : {objective.distance} m</p>
-                            <p>Temps : {objective.time}</p>
-                            {roleId === 2 && 
-                                <button onClick={() => goToAddResultPage(objective.id)}>Résultat</button>
-                            }
-                        </div>
-                    );
-                })}
+                <main className="list-objectives">
+                    {objectives.map((objective) => {
+                        console.log("Rendering objective:", objective);
+                        return (
+                            <div key={objective.id} className="objective-card ">
+                                <h2 className="objective-title">{objective.distance}m {getSwimNameById(objective.swim)}</h2>
+                                <p className="objective-info">Temps : {objective.time} min</p>
+                                {roleId === 2 && 
+                                    <button 
+                                        className="btn-group"
+                                        onClick={() => goToAddResultPage(objective.id)}
+                                    >
+                                        Résultat
+                                    </button>
+                                }
+                            </div>
+                        );
+                    })}
+                </main>
             </div>
             <footer>
                 {roleId === 2 && (
