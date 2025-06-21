@@ -59,3 +59,6 @@ INSERT INTO swims VALUES
 (1, "Papillon"), (2, "Dos"), (3, "Brasse"), 
 (4, "Crawl"), (5, "4 Nages"), (6, "Jambes"), 
 (7, "Nage Libre");
+
+ALTER TABLE users ADD COLUMN group_id INT;
+ALTER TABLE users ADD CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES groups(id);
