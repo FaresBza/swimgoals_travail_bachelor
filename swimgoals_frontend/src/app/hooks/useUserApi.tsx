@@ -98,9 +98,33 @@ const useUserApi = () => {
         }
     };
 
+    const getSwimmerFirstNameById = async (id: number): Promise<string> => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/swimmer/${id}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            if (!response.ok) {
+                console.error("Erreur lors de la récupération du nageur :", response.status);
+                return "Inconnu";
+            }
+
+            const data = await response.json();
+            return data.firstname;
+
+        } catch (error) {
+            console.error("Erreur réseau :", error);
+            return "Inconnu";
+        }
+    }
+
     return { 
         handleRegister,
-        handleLogin 
+        handleLogin,
+        getSwimmerFirstNameById 
     };
 };
 
