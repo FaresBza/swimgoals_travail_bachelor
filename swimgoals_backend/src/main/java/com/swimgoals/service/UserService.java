@@ -1,5 +1,6 @@
 package com.swimgoals.service;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,5 +54,9 @@ public class UserService implements IUserService{
             throw new IllegalArgumentException("Invalid credentials");
         }
         return user;
+    }
+
+    public Optional<User> getUserById(Integer id) {
+        return userRepository.findById(id);
     }
 }

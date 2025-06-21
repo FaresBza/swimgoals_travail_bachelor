@@ -3,6 +3,7 @@ package com.swimgoals.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +76,20 @@ public class UserController {
     @GetMapping("/groups/{groupId}")
     public List<User> getSwimmersByGroup(@PathVariable Integer groupId) {
         return userRepository.findByGroupIdAndRoleId(groupId, 3); 
+    }
+
+    @Operation( summary = "Retrieve a swimmer by ID", description = "Retrieves a swimmer by their unique ID from the database", tags = {
+        "User" })
+    @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
+    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @GetMapping("/swimmer/{id}")
+    public ResponseEntity<Optional<User>> getSwimmerById(@PathVariable Integer id) {
+        try {
+            Optional<User> swimmer = userService.getUserById(id);
+            return ResponseEntity.ok(swimmer);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
 }
