@@ -45,7 +45,8 @@ const Objectives = () => {
     return (
         <div className="container blur">
             <div className="scrollable-container">
-                <h1>{firstName}</h1>
+                { roleId === 2 && <h1>{firstName}</h1> }
+                { roleId === 3 && <h1>Objectifs</h1> }
                 <main className="list-objectives">
                     {objectives.map((objective) => {
                         return (
