@@ -5,6 +5,9 @@ import { useRouter, useParams } from "next/navigation";
 import useObjectiveApi from "@/app/hooks/useObjectiveApi";
 import useLocalStorage from "@/app/hooks/useLocalStorage";
 import SwimMapping from "@/app/mapping/SwimMapping";
+
+import './../../styles/FormObjective.scss'
+
 const FormObjective = () => {
     const router = useRouter();
     const { id } = useParams(); // id du nageur
@@ -36,7 +39,7 @@ const FormObjective = () => {
     };
 
     return (
-        <div className="container">
+        <div className="add-objective-container">
             <main className="main-container">
                 <div className="add-objective-card">
                     <h2 className="title-card">Ajouter un objectif</h2>
@@ -61,7 +64,7 @@ const FormObjective = () => {
                             ))}
                         </select>
 
-                        <label className="label-group">Distance</label>
+                        <label className="label-objective">Distance</label>
                         <input
                             type="number"
                             className="input-objectives"

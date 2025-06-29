@@ -1,0 +1,124 @@
+@use 'variables';
+
+.add-objective-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 80%;
+    font-family: variables.$global-font-family;
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .add-objective-card {
+            background: variables.$white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+
+            .title-card {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                font-weight: 700;
+                color: variables.$global-blue;
+            }
+
+            .form-add-objective {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+
+                .label-objective {
+                    font-size: 16px;
+                    color: variables.$global-blue;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .select-swims {
+                    width: 100%;
+                    max-width: 275px;
+                    padding: 10px 15px;
+                    font-size: 16px;
+                    font-family: variables.$global-font-family;
+                    color: variables.$white;
+                    background-color: variables.$global-blue-medium;
+                    border: none;
+                    border-radius: 25px;
+                    appearance: none;
+                    transition: all 0.3s ease;
+                    text-align: center;
+
+                    &:focus {
+                        outline: none;
+                        border-color: darken(variables.$global-blue, 10%);
+                        box-shadow: 0 0 0 2px rgba(variables.$global-blue, 0.2);
+                    }
+
+                    option {
+                        font-size: 16px;
+                        padding: 10px;
+                        background-color: #000;
+                    }
+                }
+
+                .input-objectives {
+                    width: 100%;
+                    padding: 8px;
+                    font-size: 16px;
+                    border: none;
+                    border-bottom: 1px solid variables.$global-blue;
+                    background: transparent;
+                    outline: none;
+                    color: #333;
+                }
+
+                button {
+                    width: 100%;
+                    padding: 10px;
+                    background-color: variables.$global-blue;
+                    color: white;
+                    border: none;
+                    border-radius: 25px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: background 0.3s;
+
+                    &:hover {
+                        background-color: darken(variables.$global-blue, 10%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 570px) {
+
+    .add-objective-container {
+        width: 500px;
+
+        .main-container {
+
+            .add-objective-card {
+                padding: 30px;
+
+                .form-add-objective {
+
+                    .input-objectives,
+                    button {
+                        max-width: 400px;
+                    }
+                }
+            }
+        }
+    }
+}
