@@ -6,6 +6,9 @@ import { useState, useRef } from "react";
 import TimerDisplay from "@/app/objectives/result/[objectiveId]/TimeDisplay";
 import TimerControls from "@/app/objectives/result/[objectiveId]/TimerControls";
 
+import '@/app/styles/Timer.scss'
+import "./../../../styles/BackgroundImage.scss";
+
 const ObjectiveResult = () => {
     const { objectiveId } = useParams();
     const { createGoal } = useGoalsApi();
@@ -38,12 +41,15 @@ const ObjectiveResult = () => {
     };
 
     return (
-        <div style={{ textAlign: "center", marginTop: 50 }}>
-        <h1>Résultat de l’objectif #{objectiveId}</h1>
-        <TimerDisplay time={time} />
-        <TimerControls isRunning={running} onStart={start} onStop={stop} />
+        <div className="container blur">
+            <div className="timer-container">
+                <h1>Résultat de l’objectif #{objectiveId}</h1>
+                <TimerDisplay time={time} />
+                <TimerControls isRunning={running} onStart={start} onStop={stop} />
+            </div>
         </div>
     );
+
 };
 
 export default ObjectiveResult;

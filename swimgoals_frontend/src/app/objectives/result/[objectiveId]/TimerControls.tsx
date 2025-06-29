@@ -1,16 +1,18 @@
-type TimerControlsProps = {
+import "@/app/styles/Timer.scss";
+
+const TimerControls = ({ isRunning, onStart, onStop }: {
     isRunning: boolean;
     onStart: () => void;
     onStop: () => void;
-};
-
-const TimerControls = ({ isRunning, onStart, onStop }: TimerControlsProps) => {
+}) => {
     return (
-        <button onClick={isRunning ? onStop : onStart}>
+        <button
+            className="timer-button"
+            onClick={isRunning ? onStop : onStart}
+        >
             {isRunning ? "Stop" : "Start"}
         </button>
     );
 };
-
 
 export default TimerControls;
