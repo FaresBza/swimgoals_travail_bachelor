@@ -50,8 +50,11 @@
 @media screen and (min-width: 550px) {
     .container {
         .list-groups,
-        .list-swimmers {
-            .group-card{
+        .list-swimmers,
+        .list-objectives {
+            
+            .group-card,
+            .objective-card{
                 width: 320px;
             }
         }
@@ -61,7 +64,8 @@
 @media screen and (min-width: 680px) {
     .container {
         .list-groups,
-        .list-swimmers {
+        .list-swimmers,
+        .list-objectives {
             position: fixed;
             top: 30%;
             left: 39%;
@@ -69,7 +73,8 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
 
-            .group-card {
+            .group-card,
+            .objective-card {
                 width: 250px;
             }
         }
@@ -79,7 +84,8 @@
 @media screen and (min-width: 1024px) {
     .container {
         .list-groups,
-        .list-swimmers {
+        .list-swimmers,
+        .list-objectives {
             left: 34%;
             grid-template-columns: repeat(3, 1fr);
         }
