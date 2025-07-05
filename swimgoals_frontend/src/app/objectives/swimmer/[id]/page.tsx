@@ -6,10 +6,14 @@ import useObjectiveApi from "@/app/hooks/useObjectiveApi";
 import useLocalStorage from "@/app/hooks/useLocalStorage";
 import SwimMapping from "@/app/mapping/SwimMapping";
 import AddButton from "./../../../components/AddButton";
+import Image from "next/image";
 
 import "./../../../styles/BackgroundImage.scss";
 import "./../../../styles/Scroll.scss";
 import "./../../../styles/Card.scss";
+import './../../../styles/NavbarButton.scss'
+
+
 import useUserApi from "@/app/hooks/useUserApi";
 
 // Fonction utilitaire pour obtenir le nom de la nage à partir de l'id
@@ -32,6 +36,10 @@ const Objectives = () => {
 
     const goToAddResultPage = (objectiveId: number) => {
         route.push(`/objectives/result/${objectiveId}`);
+    }
+
+    const goToPerformancesPage = () => {
+        route.push("/charts");
     }
 
     useEffect(() => {
@@ -73,6 +81,22 @@ const Objectives = () => {
                             route.push(`/add-objective/${id}`);
                         }}
                     />
+                )}
+                {roleId === 3 && (
+                    <nav className="swimmer-navbar">
+                        <button className="btn objectives-button-nav">
+                            <Image src="/icons/objectives-white.svg" alt="Objectives Icon" width={24} height={24} />
+                        </button>
+                        <button className="btn performances-button-nav">
+                            <Image
+                                src="/icons/statistics.svg"
+                                alt="Statistics Icon"
+                                width={24}
+                                height={24}
+                                onClick={goToPerformancesPage}
+                            />
+                        </button>
+                    </nav>
                 )}
             </footer>
         </div>

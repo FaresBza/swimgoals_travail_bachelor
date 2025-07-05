@@ -1,0 +1,25 @@
+@use 'variables';
+
+.swimmer-navbar {
+    margin: 20px;
+    background: variables.$white;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: variables.$align-center;
+    border-radius: 50%;
+
+    .btn {
+        height: 50px;
+        width: 50%;
+        border-radius: 50px;
+        border: 0;
+        background: variables.$white;
+
+        &.objectives-button-nav {
+            background: variables.$global-blue;
+        }
+    }
+}
