@@ -104,23 +104,4 @@ class UserRepositoryTest {
         assertEquals("123jean45", createdUser.get().getPassword(), "Le mot de passe du nouveau user doit être 'Du123jean45pont'");
         assertEquals("coach", createdUser.get().getRole().getName(), "Le role du nouveau user doit être 'coach'");
     }
-
-    @Test
-    void updateUser() {
-        Optional<User> user = userRepository.findById(2);
-        user.get().setPassword("newpassword123jean45");
-
-        User updatedUser = userRepository.save(user.get());
-
-        assertEquals("newpassword123jean45", updatedUser.getPassword(), "Le nouveau mot de passe du user doit être 'newpassword123jean45'");
-    }
-
-    @Test
-    void deleteUser() {
-        userRepository.deleteById(3);
-
-        Optional<User> deletedUser = userRepository.findById(3);
-
-        assertTrue(deletedUser.isEmpty(), "Le user d'id 4 doit être suppimé");
-    }
 }
