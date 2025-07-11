@@ -22,6 +22,7 @@ public class GoalService implements IGoalService {
         this.objectiveRepository = objectiveRepository;
     }
 
+    @Override
     public List<Goal> getGoalsByObjectiveId(Integer objectiveId) {
         return goalRepository.findByObjectiveId(objectiveId);
     }
