@@ -1,5 +1,7 @@
 package com.swimgoals.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.swimgoals.dto.GoalDTO;
@@ -11,13 +13,17 @@ import com.swimgoals.repository.ObjectiveRepository;
 
 @Service
 public class GoalService implements IGoalService {
-    
+
     private final GoalRepository goalRepository;
     private final ObjectiveRepository objectiveRepository;
 
     public GoalService(GoalRepository goalRepository, ObjectiveRepository objectiveRepository) {
         this.goalRepository = goalRepository;
         this.objectiveRepository = objectiveRepository;
+    }
+
+    public List<Goal> getGoalsByObjectiveId(Integer objectiveId) {
+        return goalRepository.findByObjectiveId(objectiveId);
     }
 
     @Override
@@ -28,8 +34,8 @@ public class GoalService implements IGoalService {
         goal.setDate(goalDTO.getDate());
 
         Objective objective = objectiveRepository.findById(goalDTO.getObjectiveId())
-            .orElseThrow(() -> new IllegalArgumentException("Objective with given Id does not exist"));
-        
+                .orElseThrow(() -> new IllegalArgumentException("Objective with given Id does not exist"));
+
         goal.setObjective(objective);
 
         return goalRepository.save(goal);
