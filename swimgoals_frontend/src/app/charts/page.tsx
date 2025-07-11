@@ -2,7 +2,9 @@
 
 const Chart = () => {
     return (
-        <h1>Bienvenue sur la page des graphiques</h1>
+        <div className="container blur">
+            <h1>Performances</h1>
+        </div>
     )
 }
 
