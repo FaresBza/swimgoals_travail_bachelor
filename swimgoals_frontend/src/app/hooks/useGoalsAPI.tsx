@@ -55,7 +55,7 @@ const useGoalsApi = () => {
         }
     };
 
-    return { fetchGoalsByObjectifId, createGoal }
+    return { goals, fetchGoalsByObjectifId, createGoal }
 
 }
 
