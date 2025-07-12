@@ -42,6 +42,10 @@ const Objectives = () => {
         route.push("/charts");
     }
 
+    const goToOneObjectivePerformance = (objectiveId: number) => {
+        route.push(`/charts/objective/${objectiveId}`)
+    }
+
     useEffect(() => {
         recoverRoleId();
         if (id && typeof id === "string") {
@@ -62,12 +66,26 @@ const Objectives = () => {
                                 <h2 className="objective-title">{objective.distance}m {getSwimNameById(objective.swim)}</h2>
                                 <p className="objective-info">Temps : {objective.time} min</p>
                                 {roleId === 2 && 
-                                    <button 
-                                        className="btn-group"
-                                        onClick={() => goToAddResultPage(objective.id)}
-                                    >
-                                        Résultat
-                                    </button>
+                                    <div>
+                                        <button 
+                                            className="btn-group"
+                                            onClick={() => goToAddResultPage(objective.id)}
+                                        >
+                                            Résultat
+                                        </button>
+                                        <button 
+                                            className="btn-group"
+                                            onClick={() => goToOneObjectivePerformance(objective.id)}
+                                        >
+                                            <Image
+                                                src="/icons/statistics-white.svg"
+                                                alt="Statistics Icon"
+                                                width={24}
+                                                height={24}
+                                                onClick={goToPerformancesPage}
+                                            />
+                                        </button>
+                                    </div>
                                 }
                             </div>
                         );
