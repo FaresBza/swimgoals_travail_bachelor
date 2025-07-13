@@ -13,6 +13,7 @@ export const chartOptions = {
                 display: true,
                 text: "Temps (en secondes)",
             },
+            // Méthode permettant de formater les coordonnées de l'axe Y en minutes et secondes
             ticks: {
                 callback: function (tickValue: number) {
                     const minutes = Math.floor(tickValue / 60);
