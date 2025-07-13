@@ -1,10 +1,22 @@
-// Commit message: feat(chart): add basic chart structure and API loading
-
 "use client";
 
 import { useParams } from "next/navigation";
 import useGoalsAPI from "@/app/hooks/useGoalsAPI";
 import { useEffect, useState } from "react";
+
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Chart = () => {
     const { id } = useParams();
@@ -54,8 +66,14 @@ const Chart = () => {
         <div className="container blur" style={{ height: "500px", padding: "2rem" }}>
             <h1>Performances</h1>
             {loading ? <p>Chargement...</p> : <p>Données chargées</p>}
+            {chartData ? (
+                <Line data={chartData} options={{ responsive: true }} />
+            ) : (
+                <p>Aucune donnée pour ce graphique.</p>
+            )}
         </div>
     );
 };
 
 export default Chart;
+
