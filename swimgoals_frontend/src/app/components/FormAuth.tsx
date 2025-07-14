@@ -20,7 +20,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
 
     const [isLogin, setIsLogin] = useState<boolean>(mainTitle === "Connexion");
 
-    const { handleRegister, handleLogin } = useUserApi();
+    const { handleRegister, handleLogin, error } = useUserApi();
 
     const onSubmit = () => {
         if (isLogin){
@@ -123,6 +123,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
                                 />
                             </div>
                         </form>
+                        {error && <p style={{ color: "red" }}>{error}</p>}
                         <button 
                             type="submit" 
                             className="submit-button"
@@ -168,6 +169,7 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
                                 />
                             </div>
                         </form>
+                        {error && <p style={{ color: "red" }}>{error}</p>}
                         <button
                             type="submit" 
                             className="submit-button"
