@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import useGroupApi from "@/app/hooks/useGroupApi";
 
@@ -8,27 +8,33 @@ import './../../styles/BackgroundImage.scss';
 import './../../styles/Scroll.scss';
 import './../../styles/Card.scss';
 
-
 const GroupPage = () => {
     const { id } = useParams();
-    const { swimmers, groupName, fetchGroupDetails } = useGroupApi();
+    const { swimmers, fetchGroupDetails, getGroupNameById } = useGroupApi();
 
-    const route = useRouter();
+    const [groupNameBis, setGroupNameBis] = useState<string>("");
+    const router = useRouter();
 
     const goToSwimmerObjectivesPage = (swimmerId: number) => {
-        route.push(`/objectives/swimmer/${swimmerId}`);
+        router.push(`/objectives/swimmer/${swimmerId}`);
+    };
+
+    const fetchData = async () => {
+        if (id) {
+            await fetchGroupDetails(id.toString());
+            const name = await getGroupNameById(Number(id));
+            setGroupNameBis(name);
+        }
     };
 
     useEffect(() => {
-        if (id) {
-            fetchGroupDetails(id.toString());
-        }
+        fetchData();
     }, [id]);
 
     return (
         <div className="container blur">
             <div className="scrollable-container">
-                <h1>{groupName}</h1>
+                <h1>{groupNameBis}</h1>
                 <main className="list-swimmers">
                     {swimmers.map((user) => (
                         <div 
