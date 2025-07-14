@@ -20,15 +20,6 @@ CREATE TABLE groups (
     FOREIGN KEY (coach_id) REFERENCES users(id)
 );
 
-
-CREATE TABLE swimmers_group (
-    swimmer_id INT,
-    group_id INT,
-    PRIMARY KEY (swimmer_id, group_id),
-    FOREIGN KEY (swimmer_id) REFERENCES users(id),
-    FOREIGN KEY (group_id) REFERENCES groups(id)
-);
-
 CREATE TABLE swims (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL
