@@ -36,7 +36,7 @@ const GroupPage = () => {
                             className="swimmer-card"
                             onClick={() => goToSwimmerObjectivesPage(user.id)}
                         >
-                            <p className="swimmer-name">{user.lastname}</p>
+                            <p className="swimmer-name">{user.firstname}</p>
                         </div>
                     ))}
                 </main>
