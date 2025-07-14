@@ -40,12 +40,21 @@ const ObjectiveResult = () => {
         });
     };
 
+    const resetTimer = () => {
+        if (timer.current) {
+            clearInterval(timer.current);
+            timer.current = null;
+        }
+        setRunning(false);
+        setTime(0);
+    }
+
     return (
         <div className="container blur">
             <div className="timer-container">
                 <h1>Résultat de l’objectif #{objectiveId}</h1>
                 <TimerDisplay time={time} />
-                <TimerControls isRunning={running} onStart={start} onStop={stop} />
+                <TimerControls isRunning={running} onStart={start} onStop={stop} onReset={resetTimer} />
             </div>
         </div>
     );
