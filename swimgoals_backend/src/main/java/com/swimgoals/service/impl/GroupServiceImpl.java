@@ -1,6 +1,7 @@
 package com.swimgoals.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -55,5 +56,10 @@ public class GroupServiceImpl implements GroupService {
 
         user.setGroup(group);
         userRepository.save(user);
+    }
+
+    @Override
+    public Optional<Group> getGroupById(Integer id) {
+        return groupRepository.findById(id);
     }
 }

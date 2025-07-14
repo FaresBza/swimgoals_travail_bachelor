@@ -2,6 +2,8 @@ package com.swimgoals.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -92,6 +94,20 @@ public class GroupController {
             return ResponseEntity.ok(Map.of("message", "Swimmer ajouté au groupe avec succès"));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @Operation( summary = "Retrieve a group by ID", description = "Retrieves a group by their unique ID from the database", tags = {
+        "Group" })
+    @ApiResponse(responseCode = "200", description = "Group object retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
+    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @GetMapping("/group/{id}")
+    public ResponseEntity<Optional<Group>> getGroupById(@PathVariable Integer id) {
+        try {
+            Optional<Group> group = groupService.getGroupById(id);
+            return ResponseEntity.ok(group);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 }

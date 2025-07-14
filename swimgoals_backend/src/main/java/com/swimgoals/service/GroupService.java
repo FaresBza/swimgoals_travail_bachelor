@@ -1,6 +1,7 @@
 package com.swimgoals.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.swimgoals.dto.GroupDTO;
 import com.swimgoals.models.Group;
@@ -14,4 +15,6 @@ public interface GroupService {
     Group createGroup(GroupDTO groupDTO);
 
     void joinGroup(int swimmerId, int groupId);
+
+    public Optional<Group> getGroupById(Integer id);
 }
