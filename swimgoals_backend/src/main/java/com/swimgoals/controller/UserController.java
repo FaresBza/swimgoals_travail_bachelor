@@ -18,7 +18,7 @@ import com.swimgoals.dto.UserDTO;
 import com.swimgoals.models.Group;
 import com.swimgoals.models.User;
 import com.swimgoals.repository.UserRepository;
-import com.swimgoals.service.UserService;
+import com.swimgoals.service.impl.UserServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -30,10 +30,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final UserRepository userRepository;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserServiceImpl userService, UserRepository userRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
     }

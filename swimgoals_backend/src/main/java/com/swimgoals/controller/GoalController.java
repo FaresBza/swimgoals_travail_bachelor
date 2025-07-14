@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.dto.GoalDTO;
 import com.swimgoals.models.Goal;
-import com.swimgoals.service.GoalService;
+import com.swimgoals.service.impl.GoalServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,9 +24,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 @RequestMapping("/api")
 public class GoalController {
     
-    private final GoalService goalService;
+    private final GoalServiceImpl goalService;
 
-    public GoalController(GoalService goalService) {
+    public GoalController(GoalServiceImpl goalService) {
         this.goalService = goalService;
     }
 

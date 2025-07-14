@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.dto.ObjectiveDTO;
 import com.swimgoals.models.Objective;
-import com.swimgoals.service.ObjectiveService;
+import com.swimgoals.service.impl.ObjectiveServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,9 +24,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 @RequestMapping("/api")
 public class ObjectiveController {
     
-    private final ObjectiveService objectiveService;
+    private final ObjectiveServiceImpl objectiveService;
 
-    public ObjectiveController(ObjectiveService objectiveService) {
+    public ObjectiveController(ObjectiveServiceImpl objectiveService) {
         this.objectiveService = objectiveService;
     }
 

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.swimgoals.dto.GroupDTO;
 import com.swimgoals.dto.JoinGroupDTO;
 import com.swimgoals.models.Group;
-import com.swimgoals.service.GroupService;
+import com.swimgoals.service.impl.GroupServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,9 +26,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 @RequestMapping("/api")
 public class GroupController {
 
-    private final GroupService groupService;
+    private final GroupServiceImpl groupService;
 
-    public GroupController(GroupService groupService) {
+    public GroupController(GroupServiceImpl groupService) {
         this.groupService = groupService;
     }
 
