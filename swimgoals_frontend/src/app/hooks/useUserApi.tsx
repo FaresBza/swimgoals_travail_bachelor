@@ -6,7 +6,7 @@ import { userRoleEnum } from "../enum/userRoleEnum";
 
 const useUserApi = () => {
     const route = useRouter();
-    const [error, setError] = useState<string | null>(null); // gestion centralisée des erreurs
+    const [error, setError] = useState<string | null>(null);
 
     const handleRegister = async ({ firstname, lastname, email, password, role }: UserAuthData): Promise<boolean> => {
         setError(null); 
