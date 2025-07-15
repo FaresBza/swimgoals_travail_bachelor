@@ -58,8 +58,7 @@ const useUserApi = () => {
             return true;
 
         } catch (error) {
-            console.error("Erreur réseau :", error);
-            setError("Erreur de connexion au serveur.");
+            setError(`Erreur de connexion au serveur : ${error} `);
             return false;
         }
     };
