@@ -42,7 +42,8 @@
                     color: variables.$global-blue;
                     text-align: left;
                     width: 100%;
-                    text-align: center;                }
+                    text-align: center;                
+                }
 
                 .input-group {
                     width: 50%;
@@ -67,6 +68,16 @@
                     transition: background 0.3s;
                     text-align: center;
                 }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 730px) {
+    .add-group-container {
+        .main-container {
+            .add-group-card {
+                width: 50%;
             }
         }
     }
