@@ -8,6 +8,7 @@ import useTimer from "@/app/utils/useTimer";
 
 import "@/app/styles/Timer.scss";
 import "./../../../styles/BackgroundImage.scss";
+import BackButton from "@/app/components/BackButton";
 
 const ObjectiveResult = () => {
     const { objectiveId } = useParams();
@@ -27,6 +28,7 @@ const ObjectiveResult = () => {
 
     return (
         <div className="container blur">
+            <BackButton />
             <div className="timer-container">
                 <h1>Résultat de l’objectif #{objectiveId}</h1>
                 <TimerDisplay time={time} />

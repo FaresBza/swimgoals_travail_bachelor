@@ -7,6 +7,7 @@ import useGroupApi from "@/app/hooks/useGroupApi";
 import './../../styles/BackgroundImage.scss';
 import './../../styles/Scroll.scss';
 import './../../styles/Card.scss';
+import BackButton from "@/app/components/BackButton";
 
 const GroupPage = () => {
     const { id } = useParams();
@@ -33,6 +34,7 @@ const GroupPage = () => {
 
     return (
         <div className="container blur">
+            <BackButton />
             <div className="scrollable-container">
                 <h1>{groupName}</h1>
                 {error && <p style={{ color: "red" }}>{error}</p>}

@@ -15,6 +15,7 @@ import './../../../styles/NavbarButton.scss'
 
 
 import useUserApi from "@/app/hooks/useUserApi";
+import BackButton from "@/app/components/BackButton";
 
 // Fonction utilitaire pour obtenir le nom de la nage à partir de l'id
 const getSwimNameById = (swim: number | { id: number; name: string }) => {
@@ -57,7 +58,8 @@ const Objectives = () => {
     return (
         <div className="container blur">
             <div className="scrollable-container">
-                { roleId === 2 && <h1>{firstName}</h1> }
+                { roleId === 2 &&  <BackButton />}
+                { roleId === 2 &&  <h1>{firstName}</h1> }
                 { roleId === 3 && <h1>Objectifs</h1> }
                 <main className="list-objectives">
                     {objectives.map((objective) => {

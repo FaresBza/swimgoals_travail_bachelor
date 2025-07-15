@@ -15,6 +15,7 @@ import {
     Legend
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import BackButton from "@/app/components/BackButton";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -63,7 +64,8 @@ const Chart = () => {
     }, [goals, loading]);
 
     return (
-        <div className="container blur" style={{ height: "500px", padding: "2rem" }}>
+        <div className="container blur">
+            <BackButton />
             <h1>Performances</h1>
             {loading ? <p>Chargement...</p> : <p>Données chargées</p>}
             {chartData ? (
