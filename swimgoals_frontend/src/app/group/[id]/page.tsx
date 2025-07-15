@@ -10,7 +10,7 @@ import './../../styles/Card.scss';
 
 const GroupPage = () => {
     const { id } = useParams();
-    const { swimmers, fetchGroupDetails, getGroupNameById } = useGroupApi();
+    const { swimmers, fetchGroupDetails, getGroupNameById, error } = useGroupApi();
 
     const [groupNameBis, setGroupNameBis] = useState<string>("");
     const router = useRouter();
@@ -36,6 +36,7 @@ const GroupPage = () => {
             <div className="scrollable-container">
                 <h1>{groupNameBis}</h1>
                 <main className="list-swimmers">
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                     {swimmers.map((user) => (
                         <div 
                             key={user.id} 

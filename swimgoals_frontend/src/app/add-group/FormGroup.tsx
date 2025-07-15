@@ -7,7 +7,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const FormGroup = () => {
     const [name, setName] = useState<string>("");
 
-    const { createGroup } = useGroupApi();
+    const { createGroup, error } = useGroupApi();
     const { coachId, recoverUserId } = useLocalStorage();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,8 +42,8 @@ const FormGroup = () => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Triathlon"
-                            required
                         />
+                        {error && <p style={{ color: "red" }}>{error}</p>}
                         <button type="submit">Ajouter</button>
                     </form>
                 </div>

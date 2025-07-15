@@ -16,7 +16,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Home = () => {
     const route = useRouter();
 
-    const { groups, fetchGroupsByCoachId, fetchAllGroups, joinGroup } = useGroupApi();
+    const { groups, fetchGroupsByCoachId, fetchAllGroups, joinGroup, error } = useGroupApi();
     const { coachId, swimmerId, roleId, recoverUserId, recoverRoleId } = useLocalStorage();
 
     const goToSwimmersGroupPage = (groupId: number) => {
@@ -43,6 +43,7 @@ const Home = () => {
                 <div className="scrollable-container">
                     <h1 className="main-title">Groupes</h1>
                     <main className="list-groups">
+                        {error && <p style={{ color: "red" }}>{error}</p>}
                         {groups.map((group, index) => (
                             <div key={index} className="group-card">
                                 <h2 className="group-title">{group.name}</h2>
