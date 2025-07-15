@@ -6,7 +6,8 @@ import { UserGroupData } from "../data/UserGroupData";
 const useGroupApi = () => {
     const [groups, setGroups] = useState<GroupData[]>([]);
     const [swimmers, setSwimmers] = useState<UserGroupData[]>([]);
-    const [groupName, setGroupName] = useState<string>("");
+    const [error, setError] = useState<string | null>(null);
+
     const route = useRouter();
 
     const fetchAllGroups = async () => {
@@ -18,17 +19,20 @@ const useGroupApi = () => {
                 },
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error(`Erreur HTTP: ${response.status}`);
+                setError(data?.message || "Erreur lors de la récupération des groupes.");
             }
 
-            const data = await response.json();
+
             setGroups(data);
             return data;
 
-        } catch (e) {
-            console.error(e);
+        } catch (err) {
+            setError(`Erreur de connexion au serveur : ${err}`);
             return null;
+            return "Nom du groupe inconnu"; // Default return value in case of an error
         }
     };
 
@@ -41,16 +45,17 @@ const useGroupApi = () => {
                 },
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error(`Erreur HTTP: ${response.status}`);
+                setError(data?.message || "Erreur lors de la récupération des groupes du coach ");
             }
 
-            const data = await response.json();
             setGroups(data);
             return data;
 
-        } catch (e) {
-            console.error(e);
+        } catch (err) {
+            setError(`Erreur de connexion au serveur : ${err}`);
         }
     };
 
@@ -62,24 +67,21 @@ const useGroupApi = () => {
                     Accept: "application/json",
                 },
             });
+
             const swimmersData = await resSwimmers.json();
+
+            if(!resSwimmers.ok) {
+                setError(swimmersData?.message || "Erreur lors de la récupération des swimmers");
+            }
+
             setSwimmers(swimmersData);
 
-            const resGroup = await fetch(`http://localhost:8080/api/group/${groupId}`, {
-                method: "GET",
-                headers: {
-                    Accept: "application/json",
-                },
-            });
-            const groupData = await resGroup.json();
-            setGroupName(groupData.name);
-
-        } catch (error) {
-            console.error("Erreur lors de la récupération du groupe :", error);
+        } catch (err) {
+            setError(`Erreur de connexion au serveur : ${err}`);
         }
     };
 
-    const getGroupNameById = async (id: number): Promise<string> => {
+    const getGroupNameById = async (id: number): Promise<void> => {
         try {
             const response = await fetch(`http://localhost:8080/api/group/${id}`, {
                 method: "GET",
@@ -88,51 +90,54 @@ const useGroupApi = () => {
                 },
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                console.error("Erreur lors de la récupération du group :", response.status);
-                return "Inconnu";
+                setError(data?.message || "Erreur lors de la récupération des informations du groupe");
             }
 
-            const data = await response.json();
-            return data.name;
+            return ;
 
-        } catch (error) {
-            console.error("Erreur réseau :", error);
-            return "Inconnu";
+        } catch (err) {
+            setError(`Erreur de connexion au serveur : ${err}`);
         }
     };
 
     const createGroup = async ({ coachId, name }: { coachId: number; name: string }): Promise<void> => {
-        const newGroup = { coachId, name };
+        if (!name) {
+            setError("Le champs nom est obligatoire");
+        } else {
+            const newGroup = { coachId, name };
 
-        try {
-            const response = await fetch("http://localhost:8080/api/groups", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newGroup),
-            });
+            try {
+                const response = await fetch("http://localhost:8080/api/groups", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(newGroup),
+                });
 
-            const data = await response.json().catch(() => null);
-            const groupId = data?.id;
+                const data = await response.json().catch(() => null);
+                const groupId = data?.id;
 
-            localStorage.setItem("group", JSON.stringify({
-                id: groupId,
-                name: newGroup.name,
-                coachId: coachId,
-            }));
+                localStorage.setItem("group", JSON.stringify({
+                    id: groupId,
+                    name: newGroup.name,
+                    coachId: coachId,
+                }));
 
-            if (response.ok) {
-                console.log("Le groupe a été créé avec succès !");
-                route.push("home");
-            } else {
-                console.error("Erreur lors de la création :", response.status, " ", response.statusText);
+                if (response.ok) {
+                    route.push("home");
+                } else {
+                    setError(data?.message || "Erreur lors de la création d'un groupe")
+                }
+
+            } catch (err) {
+                setError(`Erreur de connexion au serveur : ${err}`);
             }
-
-        } catch (e) {
-            console.error("Erreur de création du groupe :", e);
         }
+        
     };
 
     const joinGroup = async (groupId: number, swimmerId: number) => {
@@ -149,25 +154,26 @@ const useGroupApi = () => {
             });
 
             if (!response.ok) {
-                console.error("Erreur lors de l'ajout au groupe");
+                setError("Erreur lors de la tentative de rejoindre un groupe");
             }
 
             return await response.json();
-        } catch (error) {
-            console.error("Erreur lors de la tentative de rejoindre un groupe :", error);
+
+        } catch (err) {
+            setError(`Erreur de connexion au serveur : ${err}`);
         }
     };
 
     return {
         groups,
         swimmers,
-        groupName,
         fetchAllGroups,
         fetchGroupsByCoachId,
         fetchGroupDetails,
         getGroupNameById,
         createGroup,
         joinGroup,
+        error
     };
 };
 
