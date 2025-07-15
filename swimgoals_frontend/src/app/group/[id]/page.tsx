@@ -11,8 +11,8 @@ import './../../styles/Card.scss';
 const GroupPage = () => {
     const { id } = useParams();
     const { swimmers, fetchGroupDetails, getGroupNameById, error } = useGroupApi();
+    const [groupName, setGroupName] = useState<string>("");
 
-    const [groupNameBis, setGroupNameBis] = useState<string>("");
     const router = useRouter();
 
     const goToSwimmerObjectivesPage = (swimmerId: number) => {
@@ -22,8 +22,8 @@ const GroupPage = () => {
     const fetchData = async () => {
         if (id) {
             await fetchGroupDetails(id.toString());
-            const name = await getGroupNameById(Number(id));
-            setGroupNameBis(name);
+            const name = await getGroupNameById({ id: Number(id) });
+            setGroupName(name);
         }
     };
 
@@ -34,9 +34,9 @@ const GroupPage = () => {
     return (
         <div className="container blur">
             <div className="scrollable-container">
-                <h1>{groupNameBis}</h1>
+                <h1>{groupName}</h1>
+                {error && <p style={{ color: "red" }}>{error}</p>}
                 <main className="list-swimmers">
-                    {error && <p style={{ color: "red" }}>{error}</p>}
                     {swimmers.map((user) => (
                         <div 
                             key={user.id} 

@@ -31,8 +31,6 @@ const useGroupApi = () => {
 
         } catch (err) {
             setError(`Erreur de connexion au serveur : ${err}`);
-            return null;
-            return "Nom du groupe inconnu"; // Default return value in case of an error
         }
     };
 
@@ -81,7 +79,7 @@ const useGroupApi = () => {
         }
     };
 
-    const getGroupNameById = async (id: number): Promise<void> => {
+    const getGroupNameById = async ({ id }: { id: number }) => {
         try {
             const response = await fetch(`http://localhost:8080/api/group/${id}`, {
                 method: "GET",
@@ -96,7 +94,7 @@ const useGroupApi = () => {
                 setError(data?.message || "Erreur lors de la récupération des informations du groupe");
             }
 
-            return ;
+            return data.name;
 
         } catch (err) {
             setError(`Erreur de connexion au serveur : ${err}`);
