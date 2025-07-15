@@ -1,6 +1,8 @@
 package com.swimgoals.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.dto.ObjectiveDTO;
+import com.swimgoals.models.Group;
 import com.swimgoals.models.Objective;
 import com.swimgoals.service.impl.ObjectiveServiceImpl;
 
@@ -54,6 +57,20 @@ public class ObjectiveController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur est survenue");
+        }
+    }
+
+    @Operation( summary = "Retrieve a objective by ID", description = "Retrieves a objective by their unique ID from the database", tags = {
+        "Objective" })
+    @ApiResponse(responseCode = "200", description = "Objective object retrieved successfully", content = @Content(schema = @Schema(implementation = Objective.class), mediaType = "application/json"))
+    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @GetMapping("/objective/{id}")
+    public ResponseEntity<Optional<Objective>> getGroupById(@PathVariable Integer id) {
+        try {
+            Optional<Objective> objective = objectiveService.getObjectiveById(id);
+            return ResponseEntity.ok(objective);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 }

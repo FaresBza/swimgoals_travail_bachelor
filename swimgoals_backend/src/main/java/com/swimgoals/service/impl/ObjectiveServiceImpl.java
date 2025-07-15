@@ -1,6 +1,7 @@
 package com.swimgoals.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,11 @@ public class ObjectiveServiceImpl implements ObjectiveService {
         objective.setSwimmer(swimmer);
         
         return objectiveRepository.save(objective);
+    }
+
+    @Override
+    public Optional<Objective> getObjectiveById(Integer id) {
+        return objectiveRepository.findById(id);
     }
 
 }
