@@ -13,7 +13,7 @@
     .swimmer-card,
     .objective-card {
         background: variables.$global-background-card;
-        padding: 10px;
+        padding: 15px;
         border-radius: 15px;
         text-align: center;
         justify-content: center;
@@ -24,7 +24,7 @@
         .swimmer-name,
         .objective-title {
             color: variables.$black;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             margin: 0 0 5px 0;
         }
@@ -67,7 +67,7 @@
         .list-swimmers,
         .list-objectives {
             position: fixed;
-            top: 30%;
+            top: 50%;
             left: 39%;
             transform: translate(-50%, -50%);
             display: grid;
@@ -87,6 +87,7 @@
         .list-swimmers,
         .list-objectives {
             left: 34%;
+            top: 40%;
             grid-template-columns: repeat(3, 1fr);
         }
     }
