@@ -17,35 +17,19 @@ public class ObjectiveDTO {
 
     public ObjectiveDTO() {}
 
-    public Integer getSwimId() {
-        return swimId;
-    }
+    public Integer getSwimId() { return swimId; }
 
-    public void setSwimId(Integer swimId) {
-        this.swimId = swimId;
-    }
+    public void setSwimId(Integer swimId) { this.swimId = swimId; }
 
-    public Integer getSwimmerId() {
-        return swimmerId;
-    }
+    public Integer getSwimmerId() { return swimmerId; }
 
-    public void setSwimmerId(Integer swimmerId) {
-        this.swimmerId = swimmerId;
-    }
+    public void setSwimmerId(Integer swimmerId) { this.swimmerId = swimmerId; }
 
-    public String getDistance() {
-        return distance;
-    }
+    public String getDistance() { return distance; }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
+    public void setDistance(String distance) { this.distance = distance; }
 
-    public String getTime() {
-        return time;
-    }
+    public String getTime() { return time; }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+    public void setTime(String time) { this.time = time; }
 }

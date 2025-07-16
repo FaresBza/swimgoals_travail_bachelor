@@ -7,16 +7,11 @@ public class JoinGroupDTO {
 
     public JoinGroupDTO() {}
 
-    public int getSwimmerId() {
-        return swimmerId;
-    }
-    public void setSwimmerId(int swimmerId) {
-        this.swimmerId = swimmerId;
-    }
-    public int getGroupId() {
-        return groupId;
-    }
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
-    }
+    public int getSwimmerId() { return swimmerId; }
+
+    public void setSwimmerId(int swimmerId) { this.swimmerId = swimmerId; }
+
+    public int getGroupId() { return groupId; }
+    
+    public void setGroupId(int groupId) { this.groupId = groupId; }
 }

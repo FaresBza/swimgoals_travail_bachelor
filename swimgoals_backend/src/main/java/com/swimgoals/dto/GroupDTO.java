@@ -12,19 +12,11 @@ public class GroupDTO {
 
     public GroupDTO() {}
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public Integer getCoachId() {
-        return coachId;
-    }
+    public Integer getCoachId() { return coachId; }
 
-    public void setCoachId(Integer coachId) {
-        this.coachId = coachId;
-    }
+    public void setCoachId(Integer coachId) { this.coachId = coachId; }
 }

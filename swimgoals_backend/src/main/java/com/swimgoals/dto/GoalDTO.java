@@ -14,27 +14,15 @@ public class GoalDTO {
 
     public GoalDTO() {}
 
-    public Integer getObjectiveId() {
-        return objectiveId;
-    }
+    public Integer getObjectiveId() { return objectiveId; }
 
-    public void setObjectiveId(Integer objectiveId) {
-        this.objectiveId = objectiveId;
-    }
+    public void setObjectiveId(Integer objectiveId) { this.objectiveId = objectiveId; }
 
-    public String getTime() {
-        return time;
-    }
+    public String getTime() { return time; }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+    public void setTime(String time) { this.time = time; }
 
-    public String getDate() {
-        return date;
-    }
+    public String getDate() { return date; }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+    public void setDate(String date) { this.date = date; }
 }
