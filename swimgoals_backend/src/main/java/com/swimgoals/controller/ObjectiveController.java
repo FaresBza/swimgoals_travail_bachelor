@@ -33,20 +33,42 @@ public class ObjectiveController {
         this.objectiveService = objectiveService;
     }
 
-    @Operation(summary = "Retrieve all objectives of one swimmer", description = "Retrieves a list of all objectives of one swimmer available in the database", tags = {
-        "Objective" })
-    @ApiResponse(responseCode = "200", description = "List of objectives of one swimmer retrieved successfully", content = @Content(schema = @Schema(implementation = Objective.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Retrieve all objectives of one swimmer", 
+        description = "Retrieves a list of all objectives of one swimmer available in the database", 
+        tags = { "Objective" })
+    @ApiResponse(
+        responseCode = "200", 
+        description = "List of objectives of one swimmer retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = Objective.class),
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @GetMapping("/objectives/swimmer/{swimmerId}")
     public ResponseEntity<List<Objective>> getObjectivesBySwimmerId(@PathVariable int swimmerId) {
         List<Objective> objectives = objectiveService.getObjectiveBySwimmerId(swimmerId);
         return ResponseEntity.ok(objectives);
     }
 
-    @Operation(summary = "Create a new objective", description = "Creates a new objective in the database and returns the created objective object", tags = {
-            "Objective" })
-    @ApiResponse(responseCode = "200", description = "Objective created successfully", content = @Content(schema = @Schema(implementation = Objective.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Create a new objective", 
+        description = "Creates a new objective in the database and returns the created objective object", 
+        tags = { "Objective" })
+    @ApiResponse(
+        responseCode = "200", 
+        description = "Objective created successfully", 
+        content = @Content(schema = @Schema(implementation = Objective.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @PostMapping("/objectives")
     public ResponseEntity<?> createObjective(@RequestBody ObjectiveDTO objectiveDTO) {
         try {
@@ -60,10 +82,21 @@ public class ObjectiveController {
         }
     }
 
-    @Operation( summary = "Retrieve a objective by ID", description = "Retrieves a objective by their unique ID from the database", tags = {
-        "Objective" })
-    @ApiResponse(responseCode = "200", description = "Objective object retrieved successfully", content = @Content(schema = @Schema(implementation = Objective.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Retrieve a objective by ID", 
+        description = "Retrieves a objective by their unique ID from the database", 
+        tags = { "Objective" })
+    @ApiResponse(
+        responseCode = "200", 
+        description = "Objective object retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = Objective.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @GetMapping("/objective/{id}")
     public ResponseEntity<Optional<Objective>> getGroupById(@PathVariable Integer id) {
         try {

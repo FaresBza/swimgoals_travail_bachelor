@@ -38,10 +38,22 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @Operation(summary = "Register a new user", description = "Creates a new user in the database and returns the created user object.", tags = {
-            "User Authentication" })
-    @ApiResponse(responseCode = "200", description = "User registered successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Register a new user", 
+        description = "Creates a new user in the database and returns the created user object.", 
+        tags = { "User Authentication" }
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "User registered successfully", 
+        content = @Content(schema = @Schema(implementation = User.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Bad request", 
+        content = @Content(schema = @Schema())
+    )
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO) {
         try {
@@ -52,10 +64,22 @@ public class UserController {
         }
     }
 
-    @Operation(summary = "User login", description = "Authenticates the user and returns the user object if successful.", tags = {
-            "User Authentication" })
-    @ApiResponse(responseCode = "200", description = "User logged in successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "User login", 
+        description = "Authenticates the user and returns the user object if successful.", 
+        tags = { "User Authentication" }
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "User logged in successfully", 
+        content = @Content(schema = @Schema(implementation = User.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         try {
@@ -68,19 +92,42 @@ public class UserController {
         }
     }
 
-    @Operation(summary = "Retrieve all swimmers by one group", description = "Retrieves a list of all swimmers of a group available in the database", tags = {
-        "Group" })
-    @ApiResponse(responseCode = "200", description = "List of swimmers of a group retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Retrieve all swimmers by one group", 
+        description = "Retrieves a list of all swimmers of a group available in the database", 
+        tags = { "Group" }
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "List of swimmers of a group retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = Group.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @GetMapping("/groups/{groupId}")
     public List<User> getSwimmersByGroup(@PathVariable Integer groupId) {
         return userRepository.findByGroupIdAndRoleId(groupId, 3); 
     }
 
-    @Operation( summary = "Retrieve a swimmer by ID", description = "Retrieves a swimmer by their unique ID from the database", tags = {
-        "User" })
-    @ApiResponse(responseCode = "200", description = "Swimmer object retrieved successfully", content = @Content(schema = @Schema(implementation = User.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Retrieve a swimmer by ID", 
+        description = "Retrieves a swimmer by their unique ID from the database", 
+        tags = { "User" })
+    @ApiResponse(
+        responseCode = "200", 
+        description = "Swimmer object retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = User.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @GetMapping("/swimmer/{id}")
     public ResponseEntity<Optional<User>> getSwimmerById(@PathVariable Integer id) {
         try {

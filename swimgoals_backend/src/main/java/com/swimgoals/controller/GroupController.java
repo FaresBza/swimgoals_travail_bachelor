@@ -34,20 +34,43 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @Operation(summary = "Retrieve all groups", description = "Retrieves a list of all groups available in the database", tags = {
-        "Group" })
-    @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Retrieve all groups", 
+        description = "Retrieves a list of all groups available in the database", 
+        tags = { "Group" }
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "List of groups retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = Group.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400",
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @GetMapping("/groups")
     public ResponseEntity<List<Group>> getAllGroups() {
         List<Group> groups = groupService.getAllGroups();
         return ResponseEntity.ok(groups);
     }
 
-    @Operation(summary = "Retrieve all groups created by a coach", description = "Retrieves a list of all groups created by a coach available in the database", tags = {
-        "Group" })
-    @ApiResponse(responseCode = "200", description = "List of groups retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Retrieve all groups created by a coach", 
+        description = "Retrieves a list of all groups created by a coach available in the database", 
+        tags = { "Group" })
+    @ApiResponse(
+        responseCode = "200", 
+        description = "List of groups retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = Group.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @GetMapping("/groups/coach/{coachId}")
     public ResponseEntity<List<Group>> getGroupsByCoachId(@PathVariable int coachId) {
         List<Group> groups = groupService.getGroupsByCoachId(coachId);
@@ -56,8 +79,16 @@ public class GroupController {
 
     @Operation(summary = "Create a new group", description = "Creates a new group in the database and returns the created group object", tags = {
             "Group" })
-    @ApiResponse(responseCode = "200", description = "Group created successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @ApiResponse(
+        responseCode = "200", 
+        description = "Group created successfully", 
+        content = @Content(schema = @Schema(implementation = Group.class), 
+        mediaType = "application/json"))
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @PostMapping("/groups")
     public ResponseEntity<?> createGroup(@RequestBody GroupDTO groupDTO) {
         try {
@@ -87,7 +118,6 @@ public class GroupController {
         content = @Content(mediaType = "application/json")
     )
     @PostMapping("/join-group")
-
     public ResponseEntity<?> joinGroup(@RequestBody JoinGroupDTO joinGroupDTO) {
         try {
             groupService.joinGroup(joinGroupDTO.getSwimmerId(), joinGroupDTO.getGroupId());
@@ -97,10 +127,21 @@ public class GroupController {
         }
     }
 
-    @Operation( summary = "Retrieve a group by ID", description = "Retrieves a group by their unique ID from the database", tags = {
-        "Group" })
-    @ApiResponse(responseCode = "200", description = "Group object retrieved successfully", content = @Content(schema = @Schema(implementation = Group.class), mediaType = "application/json"))
-    @ApiResponse(responseCode = "400", description = "Invalid credentials", content = @Content(schema = @Schema()))
+    @Operation(
+        summary = "Retrieve a group by ID", 
+        description = "Retrieves a group by their unique ID from the database", 
+        tags = { "Group" })
+    @ApiResponse(
+        responseCode = "200", 
+        description = "Group object retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = Group.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400", 
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
     @GetMapping("/group/{id}")
     public ResponseEntity<Optional<Group>> getGroupById(@PathVariable Integer id) {
         try {
