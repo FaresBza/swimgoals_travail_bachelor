@@ -98,7 +98,6 @@ const useObjectiveApi = () => {
             return;
         }
 
-        console.log("L'objectif a bien été créé");
         route.push(`/objectives/swimmer/${swimmerId}`);
     } catch (error) {
         console.error("Erreur réseau :", error);

@@ -1,5 +1,3 @@
-// /utils/useTimer.ts
-
 import { useRef, useState } from "react";
 
 const useTimer = (onSave?: (timeInSeconds: number) => void) => {

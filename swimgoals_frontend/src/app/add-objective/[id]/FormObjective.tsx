@@ -24,16 +24,13 @@ const FormObjective = () => {
     }, []);
 
     const addObjective = () => {
-        if (!selectedSwim || !distance || !time || !id) return;
-        console.log("Envoie de l'objectif...");
-
+        
         createObjective({
             swim: parseInt(selectedSwim, 10),
             swimmerId: parseInt(id as string, 10),
             distance: distance,
             time: time,
         });
-        console.log("Objectif envoyé !!");
 
         router.push(`/objectives/swimmer/${id}`);
     };

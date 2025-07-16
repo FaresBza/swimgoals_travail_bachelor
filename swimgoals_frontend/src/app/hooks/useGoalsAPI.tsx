@@ -47,8 +47,6 @@ const useGoalsApi = () => {
                 console.error("Erreur serveur :", response.status, errorText);
                 return;
             }
-
-            console.log("Le goal a bien été créé");
             
         } catch (error) {
             console.error("Erreur réseau :", error);
