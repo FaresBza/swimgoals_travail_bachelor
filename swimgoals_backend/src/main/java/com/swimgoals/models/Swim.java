@@ -16,30 +16,22 @@ public class Swim {
     @Column(name = "name", nullable = false)
     private String name;
 
+    public Swim() {
+        this(0, null);
+    }
+
     public Swim(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Swim() {
-        this(0, null);
-    }
+    public int getId() { return id; }
 
-    public int getId() {
-        return id;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getName() { return name; }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public static final Swim Papillon = new Swim(1, "Papillon");
     public static final Swim Dos = new Swim(2, "Dos");

@@ -29,6 +29,10 @@ public class Goal {
     @Column(name = "date", nullable = false)
     private String date;
 
+    public Goal() { 
+        this(0, null, "", ""); 
+    }
+
     public Goal(Integer id, Objective objective, String time, String date) {
         this.id = id;
         this.objective = objective;
@@ -36,39 +40,19 @@ public class Goal {
         this.date = date;
     }
 
-    public Goal() {
-        this(0, null, "", "");
-    }
+    public Integer getId() { return id; }
 
-    public Integer getId() {
-        return id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public Objective getObjective() { return objective; }
 
-    public Objective getObjective() {
-        return objective;
-    }
+    public void setObjective(Objective objective) { this.objective = objective; }
 
-    public void setObjective(Objective objective) {
-        this.objective = objective;
-    }
+    public String getTime() { return time; }
 
-    public String getTime() {
-        return time;
-    }
+    public void setTime(String time) { this.time = time; }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+    public String getDate() { return date; }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+    public void setDate(String date) { this.date = date; }
 }

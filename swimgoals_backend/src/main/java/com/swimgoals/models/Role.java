@@ -16,8 +16,8 @@ public class Role {
     @Column(name = "name", nullable = false)
     private String name;
 
-    public Role() {
-        this(0, "");
+    public Role() { 
+        this(0, ""); 
     }
 
     public Role(int id, String name) {
@@ -25,18 +25,14 @@ public class Role {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
+
+    public String getName() { return name; }
+    
+    public void setName(String name) { this.name = name; }
+
 
     public static final Role Admin = new Role(1, "admin");
     public static final Role Coach = new Role(2, "coach");

@@ -33,9 +33,9 @@ public class Objective {
     @Column(name = "time", nullable = false)
     private String time;
 
-    // @OneToMany(mappedBy = "objective")
-    // @JsonIgnore
-    // private List<Goal> goals;
+    public Objective() {
+        this(0, null, null, "", "");
+    }
 
     public Objective(Integer id, User swimmer, Swim swim, String distance, String time) {
         this.id = id;
@@ -45,55 +45,23 @@ public class Objective {
         this.time = time;
     }
 
-    public Objective() {
-        this(0, null, null, "", "");
-    }
+    public Integer getId() { return id; }
 
-    public Integer getId() {
-        return id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public User getSwimmer() { return swimmer; }
 
-    public User getSwimmer() {
-        return swimmer;
-    }
+    public void setSwimmer(User swimmer) { this.swimmer = swimmer; }
 
-    public void setSwimmer(User swimmer) {
-        this.swimmer = swimmer;
-    }
+    public Swim getSwim() { return swim; }
 
-    public Swim getSwim() {
-        return swim;
-    }
+    public void setSwim(Swim swim) { this.swim = swim; }
 
-    public void setSwim(Swim swim) {
-        this.swim = swim;
-    }
+    public String getDistance() { return distance; }
 
-    public String getDistance() {
-        return distance;
-    }
+    public void setDistance(String distance) { this.distance = distance; }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
+    public String getTime() { return time; }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    // public List<Goal> getGoals() {
-    //     return goals;
-    // }
-
-    // public void setGoals(List<Goal> goals) {
-    //     this.goals = goals;
-    // }
+    public void setTime(String time) { this.time = time; }
 }
