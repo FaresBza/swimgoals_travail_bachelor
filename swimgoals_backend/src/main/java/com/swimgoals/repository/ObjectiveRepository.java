@@ -11,5 +11,6 @@ import com.swimgoals.models.Objective;
 @RepositoryRestResource(exported = false)
 @Repository
 public interface  ObjectiveRepository extends JpaRepository<Objective, Integer> {
+    
     List<Objective> findBySwimmerId(int swimmerId);
 }
