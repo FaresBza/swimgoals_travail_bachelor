@@ -40,7 +40,7 @@ const Chart = () => {
         };
 
         loadGoals();
-    }, [id, fetchGoalsByObjectifId]);
+    }, [id]);
 
     useEffect(() => {
         if (!loading && goals.length > 0) {
