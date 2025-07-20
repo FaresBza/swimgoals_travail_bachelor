@@ -8,9 +8,27 @@ import com.swimgoals.models.Objective;
 
 public interface  ObjectiveService {
     
+    /**
+     * Retrieves a list of objectives associated with a specific swimmer ID
+     * 
+     * @param swimmerId The ID of the swimmer whose objectives are to be retrieved
+     * @return A list of objectives for the specified swimmer
+     */
     public List<Objective> getObjectiveBySwimmerId(int swimmerId);
 
+    /**
+     * Creates a new objective based on the provided ObjectiveDTO
+     * 
+     * @param objectiveDTO The data transfer object containing the details of the objective
+     * @return The newly created Objective object
+     */
     public Objective creaObjective(ObjectiveDTO objectiveDTO);
 
+    /**
+     * Retrieves an objective by its unique identifier
+     * 
+     * @param id The unique identifier of the objective to be retrieved.
+     * @return An Optional containing the Objective if found
+     */
     public Optional<Objective> getObjectiveById(Integer id);
 }
