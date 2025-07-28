@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import useGoalsAPI from "@/app/hooks/useGoalsAPI";
 import { useEffect, useState } from "react";
 import { chartOptionsForXAndYAxes } from "./ChartOptions";
+import { chartDataBuilder } from "./ChartDataBuilder";
 
 import {
     Chart as ChartJS,
@@ -53,19 +54,7 @@ const Chart = () => {
             const labels = goals.map(goal => goal.date);
             const data = goals.map(goal => parseInt(goal.time.split(":")[0]) % 3600);
 
-            setChartData({
-                labels,
-                datasets: [
-                    {
-                        label: "Temps objectif",
-                        data,
-                        fill: false,
-                        borderColor: "rgba(75,192,192,1)",
-                        tension: 0.2,
-                        pointRadius: 5,
-                    },
-                ],
-            });
+            setChartData(chartDataBuilder(labels, data));
         }
     }, [goals, loading]);
 
