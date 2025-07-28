@@ -1,4 +1,6 @@
-export const chartDataBuilder = (labels: string[], data: number[]) => {
+import { getSwimColor } from "./SwimColorLineChart";
+
+export const chartDataBuilder = (swimId: number, labels: string[], data: number[]) => {
     return {
         labels: labels,
         datasets: [
@@ -6,7 +8,7 @@ export const chartDataBuilder = (labels: string[], data: number[]) => {
                 label: "Temps objectif",
                 data: data,
                 fill: false,
-                borderColor: "rgba(75,192,192,1)",
+                borderColor: getSwimColor(swimId),
                 tension: 0.2,
                 pointRadius: 5,
             },

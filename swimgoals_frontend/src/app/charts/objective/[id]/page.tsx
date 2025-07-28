@@ -22,6 +22,7 @@ import BackButton from "@/app/components/BackButton";
 import '@/app/styles/BackgroundImage.scss'
 import '@/app/styles/Card.scss'
 import '@/app/styles/Chart.scss'
+import useObjectiveApi from "@/app/hooks/useObjectiveApi";
 
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -29,34 +30,35 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const Chart = () => {
     const { id } = useParams();
     const { goals, fetchGoalsByObjectifId } = useGoalsAPI();
+    const { swimId, getObjectiveDetails } = useObjectiveApi();
     const [loading, setLoading] = useState(true);
 
     const [chartData, setChartData] = useState<{ labels: string[]; datasets: { label: string; data: number[]; fill: boolean; borderColor: string; tension: number; pointRadius: number; }[] } | null>(null);
 
-    useEffect(() => {
-        const loadGoals = async () => {
-            if (id && typeof id === "string") {
-                try {
-                    await fetchGoalsByObjectifId({ objectiveId: parseInt(id, 10) });
-                } catch (err) {
-                    console.error(`Erreur lors du chargement des performances: ${err}`);
-                } finally {
-                    setLoading(false);
-                }
+    const loadGoals = async () => {
+        if (id && typeof id === "string") {
+            try {
+                await fetchGoalsByObjectifId({ objectiveId: parseInt(id, 10) });
+                await getObjectiveDetails({ id: parseInt(id, 10) });
+
+            } catch (err) {
+                console.error(`Erreur lors du chargement des performances: ${err}`);
+            } finally {
+                setLoading(false);
             }
-        };
+        }
+    };
 
-        loadGoals();
-    }, [id]);
+    useEffect(() => { loadGoals(); }, [id]);
 
     useEffect(() => {
-        if (!loading && goals.length > 0) {
+        if (!loading && goals.length > 0 && swimId !== null) {
             const labels = goals.map(goal => goal.date);
             const data = goals.map(goal => parseInt(goal.time.split(":")[0]) % 3600);
 
-            setChartData(chartDataBuilder(labels, data));
+            setChartData(chartDataBuilder(swimId, labels, data));
         }
-    }, [goals, loading]);
+    }, [goals, loading, swimId]);
 
     return (
         <div className="container blur">
