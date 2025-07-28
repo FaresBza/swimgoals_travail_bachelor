@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import useGoalsAPI from "@/app/hooks/useGoalsAPI";
 import { useEffect, useState } from "react";
+import { chartOptionsForXAndYAxes } from "./ChartOptions";
 
 import {
     Chart as ChartJS,
@@ -50,7 +51,7 @@ const Chart = () => {
     useEffect(() => {
         if (!loading && goals.length > 0) {
             const labels = goals.map(goal => goal.date);
-            const data = goals.map(goal => parseInt(goal.time.split(":")[0]) * 3600);
+            const data = goals.map(goal => (parseInt(goal.time.split(":")[0]) % 3600) * 60);
 
             setChartData({
                 labels,
@@ -77,7 +78,7 @@ const Chart = () => {
                 <div className="graph-card">
                     <h2 className="graph-name">Test</h2>
                     {chartData ? (
-                        <Line data={chartData} options={{ responsive: true }} />
+                        <Line data={chartData} options={chartOptionsForXAndYAxes} />
                     ) : (
                         <p>Aucune donnée pour ce graphique.</p>
                     )}

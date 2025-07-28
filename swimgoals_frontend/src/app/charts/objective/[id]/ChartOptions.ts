@@ -1,26 +1,31 @@
-export const chartOptions = {
+import { ChartOptions } from "chart.js";
+
+export const chartOptionsForXAndYAxes: ChartOptions<"line"> = {
     responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-        x: {
-            title: {
-                display: true,
-                text: "Date",
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Date',
+                },
             },
-        },
-        y: {
-            title: {
-                display: true,
-                text: "Temps (en secondes)",
-            },
-            // Méthode permettant de formater les coordonnées de l'axe Y en minutes et secondes
-            ticks: {
-                callback: function (tickValue: number) {
-                    const minutes = Math.floor(tickValue / 60);
-                    const seconds = Math.floor(tickValue % 60);
-                    return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+            y: {
+                title: {
+                    display: true,
+                    text: 'Temps (en secondes)',
+                },
+                ticks: {
+                    callback: function (value: string | number) {
+                        const numericValue = typeof value === "number" ? value : Number(value);
+                        const minutes = Math.floor(numericValue / 3600); // Récupère les minutes
+                        const secondes = Math.floor((numericValue % 3600) / 60); // Récupère les secondes
+
+                        // Retourne le format "m:ss"
+                        return `${minutes > 0 ? minutes + ":" : ""}${secondes < 10 ? "0" + secondes : secondes}`;
+                    },
                 },
             },
         },
-    },
 };
+
