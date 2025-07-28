@@ -11,7 +11,8 @@
     
     .group-card, 
     .swimmer-card,
-    .objective-card {
+    .objective-card,
+    .graph-card {
         background: variables.$global-background-card;
         padding: 15px;
         border-radius: 15px;
@@ -22,7 +23,8 @@
         
         .group-title, 
         .swimmer-name,
-        .objective-title {
+        .objective-title,
+        .graph-name {
             color: variables.$black;
             font-size: 22px;
             font-weight: bold;

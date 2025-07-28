@@ -17,6 +17,11 @@ import {
 import { Line } from "react-chartjs-2";
 import BackButton from "@/app/components/BackButton";
 
+import '@/app/styles/BackgroundImage.scss'
+import '@/app/styles/Card.scss'
+import '@/app/styles/Chart.scss'
+
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Chart = () => {
@@ -68,11 +73,16 @@ const Chart = () => {
             <BackButton />
             <h1>Performances</h1>
             {loading ? <p>Chargement...</p> : <p>Données chargées</p>}
-            {chartData ? (
-                <Line data={chartData} options={{ responsive: true }} />
-            ) : (
-                <p>Aucune donnée pour ce graphique.</p>
-            )}
+            <div className="graph-card-container">
+                <div className="graph-card">
+                    <h2 className="graph-name">Test</h2>
+                    {chartData ? (
+                        <Line data={chartData} options={{ responsive: true }} />
+                    ) : (
+                        <p>Aucune donnée pour ce graphique.</p>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };
