@@ -7,9 +7,10 @@ import SwimMapping from "../mapping/SwimMapping";
 
 const useObjectiveApi = () => {
     const route = useRouter();
-
+    
     const [objectives, setObjectives] = useState<ObjectiveData[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [swimId, setSwimId] = useState<number>(0);
 
     const fetchObjectivesBySwimmerId = async ({ swimmerId }: { swimmerId: number }) => {
         try {
@@ -51,6 +52,8 @@ const useObjectiveApi = () => {
             const swimName = swimObject ? swimObject.name : "Nage inconnue";
 
             const objectiveDetail = data.distance + "m " + swimName;
+
+            setSwimId(data.swim.id);
 
             return objectiveDetail;
 
@@ -106,6 +109,7 @@ const useObjectiveApi = () => {
 
 
     return {
+        swimId,
         objectives,
         fetchObjectivesBySwimmerId,
         getObjectiveDetails,
