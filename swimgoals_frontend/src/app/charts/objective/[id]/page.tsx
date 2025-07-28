@@ -51,7 +51,7 @@ const Chart = () => {
     useEffect(() => {
         if (!loading && goals.length > 0) {
             const labels = goals.map(goal => goal.date);
-            const data = goals.map(goal => (parseInt(goal.time.split(":")[0]) % 3600) * 60);
+            const data = goals.map(goal => parseInt(goal.time.split(":")[0]) % 3600);
 
             setChartData({
                 labels,
