@@ -30,7 +30,7 @@ CREATE TABLE objectives (
     swimmer_id INT,
     swim_id INT,
     distance VARCHAR(255) NOT NULL,
-    time TIME NOT NULL,
+    time VARCHAR(255) NOT NULL,
     FOREIGN KEY (swimmer_id) REFERENCES users(id),
     FOREIGN KEY (swim_id) REFERENCES swims(id)
 );
@@ -38,8 +38,8 @@ CREATE TABLE objectives (
 CREATE TABLE goals (
     id INT PRIMARY KEY AUTO_INCREMENT,
     objective_id INT,
-    time TIME NOT NULL,
-    date DATE NOT NULL,
+    time VARCHAR(255) NOT NULL,
+    date VARCHAR(255) NOT NULL,
     FOREIGN KEY (objective_id) REFERENCES objectives(id)
 );
 
