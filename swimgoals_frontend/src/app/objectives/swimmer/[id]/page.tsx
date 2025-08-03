@@ -67,33 +67,35 @@ const Objectives = () => {
                             <div key={objective.id} className="objective-card ">
                                 <h2 className="objective-title">{objective.distance}m {getSwimNameById(objective.swim)}</h2>
                                 <p className="objective-info">Temps : {objective.time} min</p>
-                                {roleId === 2 && 
-                                    <div>
-                                        <button 
-                                            className="btn-group"
-                                            onClick={() => goToAddResultPage(objective.id)}
-                                        >
-                                            <Image
-                                                src="/icons/chrono.svg"
-                                                alt="Statistics Icon"
-                                                width={24}
-                                                height={24}
-                                            />
-                                        </button>
-                                        <button 
-                                            className="btn-group"
-                                            onClick={() => goToOneObjectivePerformance(objective.id)}
-                                        >
-                                            <Image
-                                                src="/icons/statistics-white.svg"
-                                                alt="Statistics Icon"
-                                                width={24}
-                                                height={24}
-                                                onClick={goToPerformancesPage}
-                                            />
-                                        </button>
-                                    </div>
-                                }
+                                <div className="btn-group">
+                                    {roleId === 2 && 
+                                        <div>
+                                            <button 
+                                                className="btn"
+                                                onClick={() => goToAddResultPage(objective.id)}
+                                            >
+                                                <Image
+                                                    src="/icons/chrono.svg"
+                                                    alt="Statistics Icon"
+                                                    width={25}
+                                                    height={25}
+                                                />
+                                            </button>
+                                            <button 
+                                                className="btn"
+                                                onClick={() => goToOneObjectivePerformance(objective.id)}
+                                            >
+                                                <Image
+                                                    src="/icons/statistics-white.svg"
+                                                    alt="Statistics Icon"
+                                                    width={25}
+                                                    height={25}
+                                                    onClick={goToPerformancesPage}
+                                                />
+                                            </button>
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         );
                     })}

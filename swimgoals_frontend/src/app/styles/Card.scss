@@ -37,10 +37,10 @@
             color: #000;
         }
 
-        .btn-group {
+        .btn {
             border: 0;
-            padding: 10px 30px;
-            max-width: 240px;
+            padding: 5px 10px;
+            min-width: 75px;
             background-color: variables.$global-blue;
             color: variables.$white;
             font-size: 1rem;
