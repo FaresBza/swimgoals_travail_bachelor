@@ -73,7 +73,12 @@ const Objectives = () => {
                                             className="btn-group"
                                             onClick={() => goToAddResultPage(objective.id)}
                                         >
-                                            Résultat
+                                            <Image
+                                                src="/icons/chrono.svg"
+                                                alt="Statistics Icon"
+                                                width={24}
+                                                height={24}
+                                            />
                                         </button>
                                         <button 
                                             className="btn-group"
