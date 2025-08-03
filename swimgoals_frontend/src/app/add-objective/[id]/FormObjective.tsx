@@ -61,7 +61,7 @@ const FormObjective = () => {
                             ))}
                         </select>
 
-                        <label className="label-objective">Distance</label>
+                        <label className="label-objective">Distance (m)</label>
                         <input
                             type="number"
                             className="input-objectives"
@@ -70,7 +70,7 @@ const FormObjective = () => {
                             onChange={(e) => setDistance(e.target.value)}
                         />
 
-                        <label className="label-objective">Durée</label>
+                        <label className="label-objective">Durée (min)</label>
                         <input
                             type="number"
                             className="input-objectives"
