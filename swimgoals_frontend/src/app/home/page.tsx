@@ -49,14 +49,14 @@ const Home = () => {
                                 <h2 className="group-title">{group.name}</h2>
                                 { roleId === 2 ? 
                                     <button 
-                                        className="btn-group" 
+                                        className="btn" 
                                         onClick={() => goToSwimmersGroupPage(group.id)}
                                     >
                                         Voir les nageurs
                                     </button>
                                     : 
                                     <button 
-                                        className="btn-group" 
+                                        className="btn" 
                                         onClick={() => goToObjectivesPage(group.id)}
                                     >
                                         Rejoindre
