@@ -11,7 +11,7 @@ import Image from "next/image";
 import "./../../../styles/BackgroundImage.scss";
 import "./../../../styles/Scroll.scss";
 import "./../../../styles/Card.scss";
-import './../../../styles/NavbarButton.scss'
+import './../../../styles/MobileNavbar.scss'
 
 
 import useUserApi from "@/app/hooks/useUserApi";
