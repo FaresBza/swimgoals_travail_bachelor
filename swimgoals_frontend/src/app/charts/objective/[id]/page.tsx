@@ -3,8 +3,8 @@
 import { useParams } from "next/navigation";
 import useGoalsAPI from "@/app/hooks/useGoalsAPI";
 import { useEffect, useState } from "react";
-import { chartOptionsForXAndYAxes } from "./ChartOptions";
-import { chartDataBuilder } from "./ChartDataBuilder";
+import { chartOptionsForXAndYAxes } from "@/app/utils/ChartOptions";
+import { chartDataBuilder } from "@/app/utils/ChartDataBuilder";
 
 import {
     Chart as ChartJS,
