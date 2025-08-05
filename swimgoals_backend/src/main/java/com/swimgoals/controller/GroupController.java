@@ -90,15 +90,15 @@ public class GroupController {
         content = @Content(schema = @Schema())
     )
     @PostMapping("/groups")
-    public ResponseEntity<?> createGroup(@RequestBody GroupDTO groupDTO) {
+    public ResponseEntity<Group> createGroup(@RequestBody GroupDTO groupDTO) {
         try {
             Group createdGroup = groupService.createGroup(groupDTO);
             return ResponseEntity.ok(createdGroup);
 
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur est survenue");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
