@@ -69,18 +69,20 @@ const Objectives = () => {
                                 <p className="objective-info">Temps : {objective.time} min</p>
                                 <div className="btn-group">
                                     {roleId === 2 && 
+                                        <button 
+                                            className="btn"
+                                            onClick={() => goToAddResultPage(objective.id)}
+                                        >
+                                            <Image
+                                                src="/icons/chrono.svg"
+                                                alt="Statistics Icon"
+                                                width={25}
+                                                height={25}
+                                            />
+                                        </button>
+                                    }
+                                    {[2, 3].includes(roleId) && 
                                         <div>
-                                            <button 
-                                                className="btn"
-                                                onClick={() => goToAddResultPage(objective.id)}
-                                            >
-                                                <Image
-                                                    src="/icons/chrono.svg"
-                                                    alt="Statistics Icon"
-                                                    width={25}
-                                                    height={25}
-                                                />
-                                            </button>
                                             <button 
                                                 className="btn"
                                                 onClick={() => goToOneObjectivePerformance(objective.id)}
