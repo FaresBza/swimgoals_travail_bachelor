@@ -9,6 +9,13 @@ import com.swimgoals.models.Objective;
 public interface  ObjectiveService {
     
     /**
+     * Retrieves a list of all objectives
+     * 
+     * @return a list of Objetive objects representing all objectives
+     */
+    public List<Objective> getAllObjectives();
+
+    /**
      * Retrieves a list of objectives associated with a specific swimmer ID
      * 
      * @param swimmerId The ID of the swimmer whose objectives are to be retrieved

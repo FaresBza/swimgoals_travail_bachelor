@@ -28,6 +28,11 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     }
 
     @Override
+    public List<Objective> getAllObjectives() {
+        return objectiveRepository.findAll();
+    }
+
+    @Override
     public List<Objective> getObjectiveBySwimmerId(int swimmerId) {
         return objectiveRepository.findBySwimmerId(swimmerId);
     }
@@ -55,5 +60,4 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     public Optional<Objective> getObjectiveById(Integer id) {
         return objectiveRepository.findById(id);
     }
-
 }
