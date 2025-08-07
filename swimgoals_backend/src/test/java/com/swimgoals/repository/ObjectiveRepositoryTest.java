@@ -6,6 +6,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -97,7 +98,44 @@ class ObjectiveRepositoryTest {
         assertNotNull(createdObjective.get().getTime());
         assertEquals("400m", createdObjective.get().getDistance(), "La distance de l'objectif doit être de 400m");
         assertEquals("00:05:46", createdObjective.get().getTime(), "Le temps de l'objectif doit être 00:05:46");
+    }
 
+    @Test
+    void testUpdateObjectiveInfo() {
+        Objective objective = objectiveRepository.findById(1).orElseThrow();
+        Swim swim = swimRepository.findById(6).orElseThrow();
+
+        objective.setDistance("300m");
+        objective.setTime("00:03:30");
+        objective.setSwim(swim);
+
+        objectiveRepository.save(objective);
+
+        Optional<Objective> updatedObjective = objectiveRepository.findById(objective.getId());
+        assertEquals("300m", updatedObjective.get().getDistance(), "La nouvelle distance de l'objectif doit être de 300m");
+        assertEquals("00:03:30", updatedObjective.get().getTime(), "le nouveau temps de l'objectif doit être de 00:03:30");
+        assertEquals("Jambes", updatedObjective.get().getSwim().getName(), "La nouvelle nage de l'objectif doit être : 'Jambes'");
+    }
+
+    @Test
+    void testUpdateObjectiveSwimmer() {
+        Objective objective = objectiveRepository.findById(1).orElseThrow();
+        User swimmer = userRepository.findById(5).orElseThrow();
+        objective.setSwimmer(swimmer);
+
+        objectiveRepository.save(objective);
+
+        Optional<Objective> updatedObjectiveSwimmer = objectiveRepository.findById(objective.getId());
+        assertEquals("Emily", updatedObjectiveSwimmer.get().getSwimmer().getFirstname(), "L'objectif assigné doit être à 'Emily'");
+        assertEquals("Johnson", updatedObjectiveSwimmer.get().getSwimmer().getLastname(), "L'objectif assigné doit être à 'Johnson'");
+    }
+
+    @Test
+    void testDeleteObjective() {
+        Objective objective = objectiveRepository.findById(1).orElseThrow();
+        objectiveRepository.delete(objective);
+        Optional<Objective> deletedObjective = objectiveRepository.findById(objective.getId());
+        assertTrue(deletedObjective.isEmpty(), "L'objectif doit avoir été supprimé de la base de données");
     }
 }
 
