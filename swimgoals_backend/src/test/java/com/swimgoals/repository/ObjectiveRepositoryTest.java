@@ -6,8 +6,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import com.swimgoals.models.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -15,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestPropertySource;
 
 import com.swimgoals.models.Objective;
+import com.swimgoals.models.Swim;
+import com.swimgoals.models.User;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -26,6 +26,9 @@ class ObjectiveRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SwimRepository swimRepository;
 
     @Test
     void testFindAllObjectives() {
@@ -67,6 +70,32 @@ class ObjectiveRepositoryTest {
             assertEquals("200m", objective.getDistance(), "La distance de l'objectif doit être de 200m");
             assertEquals("00:03:20", objective.getTime(), "Le temps de l'objectif doit être 00:03:20");
         }
+    }
+
+    @Test
+    void testCreateObjective() {
+        User swimmer = userRepository.findById(6).orElseThrow();
+        Swim swim = swimRepository.findById(4).orElseThrow();
+
+        Objective objective = new Objective(
+                5,
+                swimmer,
+                swim,
+                "400m",
+                "00:05:46"
+        );
+
+        objectiveRepository.save(objective);
+        Optional<Objective> createdObjective = objectiveRepository.findById(objective.getId());
+
+        assertNotNull(createdObjective, "L'objectif ne doit pas être null");
+        assertTrue(createdObjective.get().getId() > 0);
+        assertTrue(createdObjective.get().getSwimmer().getId() > 0);
+        assertNotNull(createdObjective.get().getDistance());
+        assertNotNull(createdObjective.get().getTime());
+        assertEquals("400m", createdObjective.get().getDistance(), "La distance de l'objectif doit être de 400m");
+        assertEquals("00:05:46", createdObjective.get().getTime(), "Le temps de l'objectif doit être 00:05:46");
+
     }
 }
 
