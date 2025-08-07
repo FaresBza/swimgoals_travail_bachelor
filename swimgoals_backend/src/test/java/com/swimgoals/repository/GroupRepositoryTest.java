@@ -12,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestPropertySource;
 
 import com.swimgoals.models.Group;
-import com.swimgoals.models.Role;
 import com.swimgoals.models.User;
 
 @DataJpaTest
@@ -28,36 +27,35 @@ class GroupRepositoryTest {
 
     @Test
     void testFindAllGroups(){
-
         List<Group> groups = groupRepository.findAll();
         assertEquals(5, groups.size(), "Il devrait y avoir 5 groupes");
 
         for (Group group : groups) {
             assertTrue(group.getId() > 0);
-            assertTrue(group.getName() != null && !group.getName().isEmpty(), "le name du grouoe ne doit pas être vide");
+            assertTrue(group.getName() != null && !group.getName().isEmpty(), "Le nom du groupe ne doit pas être vide");
         }
     }
 
     @Test
     void testFindGroupById(){
-
         Optional<Group> group = groupRepository.findById(1);
         assertTrue(group.isPresent(), "Group non trouvé");
+
         assertEquals(2, group.get().getCoach().getId());
-        assertEquals("Alice", group.get().getCoach().getFirstname());
-        assertEquals("Smith", group.get().getCoach().getLastname());
+        assertEquals("Alice", group.get().getCoach().getFirstname(), "Le prénom du coach doit être 'Alice'");
+        assertEquals("Smith", group.get().getCoach().getLastname(), "Le nom du coach doit être 'Smith'");
     }
 
     @Test
     void testFindGroupByCoachId(){
-
         List<Group> listGroups = groupRepository.findByCoachId(3);
-        assertEquals(3, listGroups.size());
+        assertEquals(3, listGroups.size(), "Le coach avec l'ID 3 doit avoir 3 groupes");
+
         for (Group group : listGroups) {
             assertTrue(group.getId() > 0);
             assertTrue(group.getCoach().getId() > 0);
-            assertEquals("Martin", group.getCoach().getFirstname());
-            assertEquals("Dupont", group.getCoach().getLastname());
+            assertEquals("Martin", group.getCoach().getFirstname(), "Le prénom du coach doit être 'Martin'");
+            assertEquals("Dupont", group.getCoach().getLastname(), "Le nom du coach doit être 'Dupont'");
         }
     }
 
@@ -69,10 +67,8 @@ class GroupRepositoryTest {
 
         Optional<Group> createdGroup = groupRepository.findById(group.getId());
 
-        assertTrue(createdGroup.isPresent());
-        assertEquals("GroupTest", createdGroup.get().getName());
-        assertEquals(2, createdGroup.get().getCoach().getId());
+        assertTrue(createdGroup.isPresent(), "Le groupe créé doit exister");
+        assertEquals("GroupTest", createdGroup.get().getName(), "Le nom du groupe doit être 'GroupTest'");
+        assertEquals(2, createdGroup.get().getCoach().getId(), "L'ID du coach assigné au groupe doit être 2");
     }
-
-
 }
