@@ -1,24 +1,30 @@
 package com.swimgoals.repository;
 
-import com.swimgoals.models.Goal;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestPropertySource;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.swimgoals.models.Goal;
+import com.swimgoals.models.Objective;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class GoalRepositoryTest {
+class GoalRepositoryTest {
 
     @Autowired
     private GoalRepository goalRepository;
+
+    @Autowired
+    private ObjectiveRepository objectiveRepository;
 
     @Test
     void finAllGoals() {
@@ -43,5 +49,32 @@ public class GoalRepositoryTest {
         assertEquals("Dos", goal.get().getObjective().getSwim().getName(), "La nage assignée à l'objectif doit être 'Dos'");
         assertEquals("Emily", goal.get().getObjective().getSwimmer().getFirstname(), "Le prénom du nageur assigné doit être 'Emily'");
         assertEquals("Johnson", goal.get().getObjective().getSwimmer().getLastname(), "Le nom du nageur assigné doit être 'Johnson'");
+    }
+
+    @Test
+    void testCreateGoal() {
+        Objective objective = objectiveRepository.findById(4).orElseThrow();
+
+        Goal goal = new Goal(
+                6,
+                objective,
+                "00:1:23",
+                "2024-04-13"
+        );
+
+        goalRepository.save(goal);
+        Optional<Goal> createdGoal = goalRepository.findById(goal.getId());
+
+        assertTrue(createdGoal.isPresent(), "Le goal ne doit pas être null");
+        assertTrue(createdGoal.get().getId() > 0);
+        assertTrue(createdGoal.get().getObjective().getId() > 0);
+        assertNotNull(createdGoal.get().getDate());
+        assertNotNull(createdGoal.get().getTime());
+        assertEquals("00:1:23", goal.getTime(), "Le temps du goal doit être '00:1:23'");
+        assertEquals("2024-04-13", goal.getDate(), "La date du goal doit être '2024-04-13'");
+        assertEquals("100m", goal.getObjective().getDistance(), "La distance de l'objectif doit être '100m'");
+        assertEquals("Brasse", goal.getObjective().getSwim().getName(), "La nage assignée à l'objectif doit être 'Brasse'");
+        assertEquals("Michael", goal.getObjective().getSwimmer().getFirstname(), "Le prénom du nageur assigné doit être 'Michael'");
+        assertEquals("Brown", goal.getObjective().getSwimmer().getLastname(), "Le nom du nageur assigné doit être 'Brown'");
     }
 }
