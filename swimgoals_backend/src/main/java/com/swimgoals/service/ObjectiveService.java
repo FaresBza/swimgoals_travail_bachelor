@@ -29,7 +29,7 @@ public interface  ObjectiveService {
      * @param objectiveDTO The data transfer object containing the details of the objective
      * @return The newly created Objective object
      */
-    public Objective creaObjective(ObjectiveDTO objectiveDTO);
+    public Objective createObjective(ObjectiveDTO objectiveDTO);
 
     /**
      * Retrieves an objective by its unique identifier

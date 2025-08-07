@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.dto.ObjectiveDTO;
-import com.swimgoals.models.Group;
 import com.swimgoals.models.Objective;
 import com.swimgoals.service.impl.ObjectiveServiceImpl;
 
@@ -72,7 +71,7 @@ public class ObjectiveController {
     @PostMapping("/objectives")
     public ResponseEntity<?> createObjective(@RequestBody ObjectiveDTO objectiveDTO) {
         try {
-            Objective createdObjective = objectiveService.creaObjective(objectiveDTO);
+            Objective createdObjective = objectiveService.createObjective(objectiveDTO);
             return ResponseEntity.ok(createdObjective);
 
         } catch (IllegalArgumentException e) {

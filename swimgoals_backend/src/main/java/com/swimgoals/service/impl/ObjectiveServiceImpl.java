@@ -38,7 +38,7 @@ public class ObjectiveServiceImpl implements ObjectiveService {
     }
 
     @Override
-    public Objective creaObjective(ObjectiveDTO objectiveDTO) {
+    public Objective createObjective(ObjectiveDTO objectiveDTO) {
         Objective objective = new Objective();
 
         objective.setDistance(objectiveDTO.getDistance());
