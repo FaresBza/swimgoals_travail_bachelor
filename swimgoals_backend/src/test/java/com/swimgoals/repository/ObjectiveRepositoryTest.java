@@ -54,6 +54,8 @@ class ObjectiveRepositoryTest {
         assertEquals("Papillon", objective.get().getSwim().getName(), "La nage assigné à l'objectif doit être 'Papillon'");
         assertNotNull(objective.get().getDistance());
         assertNotNull(objective.get().getTime());
+        assertEquals("David", objective.get().getSwimmer().getFirstname(), "Le prénom du nageur assigné doit être 'David'");
+        assertEquals("Williams", objective.get().getSwimmer().getLastname(), "Le prénom du nageur assigné doit être 'Williams'");
     }
 
     @Test
