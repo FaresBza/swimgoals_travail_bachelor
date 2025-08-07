@@ -1,21 +1,25 @@
 package com.swimgoals.repository;
 
-import com.swimgoals.models.Objective;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.swimgoals.models.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestPropertySource;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.swimgoals.models.Objective;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class ObjectiveRepositoryTest {
+class ObjectiveRepositoryTest {
 
     @Autowired
     private ObjectiveRepository objectiveRepository;
@@ -47,6 +51,22 @@ public class ObjectiveRepositoryTest {
         assertEquals("Papillon", objective.get().getSwim().getName(), "La nage assigné à l'objectif doit être 'Papillon'");
         assertNotNull(objective.get().getDistance());
         assertNotNull(objective.get().getTime());
+    }
+
+    @Test
+    void testFindObjectiveBySwimmerId() {
+        List<Objective> ListSwimmerObjectives = objectiveRepository.findBySwimmerId(5);
+        assertEquals(1, ListSwimmerObjectives.size());
+
+        for (Objective objective : ListSwimmerObjectives) {
+            assertNotNull(objective, "L'objectif ne doit pas être null");
+            assertTrue(objective.getId() > 0);
+            assertTrue(objective.getSwimmer().getId() > 0);
+            assertNotNull(objective.getDistance());
+            assertNotNull(objective.getTime());
+            assertEquals("200m", objective.getDistance(), "La distance de l'objectif doit être de 200m");
+            assertEquals("00:03:20", objective.getTime(), "Le temps de l'objectif doit être 00:03:20");
+        }
     }
 }
 
