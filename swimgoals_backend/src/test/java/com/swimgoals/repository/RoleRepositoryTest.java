@@ -24,23 +24,21 @@ class RoleRepositoryTest {
     void testFindAllRoles() {
         List<Role> roles = roleRepository.findAll();
 
-        assertEquals(3, roles.size());
+        assertEquals(2, roles.size());
 
-        assertEquals("admin", roles.get(0).getName(), "Le premier rôle doit être 'admin'");
-        assertEquals("coach", roles.get(1).getName(), "Le deuxième rôle doit être 'admin'");
-        assertEquals("swimmer", roles.get(2).getName(), "Le troisième rôle doit être 'swimmer'");
+        assertEquals("coach", roles.get(0).getName(), "Le deuxième rôle doit être 'admin'");
+        assertEquals("swimmer", roles.get(1).getName(), "Le troisième rôle doit être 'swimmer'");
 
-        assertEquals(1, roles.get(0).getId(), "L'id du premier rôle doit être 1");
-        assertEquals(2, roles.get(1).getId(), "L'id du deuxième rôle doit être 2");
-        assertEquals(3, roles.get(2).getId(), "L'id du troisième rôle doit être 3");
+        assertEquals(2, roles.get(0).getId(), "L'id du deuxième rôle doit être 2");
+        assertEquals(3, roles.get(1).getId(), "L'id du troisième rôle doit être 3");
     }
 
     @Test
     void testFindRoleById() {
-        Optional<Role> role = roleRepository.findById(1);
+        Optional<Role> role = roleRepository.findById(2);
 
-        assertEquals(1, role.get().getId(), "L'id du rôle doit être 1");
-        assertEquals("admin", role.get().getName(), "Le nom du rôle doit être 'admin'");
+        assertEquals(2, role.get().getId(), "L'id du rôle doit être 1");
+        assertEquals("coach", role.get().getName(), "Le nom du rôle doit être 'coach'");
     }
 
     @Test
