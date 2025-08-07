@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.swimgoals.models.Group;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -24,6 +26,12 @@ class UserRepositoryTest {
     
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private GroupRepository groupRepository;
 
     @Test
     void testFindAllUsers() {
@@ -104,4 +112,44 @@ class UserRepositoryTest {
         assertEquals("123jean45", createdUser.get().getPassword(), "Le mot de passe du nouveau user doit être 'Du123jean45pont'");
         assertEquals("coach", createdUser.get().getRole().getName(), "Le role du nouveau user doit être 'coach'");
     }
+
+   @Test
+   void testUpdateUserInfo(){
+        User user = userRepository.findById(2).orElseThrow();
+        user.setFirstname("Anne");
+        user.setLastname("Richard");
+        user.setEmail("anne.richard@gmail.com");
+        user.setPassword("arichard12");
+        userRepository.save(user);
+
+        Optional<User> updatedUser = userRepository.findById(2);
+        assertEquals("Anne", updatedUser.get().getFirstname());
+        assertEquals("Richard", updatedUser.get().getLastname());
+        assertEquals("anne.richard@gmail.com", updatedUser.get().getEmail());
+        assertEquals("arichard12", updatedUser.get().getPassword());
+   }
+
+   @Test
+   void testUpdateUserRole(){
+        User user = userRepository.findById(6).orElseThrow();
+        Role newRole = roleRepository.findById(2).orElseThrow();
+
+        user.setRole(newRole);
+        userRepository.save(user);
+
+        Optional<User> updatedUserRole = userRepository.findById(6);
+        assertEquals("coach", updatedUserRole.get().getRole().getName());
+   }
+
+   @Test
+   void testUpdateUserGroup(){
+        User user = userRepository.findById(4).orElseThrow();
+        Group newGroup = groupRepository.findById(2).orElseThrow();
+
+        user.setGroup(newGroup);
+        userRepository.save(user);
+
+        Optional<User> updatedUser = userRepository.findById(4);
+        assertEquals("Group2", updatedUser.get().getGroup().getName());
+   }
 }
