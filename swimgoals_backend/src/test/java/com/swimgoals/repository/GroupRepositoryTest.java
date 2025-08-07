@@ -3,8 +3,6 @@ package com.swimgoals.repository;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -13,6 +11,8 @@ import org.springframework.test.context.TestPropertySource;
 
 import com.swimgoals.models.Group;
 import com.swimgoals.models.User;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -70,5 +70,36 @@ class GroupRepositoryTest {
         assertTrue(createdGroup.isPresent(), "Le groupe créé doit exister");
         assertEquals("GroupTest", createdGroup.get().getName(), "Le nom du groupe doit être 'GroupTest'");
         assertEquals(2, createdGroup.get().getCoach().getId(), "L'ID du coach assigné au groupe doit être 2");
+    }
+
+    @Test
+    void testUpdateGroupInfo() {
+        Group group = groupRepository.findById(1).orElseThrow();
+        group.setName("Juniors");
+
+        groupRepository.save(group);
+
+        Optional<Group> updatedGroup = groupRepository.findById(group.getId());
+        assertEquals("Juniors", updatedGroup.get().getName(), "Le nouveau nom du groupe doit être 'Juniors'");
+    }
+
+    @Test
+    void testUpdateGroupCoach() {
+        Group group = groupRepository.findById(2).orElseThrow();
+        User coach = userRepository.findById(2).orElseThrow();
+        group.setCoach(coach);
+
+        groupRepository.save(group);
+
+        Optional<Group> updatedGroup = groupRepository.findById(group.getId());
+        assertEquals(2, updatedGroup.get().getCoach().getId(), "Le nouveau groupe doit appartenit au coach d'ID 2");
+    }
+
+    @Test
+    void testDeleteGroup() {
+        Group group = groupRepository.findById(5).orElseThrow();
+        groupRepository.delete(group);
+        Optional<Group> deletedGroup = groupRepository.findById(group.getId());
+        assertTrue(deletedGroup.isEmpty(), "Le groupe doit avoir été supprimé de la base de données");
     }
 }
