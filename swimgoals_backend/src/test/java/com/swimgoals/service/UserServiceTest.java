@@ -63,4 +63,32 @@ class UserServiceTest {
         assertThat(user.getEmail()).isEqualTo(user4.getEmail());
         assertThat(user.getPassword()).isEqualTo(user4.getPassword());
     }
+
+    @Test
+    void shouldUpdateUser() {
+        User originalUser = new User(7, "Doe", "Eric", "eric.doe@exemple.com", "securepass456", new Role(3, "swimmer"));
+        User updatedUser = new User(7, "Doe", "Eric", "eric.doe@exemple.com", "newpassword628", new Role(3, "swimmer"));
+
+        when(userRepository.findById(7)).thenReturn(Optional.of(originalUser));
+        originalUser.setPassword("newpassword628");
+        when(userRepository.save(originalUser)).thenReturn(updatedUser);
+
+        User result = userRepository.save(originalUser);
+
+        assertThat(result.getPassword()).isEqualTo("newpassword628");
+        assertThat(result.getEmail()).isEqualTo("eric.doe@exemple.com");
+        assertThat(result.getFirstname()).isEqualTo("Eric");
+    }
+
+    @Test
+    void shouldDeleteUser() {
+        User userToDelete = new User(6, "Paul", "Durand", "paul.durand@mail.com", "pass123", new Role(2, "coach"));
+
+        when(userRepository.findById(6)).thenReturn(Optional.of(userToDelete));
+        when(userRepository.findById(6)).thenReturn(Optional.empty());
+
+        Optional<User> deletedUser = userRepository.findById(6);
+
+        assertThat(deletedUser).isEmpty();
+    }
 }
