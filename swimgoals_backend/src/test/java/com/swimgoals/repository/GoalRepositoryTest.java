@@ -77,4 +77,12 @@ class GoalRepositoryTest {
         assertEquals("Michael", goal.getObjective().getSwimmer().getFirstname(), "Le prénom du nageur assigné doit être 'Michael'");
         assertEquals("Brown", goal.getObjective().getSwimmer().getLastname(), "Le nom du nageur assigné doit être 'Brown'");
     }
+
+    @Test
+    void testDeleteGoal() {
+        Goal goal = goalRepository.findById(4).orElseThrow();
+        goalRepository.delete(goal);
+        Optional<Goal> deletedGoal = goalRepository.findById(goal.getId());
+        assertTrue(deletedGoal.isEmpty());
+    }
 }
