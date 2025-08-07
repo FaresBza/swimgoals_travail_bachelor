@@ -113,8 +113,8 @@ class UserRepositoryTest {
         assertEquals("coach", createdUser.get().getRole().getName(), "Le role du nouveau user doit être 'coach'");
     }
 
-   @Test
-   void testUpdateUserInfo(){
+    @Test
+    void testUpdateUserInfo() {
         User user = userRepository.findById(2).orElseThrow();
         user.setFirstname("Anne");
         user.setLastname("Richard");
@@ -123,14 +123,15 @@ class UserRepositoryTest {
         userRepository.save(user);
 
         Optional<User> updatedUser = userRepository.findById(2);
-        assertEquals("Anne", updatedUser.get().getFirstname());
-        assertEquals("Richard", updatedUser.get().getLastname());
-        assertEquals("anne.richard@gmail.com", updatedUser.get().getEmail());
-        assertEquals("arichard12", updatedUser.get().getPassword());
-   }
 
-   @Test
-   void testUpdateUserRole(){
+        assertEquals("Anne", updatedUser.get().getFirstname(), "Le nouveau prénom du user doit être 'Anne'");
+        assertEquals("Richard", updatedUser.get().getLastname(), "Le nouveau nom du user doit être 'Richard'");
+        assertEquals("anne.richard@gmail.com", updatedUser.get().getEmail(), "Le nouvel email du user doit être 'anne.richard@gmail.com'");
+        assertEquals("arichard12", updatedUser.get().getPassword(), "Le nouveau mot de passe du user doit être 'arichard12'");
+    }
+
+    @Test
+    void testUpdateUserRole() {
         User user = userRepository.findById(6).orElseThrow();
         Role newRole = roleRepository.findById(2).orElseThrow();
 
@@ -138,11 +139,11 @@ class UserRepositoryTest {
         userRepository.save(user);
 
         Optional<User> updatedUserRole = userRepository.findById(6);
-        assertEquals("coach", updatedUserRole.get().getRole().getName());
-   }
+        assertEquals("coach", updatedUserRole.get().getRole().getName(), "Le nouveau rôle du user doit être 'coach'");
+    }
 
-   @Test
-   void testUpdateUserGroup(){
+    @Test
+    void testUpdateUserGroup() {
         User user = userRepository.findById(4).orElseThrow();
         Group newGroup = groupRepository.findById(2).orElseThrow();
 
@@ -150,6 +151,6 @@ class UserRepositoryTest {
         userRepository.save(user);
 
         Optional<User> updatedUser = userRepository.findById(4);
-        assertEquals("Group2", updatedUser.get().getGroup().getName());
-   }
+        assertEquals("Group2", updatedUser.get().getGroup().getName(), "Le nouveau groupe du user doit être 'Group2'");
+    }
 }
