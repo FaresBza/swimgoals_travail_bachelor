@@ -30,7 +30,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const Chart = () => {
     const { id } = useParams();
     const { goals, fetchGoalsByObjectifId } = useGoalsAPI();
-    const { swimId, swimName, objectiveDistance, getObjectiveDetails } = useObjectiveApi();
+    const { swimId, swimName, objectiveDistance, objectiveTime, getObjectiveDetails } = useObjectiveApi();
     const [loading, setLoading] = useState(true);
 
     const [chartData, setChartData] = useState<{ labels: string[]; datasets: { label: string; data: number[]; fill: boolean; borderColor: string; tension: number; pointRadius: number; }[] } | null>(null);
@@ -55,8 +55,9 @@ const Chart = () => {
         if (!loading && goals.length > 0 && swimId !== null) {
             const labels = goals.map(goal => goal.date);
             const data = goals.map(goal => parseInt(goal.time.split(":")[0]) % 3600);
+            const objectiveSeconds = Number(objectiveTime) * 60;
 
-            setChartData(chartDataBuilder(swimId, labels, data));
+            setChartData(chartDataBuilder(swimId, labels, data, Number(objectiveSeconds)));
         }
     }, [goals, loading, swimId]);
 
