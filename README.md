@@ -12,7 +12,7 @@ Ce document explique étape par étape comment configurer et lancer le projet co
 3. [2. Configuration de la base de données MySQL](#2-configuration-de-la-base-de-données-mysql)  
 4. [3. Configuration du backend (Spring Boot)](#3-configuration-du-backend-spring-boot)  
 5. [4. Configuration du frontend (Nextjs--react--typescript)](#4-configuration-du-frontend-nextjs--react--typescript)  
-6. [Remarques](#remarques)  
+6. [Remarques](#5-remarques)  
 
 ## Prérequis
 
@@ -35,7 +35,7 @@ nvm --version # Version de NVM
 java -version # Version de Java
 ```
 
-## 1. Cloner le dépôt
+## 1. Cloner le projet
 
 Pour commencer, clonez le dépôt Git du projet SwimGoals :
 
