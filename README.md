@@ -1,23 +1,30 @@
 # Travail de Bachelor : SWIMGOALS
 
-## 1. Présentation du projet
+# Projet SwimGoals
 
-### Description du projet
+Bienvenue dans le projet **SwimGoals** !  
+Ce document explique étape par étape comment configurer et lancer le projet complet (backend + frontend) sur votre machine.
 
-SwimGoals est une application web spécifiquement dédiée aux clubs de natation, conçue pour optimiser et numériser la gestion des séances d’entraînement et des performances des nageurs.
 
-Les entraîneurs créent leurs groupes d’entraînement et les nageurs rejoignent leur groupe respectif. L’entraîneur peut également de personnaliser les programmes d’entraînement en fonction des besoins spécifiques du nageur renforçant ainsi la relation entraîneur-nageur grâce à un suivi continu et optimisé.
+## Prérequis
 
-Une fois chaque objectif atteint, l’entraîneur enregistre la performance du nageur via un chronomètre numérique, générant automatiquement un histogramme pour suivre les progrès.
+Avant de commencer, merci de vérifier que vous disposez bien des outils suivants installés et à jour :
 
-### Technologies utilisées
+- **Node.js** (v18.18.0 recommandée via NVM)  
+- **NPM** (gestionnaire de paquets de Node.js)  
+- **NVM** (Node Version Manager)  
+- **Java JDK** (version compatible avec Gradle / Spring Boot, typiquement JDK 17 ou plus)  
+- **MySQL** (avec accès à PhpMyAdmin, Workbench ou autre interface de gestion)  
 
-- **Front-end :** NextJS + TypeScript
-- **Back-end :** Spring Boor (version Java 21)
-- **Base de données :** MySQL
+### Comment vérifier vos versions ?
 
-### Répartition des différentes couches 3-tiers
+Dans un terminal, vous pouvez vérifier les versions avec ces commandes :  
 
-- **/swimgoals_backend:** contient le back-end de l'application et la configuration
-- **/swimgoals_frontend:** contient le front-end de l'application et la configuration
-- **/swimgoals_database:** contient le script SQL pour la création de la base de données
+```bash
+node -v       # Version de Node.js
+npm -v        # Version de npm
+nvm --version # Version de NVM
+java -version # Version de Java
+mysql --version # Version de MySQL
+```
+
