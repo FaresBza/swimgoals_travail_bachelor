@@ -11,8 +11,6 @@ import Image from "next/image";
 import "./../../../styles/BackgroundImage.scss";
 import "./../../../styles/Scroll.scss";
 import "./../../../styles/Card.scss";
-import './../../../styles/MobileNavbar.scss'
-
 
 import useUserApi from "@/app/hooks/useUserApi";
 import BackButton from "@/app/components/BackButton";
@@ -110,22 +108,6 @@ const Objectives = () => {
                             route.push(`/add-objective/${id}`);
                         }}
                     />
-                )}
-                {roleId === 3 && (
-                    <nav className="swimmer-navbar">
-                        <button className="btn objectives-button-nav">
-                            <Image src="/icons/objectives-white.svg" alt="Objectives Icon" width={24} height={24} />
-                        </button>
-                        <button className="btn performances-button-nav">
-                            <Image
-                                src="/icons/statistics.svg"
-                                alt="Statistics Icon"
-                                width={24}
-                                height={24}
-                                onClick={goToPerformancesPage}
-                            />
-                        </button>
-                    </nav>
                 )}
             </footer>
         </div>
