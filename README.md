@@ -78,7 +78,7 @@ spring.jpa.show-sql=true
 
 ## Configuration du frontend (Next.js + React + TypeScript)
 
-- Ouvrez le répertoire swimgoals_frontend avec Visual Studio Code (ou votre éditeur préféré).
+- Ouvrez le répertoire swimgoals_frontend avec Visual Studio Code.
 - Ouvrez un terminal dans ce dossier et exécutez ces commandes dans l’ordre :
 
 ```bash
@@ -135,3 +135,8 @@ npm install --save-dev typescript @types/react @types/node
 }
 
 ```
+
+## Remarques
+- Merci de toujours utiliser la version Node recommandée (v18.18.0) pour éviter les problèmes de compatibilité.
+- Le backend doit tourner sur le port 8080 (Spring Boot) et le frontend sur le port 3000 (Next.js).
+- En cas d’erreur lors de la connexion à la base MySQL, vérifiez bien vos paramètres dans applications.properties.
