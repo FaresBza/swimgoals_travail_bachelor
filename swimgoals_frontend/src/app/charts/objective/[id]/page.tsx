@@ -64,17 +64,18 @@ const Chart = () => {
         <div className="container blur">
             <BackButton />
             <h1>Performances</h1>
-            {loading ? <p>Chargement...</p> : <p>Données chargées</p>}
-            <div className="graph-card-container">
-                <div className="graph-card">
-                    <h2 className="graph-name" style={{color: 'black'}}>{objectiveDistance}m {swimName}</h2>
-                    {chartData ? (
-                        <Line data={chartData} options={chartOptionsForXAndYAxes} />
-                    ) : (
-                        <p>Aucune donnée pour ce graphique.</p>
-                    )}
+            {loading ? <p>Chargement...</p> :
+                <div className="graph-card-container">
+                    <div className="graph-card">
+                        <h2 className="graph-name" style={{color: 'black'}}>{objectiveDistance}m {swimName}</h2>
+                        {chartData ? (
+                            <Line data={chartData} options={chartOptionsForXAndYAxes} />
+                        ) : (
+                            <p>Aucune donnée pour ce graphique.</p>
+                        )}
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     );
 };
