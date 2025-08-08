@@ -30,7 +30,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const Chart = () => {
     const { id } = useParams();
     const { goals, fetchGoalsByObjectifId } = useGoalsAPI();
-    const { swimId, getObjectiveDetails } = useObjectiveApi();
+    const { swimId, swimName, objectiveDistance, getObjectiveDetails } = useObjectiveApi();
     const [loading, setLoading] = useState(true);
 
     const [chartData, setChartData] = useState<{ labels: string[]; datasets: { label: string; data: number[]; fill: boolean; borderColor: string; tension: number; pointRadius: number; }[] } | null>(null);
@@ -67,7 +67,7 @@ const Chart = () => {
             {loading ? <p>Chargement...</p> : <p>Données chargées</p>}
             <div className="graph-card-container">
                 <div className="graph-card">
-                    <h2 className="graph-name">Test</h2>
+                    <h2 className="graph-name" style={{color: 'black'}}>{objectiveDistance}m {swimName}</h2>
                     {chartData ? (
                         <Line data={chartData} options={chartOptionsForXAndYAxes} />
                     ) : (
