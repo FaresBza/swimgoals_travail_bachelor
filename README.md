@@ -44,7 +44,7 @@ git clone https://github.com/FaresBza/swimgoals_travail_bachelor.git
 
 ## Configuration du backend (Spring Boot)
 
-- Ouvrez le répertoire swimgoals_backend avec IntelliJ IDEA ou votre IDE Java préféré.
+- Ouvrez le répertoire swimgoals_backend avec IntelliJ IDEA (recommandé).
 - Allez dans le fichier src/main/java/com/swimgoals/ressources/applications.properties.
 - Modifiez les paramètres de connexion à la base de données selon votre configuration MySQL :
 
@@ -76,7 +76,7 @@ spring.jpa.show-sql=true
 - Si tout est correct, vous pourrez accéder à la documentation Swagger via cette URL dans votre navigateur :
   http://localhost:8080/swagger-ui/index.html
 
-## Configuration du frontend (Next.js + React)
+## Configuration du frontend (Next.js + React + TypeScript)
 
 - Ouvrez le répertoire swimgoals_frontend avec Visual Studio Code (ou votre éditeur préféré).
 - Ouvrez un terminal dans ce dossier et exécutez ces commandes dans l’ordre :
@@ -91,3 +91,47 @@ npm run dev                           # Lance le serveur de développement Next.
 ```
 
 - Une fois lancé, ouvrez votre navigateur à l’adresse : http://localhost:3000
+
+## Configuration Next.js avec TypeScript :
+
+Si le projet ne contient pas encore les fichiers TypeScript, Next.js détecte automatiquement TypeScript à partir des fichiers .ts ou .tsx. Voici les étapes pour s’assurer que TypeScript est bien configuré :
+
+- Créez un fichier tsconfig.json à la racine du projet (Next.js en génère un automatiquement si nécessaire).
+- Assurez-vous que les dépendances TypeScript sont installées :
+
+```bash
+npm install --save-dev typescript @types/react @types/node
+```
+
+- Le fichier tsconfig.json minimal ressemble à ceci (généré automatiquement par Next.js, mais voici un exemple) :
+
+```bash
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+```
