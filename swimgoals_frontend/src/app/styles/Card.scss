@@ -37,14 +37,21 @@
             color: #000;
         } 
 
-        .btn {
-            border: 0;
-            border-radius: 25px;
-            padding: 10px 30px;
-            max-width: 240px;
-            background-color: variables.$global-blue;
-            color: variables.$white;
-            font-size: 1rem;
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+
+            .btn {
+                border: 0;
+                border-radius: 25px;
+                padding: 10px 30px;
+                width: 100px;
+                max-width: 240px;
+                background-color: variables.$global-blue;
+                color: variables.$white;
+                font-size: 1rem;
+            }
         }
     }
 }
