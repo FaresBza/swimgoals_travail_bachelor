@@ -10,8 +10,10 @@ const useObjectiveApi = () => {
     
     const [objectives, setObjectives] = useState<ObjectiveData[]>([]);
     const [error, setError] = useState<string | null>(null);
+
     const [swimId, setSwimId] = useState<number>(0);
     const [objectiveDistance, setObjectiveDistance] = useState<string>("");
+    const [objectiveTime, setObjectiveTime] = useState<string>("");
     const [swimName, setSwimName] = useState<string>("");
 
     const fetchObjectivesBySwimmerId = async ({ swimmerId }: { swimmerId: number }) => {
@@ -57,7 +59,8 @@ const useObjectiveApi = () => {
 
             setSwimId(data.swim.id);
             setSwimName(data.swim.name);
-            setObjectiveDistance(data.distance)
+            setObjectiveDistance(data.distance);
+            setObjectiveTime(data.time);
 
             return objectiveDetail;
 
@@ -116,6 +119,7 @@ const useObjectiveApi = () => {
         swimId,
         swimName,
         objectiveDistance,
+        objectiveTime,
         objectives,
         fetchObjectivesBySwimmerId,
         getObjectiveDetails,
