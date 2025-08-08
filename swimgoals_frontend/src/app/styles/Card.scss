@@ -60,6 +60,10 @@
         .list-groups,
         .list-swimmers,
         .list-objectives {
+
+            &.list-objectives {
+                margin: 200px auto 0 auto;
+            }
             
             .group-card,
             .objective-card{
