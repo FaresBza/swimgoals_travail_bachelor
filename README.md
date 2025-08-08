@@ -5,6 +5,15 @@
 Bienvenue dans le projet **SwimGoals** !  
 Ce document explique étape par étape comment configurer et lancer le projet complet (backend + frontend) sur votre machine.
 
+## Sommaire
+
+1. [Prérequis](#prérequis)  
+2. [1. Cloner le projet](#1-cloner-le-projet)  
+3. [2. Configuration de la base de données MySQL](#2-configuration-de-la-base-de-données-mysql)  
+4. [3. Configuration du backend (Spring Boot)](#3-configuration-du-backend-spring-boot)  
+5. [4. Configuration du frontend (Nextjs--react--typescript)](#4-configuration-du-frontend-nextjs--react--typescript)  
+6. [Remarques](#remarques)  
+
 ## Prérequis
 
 Avant de commencer, merci de vérifier que vous disposez bien des outils suivants installés et à jour :
@@ -26,7 +35,7 @@ nvm --version # Version de NVM
 java -version # Version de Java
 ```
 
-## Cloner le dépôt
+## 1. Cloner le dépôt
 
 Pour commencer, clonez le dépôt Git du projet SwimGoals :
 
@@ -34,7 +43,7 @@ Pour commencer, clonez le dépôt Git du projet SwimGoals :
 git clone https://github.com/FaresBza/swimgoals_travail_bachelor.git
 ```
 
-## Configuration de la base de données MySQL
+## 2. Configuration de la base de données MySQL
 
 - Ouvrez votre outil de gestion MySQL (PhpMyAdmin, MySQL Workbench, etc.).
 - Créez une base de données nommée swimgoals_bdd.
@@ -42,7 +51,7 @@ git clone https://github.com/FaresBza/swimgoals_travail_bachelor.git
 - Ouvrez le fichier data.sql.
 - Copiez tout le contenu SQL et collez-le dans un nouvel onglet SQL de votre outil, puis exécutez-le pour importer les tables et données nécessaires.
 
-## Configuration du backend (Spring Boot)
+## 3. Configuration du backend (Spring Boot)
 
 - Ouvrez le répertoire swimgoals_backend avec IntelliJ IDEA (recommandé).
 - Allez dans le fichier src/main/java/com/swimgoals/ressources/applications.properties.
@@ -76,7 +85,7 @@ spring.jpa.show-sql=true
 - Si tout est correct, vous pourrez accéder à la documentation Swagger via cette URL dans votre navigateur :
   http://localhost:8080/swagger-ui/index.html
 
-## Configuration du frontend (Next.js + React + TypeScript)
+## 4. Configuration du frontend (Next.js + React + TypeScript)
 
 - Ouvrez le répertoire swimgoals_frontend avec Visual Studio Code.
 - Ouvrez un terminal dans ce dossier et exécutez ces commandes dans l’ordre :
@@ -136,7 +145,7 @@ npm install --save-dev typescript @types/react @types/node
 
 ```
 
-## Remarques
+## 5. Remarques
 - Merci de toujours utiliser la version Node recommandée (v18.18.0) pour éviter les problèmes de compatibilité.
 - Le backend doit tourner sur le port 8080 (Spring Boot) et le frontend sur le port 3000 (Next.js).
 - En cas d’erreur lors de la connexion à la base MySQL, vérifiez bien vos paramètres dans applications.properties.
