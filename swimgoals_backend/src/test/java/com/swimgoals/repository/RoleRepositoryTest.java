@@ -24,13 +24,15 @@ class RoleRepositoryTest {
     void testFindAllRoles() {
         List<Role> roles = roleRepository.findAll();
 
-        assertEquals(2, roles.size());
+        assertEquals(3, roles.size());
 
-        assertEquals("coach", roles.get(0).getName(), "Le deuxième rôle doit être 'admin'");
-        assertEquals("swimmer", roles.get(1).getName(), "Le troisième rôle doit être 'swimmer'");
+        assertEquals("admin", roles.get(0).getName(), "Le deuxième rôle doit être 'admin'");
+        assertEquals("coach", roles.get(1).getName(), "Le deuxième rôle doit être 'coach'");
+        assertEquals("swimmer", roles.get(2).getName(), "Le troisième rôle doit être 'swimmer'");
 
-        assertEquals(2, roles.get(0).getId(), "L'id du deuxième rôle doit être 2");
-        assertEquals(3, roles.get(1).getId(), "L'id du troisième rôle doit être 3");
+        assertEquals(1, roles.get(0).getId(), "L'id du rôle 'coach' doit être 1");
+        assertEquals(2, roles.get(1).getId(), "L'id du rôle 'admin' doit être 2");
+        assertEquals(3, roles.get(2).getId(), "L'id du rôle 'swimmer' doit être 3");
     }
 
     @Test
