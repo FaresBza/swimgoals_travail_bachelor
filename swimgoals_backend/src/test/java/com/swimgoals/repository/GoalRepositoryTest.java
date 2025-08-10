@@ -43,6 +43,7 @@ class GoalRepositoryTest {
     @Test
     void findGoalById() {
         Optional<Goal> goal = goalRepository.findById(3);
+
         assertTrue(goal.isPresent(), "Goal non trouvé");
         assertEquals(3, goal.get().getId());
         assertEquals("200m", goal.get().getObjective().getDistance(), "La distance assigné au goal doit être '200m'");
@@ -82,6 +83,7 @@ class GoalRepositoryTest {
     void testDeleteGoal() {
         Goal goal = goalRepository.findById(4).orElseThrow();
         goalRepository.delete(goal);
+        
         Optional<Goal> deletedGoal = goalRepository.findById(goal.getId());
         assertTrue(deletedGoal.isEmpty());
     }

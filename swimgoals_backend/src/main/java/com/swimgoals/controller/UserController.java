@@ -84,6 +84,7 @@ public class UserController {
         try {
             User registeredUser = userService.registUser(userDTO);
             return ResponseEntity.ok(registeredUser);
+
         } catch (IllegalArgumentException | IllegalStateException e) {
             return ResponseEntity.badRequest().body(null);
         }
@@ -110,8 +111,10 @@ public class UserController {
         try {
             User loggedUser = userService.loginUser(user.getEmail(), user.getPassword());
             return ResponseEntity.ok(loggedUser);
+
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Utilisateur non trouvé"));
+
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Identifiants invalides"));
         }
@@ -158,6 +161,7 @@ public class UserController {
         try {
             Optional<User> swimmer = userService.getUserById(id);
             return ResponseEntity.ok(swimmer);
+            
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }

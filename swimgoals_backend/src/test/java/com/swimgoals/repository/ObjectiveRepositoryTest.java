@@ -50,6 +50,7 @@ class ObjectiveRepositoryTest {
     @Test
     void testFindObjectiveById() {
         Optional<Objective> objective = objectiveRepository.findById(3);
+
         assertTrue(objective.isPresent(), "Objectif non trouvé");
         assertEquals(6, objective.get().getSwimmer().getId(), "");
         assertEquals("Papillon", objective.get().getSwim().getName(), "La nage assigné à l'objectif doit être 'Papillon'");
@@ -134,6 +135,7 @@ class ObjectiveRepositoryTest {
     void testDeleteObjective() {
         Objective objective = objectiveRepository.findById(1).orElseThrow();
         objectiveRepository.delete(objective);
+        
         Optional<Objective> deletedObjective = objectiveRepository.findById(objective.getId());
         assertTrue(deletedObjective.isEmpty(), "L'objectif doit avoir été supprimé de la base de données");
     }

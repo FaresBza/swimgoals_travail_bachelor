@@ -97,6 +97,7 @@ public class GroupController {
 
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -122,6 +123,7 @@ public class GroupController {
         try {
             groupService.joinGroup(joinGroupDTO.getSwimmerId(), joinGroupDTO.getGroupId());
             return ResponseEntity.ok(Map.of("message", "Swimmer ajouté au groupe avec succès"));
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -147,6 +149,7 @@ public class GroupController {
         try {
             Optional<Group> group = groupService.getGroupById(id);
             return ResponseEntity.ok(group);
+            
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }

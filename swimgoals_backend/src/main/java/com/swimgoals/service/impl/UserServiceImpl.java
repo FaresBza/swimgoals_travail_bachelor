@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService{
 
         Role role = roleRepository.findById(userDTO.roleId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid role ID"));
+
         User user = new User();
         user.setFirstname(userDTO.firstname);
         user.setLastname(userDTO.lastname);
@@ -74,9 +75,11 @@ public class UserServiceImpl implements UserService{
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
+
             String hashedPassword = passwordEncoder.encode(newPassword);
             user.setPassword(hashedPassword);
             userRepository.save(user);
+
             return true;
         }
         return false;
@@ -86,6 +89,7 @@ public class UserServiceImpl implements UserService{
     public boolean deleteUser(Integer userId) {
         if (userRepository.existsById(userId)) {
             userRepository.deleteById(userId);
+            
             return true;
         }
         return false;

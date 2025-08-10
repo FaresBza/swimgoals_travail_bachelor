@@ -76,6 +76,7 @@ public class ObjectiveController {
 
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur est survenue");
         }
@@ -101,6 +102,7 @@ public class ObjectiveController {
         try {
             Optional<Objective> objective = objectiveService.getObjectiveById(id);
             return ResponseEntity.ok(objective);
+            
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
