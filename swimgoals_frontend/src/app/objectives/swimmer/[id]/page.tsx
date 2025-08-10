@@ -14,6 +14,7 @@ import "./../../../styles/Card.scss";
 
 import useUserApi from "@/app/hooks/useUserApi";
 import BackButton from "@/app/components/BackButton";
+import ObjectiveCard from "@/app/components/ObjectiveCard";
 
 // Fonction utilitaire pour obtenir le nom de la nage à partir de l'id
 const getSwimNameById = (swim: number | { id: number; name: string }) => {
@@ -62,40 +63,14 @@ const Objectives = () => {
                 <main className="list-objectives">
                     {objectives.map((objective) => {
                         return (
-                            <div key={objective.id} className="objective-card ">
-                                <h2 className="objective-title">{objective.distance}m {getSwimNameById(objective.swim)}</h2>
-                                <p className="objective-info">Temps : {objective.time} min</p>
-                                <div className="btn-group">
-                                    {roleId === 2 && 
-                                        <button 
-                                            className="btn"
-                                            onClick={() => goToAddResultPage(objective.id)}
-                                        >
-                                            <Image
-                                                src="/icons/chrono.svg"
-                                                alt="Statistics Icon"
-                                                width={25}
-                                                height={25}
-                                            />
-                                        </button>
-                                    }
-                                    {[2, 3].includes(roleId) && 
-                                        <div>
-                                            <button 
-                                                className="btn"
-                                                onClick={() => goToOneObjectivePerformance(objective.id)}
-                                            >
-                                                <Image
-                                                    src="/icons/statistics-white.svg"
-                                                    alt="Statistics Icon"
-                                                    width={25}
-                                                    height={25}
-                                                    onClick={goToPerformancesPage}
-                                                />
-                                            </button>
-                                        </div>
-                                    }
-                                </div>
+                            <div key={objective.id}>
+                                <ObjectiveCard
+                                    key={objective.id}
+                                    objective={objective}
+                                    roleId={roleId}
+                                    goToAddResultPage={goToAddResultPage}
+                                    goToOneObjectivePerformance={goToOneObjectivePerformance}
+                                />
                             </div>
                         );
                     })}
