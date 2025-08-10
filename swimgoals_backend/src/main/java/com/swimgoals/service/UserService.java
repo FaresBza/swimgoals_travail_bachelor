@@ -1,11 +1,27 @@
 package com.swimgoals.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.swimgoals.dto.UserDTO;
 import com.swimgoals.models.User;
 
 public interface UserService {
+
+    /**
+     * Retrieves a list of all users
+     * 
+     * @return a list of User objects representing all users
+     */
+    public List<User> getAllUsers();
+
+    /**
+     * Retrieves a user by their unique identifier
+     * 
+     * @param id The unique identifier of the user to be retrieved
+     * @return An Optional containing the User object if found
+     */
+    public Optional<User> getUserById(Integer id);
 
     /**
      * Registers a new user in the database
@@ -23,12 +39,4 @@ public interface UserService {
      * @return The User object if authentication is successful; otherwise, null or an exception may be thrown
      */
     public User loginUser(String email, String password);
-
-    /**
-     * Retrieves a user by their unique identifier
-     * 
-     * @param id The unique identifier of the user to be retrieved
-     * @return An Optional containing the User object if found
-     */
-    public Optional<User> getUserById(Integer id);
 }

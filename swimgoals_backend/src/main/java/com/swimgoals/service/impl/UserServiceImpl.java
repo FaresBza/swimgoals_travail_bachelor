@@ -1,4 +1,5 @@
 package com.swimgoals.service.impl;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -23,6 +24,12 @@ public class UserServiceImpl implements UserService{
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+    
     @Override
     public User registUser(UserDTO userDTO) throws IllegalArgumentException {
         boolean existEmailUser = userRepository.existsByEmail(userDTO.email);

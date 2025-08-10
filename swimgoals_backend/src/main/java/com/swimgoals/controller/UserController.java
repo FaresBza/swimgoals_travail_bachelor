@@ -39,6 +39,28 @@ public class UserController {
     }
 
     @Operation(
+        summary = "Retrieve all users", 
+        description = "Retrieves a list of all users available in the database", 
+        tags = { "User" }
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "List of users retrieved successfully", 
+        content = @Content(schema = @Schema(implementation = User.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "400",
+        description = "Invalid credentials", 
+        content = @Content(schema = @Schema())
+    )
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    @Operation(
         summary = "Register a new user", 
         description = "Creates a new user in the database and returns the created user object.", 
         tags = { "User Authentication" }
@@ -95,7 +117,7 @@ public class UserController {
     @Operation(
         summary = "Retrieve all swimmers by one group", 
         description = "Retrieves a list of all swimmers of a group available in the database", 
-        tags = { "Group" }
+        tags = { "User" }
     )
     @ApiResponse(
         responseCode = "200", 
