@@ -66,7 +66,7 @@ public class UserController {
     @Operation(
         summary = "Register a new user", 
         description = "Creates a new user in the database and returns the created user object.", 
-        tags = { "User Authentication" }
+        tags = { "User Authentification" }
     )
     @ApiResponse(
         responseCode = "200", 
@@ -92,7 +92,7 @@ public class UserController {
     @Operation(
         summary = "User login", 
         description = "Authenticates the user and returns the user object if successful.", 
-        tags = { "User Authentication" }
+        tags = { "User Authentification" }
     )
     @ApiResponse(
         responseCode = "200", 
