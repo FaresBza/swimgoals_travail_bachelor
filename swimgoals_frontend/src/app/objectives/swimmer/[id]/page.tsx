@@ -4,9 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useObjectiveApi from "@/app/hooks/useObjectiveApi";
 import useLocalStorage from "@/app/hooks/useLocalStorage";
-import SwimMapping from "@/app/mapping/SwimMapping";
 import AddButton from "./../../../components/AddButton";
-import Image from "next/image";
 
 import "./../../../styles/BackgroundImage.scss";
 import "./../../../styles/Scroll.scss";
@@ -15,14 +13,6 @@ import "./../../../styles/Card.scss";
 import useUserApi from "@/app/hooks/useUserApi";
 import BackButton from "@/app/components/BackButton";
 import ObjectiveCard from "@/app/components/ObjectiveCard";
-
-// Fonction utilitaire pour obtenir le nom de la nage à partir de l'id
-const getSwimNameById = (swim: number | { id: number; name: string }) => {
-    const swimId = typeof swim === "object" ? swim.id : swim;
-    const found = SwimMapping.find((s) => s.id === swimId);
-    return found ? found.name : "Inconnu";
-};
-
 
 const Objectives = () => {
     const { id } = useParams();
@@ -36,10 +26,6 @@ const Objectives = () => {
 
     const goToAddResultPage = (objectiveId: number) => {
         route.push(`/objectives/result/${objectiveId}`);
-    }
-
-    const goToPerformancesPage = () => {
-        route.push("/charts");
     }
 
     const goToOneObjectivePerformance = (objectiveId: number) => {
