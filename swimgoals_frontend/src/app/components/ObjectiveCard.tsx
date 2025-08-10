@@ -3,9 +3,9 @@ import SwimMapping from '../mapping/SwimMapping';
 
 interface Objective {
     id: number;
-    distance: number;
+    distance: string;
     swim: number;
-    time: number;
+    time: string;
 }
 
 interface ObjectiveCardProps {
