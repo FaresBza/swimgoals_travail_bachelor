@@ -49,7 +49,7 @@ git clone https://github.com/FaresBza/swimgoals_travail_bachelor.git
 - Ouvrez votre outil de gestion MySQL (PhpMyAdmin, MySQL Workbench, etc.).
 - Créez une base de données nommée swimgoals_bdd.
 - Allez le dossier [swimgoals_database](https://github.com/FaresBza/swimgoals_travail_bachelor/tree/main/swimgoals_database),
-- Ouvrez le fichier data.sql.
+- Ouvrez le fichier bdd.sql
 - Copiez tout le contenu SQL et collez-le dans un nouvel onglet SQL de votre outil, puis exécutez-le pour importer les tables et données nécessaires.
 
 ## 3. Configuration du backend (Spring Boot)
