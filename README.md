@@ -11,7 +11,7 @@ Ce document explique étape par étape comment configurer et lancer le projet co
 2. [1. Cloner le projet](#1-cloner-le-projet)  
 3. [2. Configuration de la base de données MySQL](#2-configuration-de-la-base-de-données-mysql)  
 4. [3. Configuration du backend (Spring Boot)](#3-configuration-du-backend-spring-boot)  
-4. [4. Configuration des tests (JUnit / H2)](#4-configuration-des-tes-junit--h2)  
+4. [4. Configuration des tests (JUnit / H2)](#4-configuration-des-test-junit--h2)  
 5. [5. Configuration du frontend (Next.js + React + TypeScript)](#5-configuration-du-frontend-nextjs--react--typescript)  
 6. [6. Remarques](#6-remarques)  
 
@@ -86,8 +86,9 @@ spring.jpa.show-sql=true
 - Si tout est correct, vous pourrez accéder à la documentation Swagger via cette URL dans votre navigateur :
   http://localhost:8080/swagger-ui/index.html
 
-## 4. Configuration des tests (JUnit / H2)
-- Le projet utilise H2 pour les tests unitaires. Assurez-vous que le fichier src/test/resources/application-test.properties contient les bonnes configurations :
+## 4. Configuration des tests (JUnit + H2)
+- Le projet utilise H2 pour les tests unitaires et d'intégration. 
+Assurez-vous que le fichier src/test/resources/application-test.properties contient les bonnes configurations :
 
 ```bash
 spring.datasource.url=jdbc:h2:mem:swimgoals_bdd_test;MODE=MYSQL
