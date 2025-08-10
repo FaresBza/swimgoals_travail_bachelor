@@ -1,25 +1,6 @@
 import Image from 'next/image';
-import SwimMapping from '../mapping/SwimMapping';
-
-interface Objective {
-    id: number;
-    distance: string;
-    swim: number;
-    time: string;
-}
-
-interface ObjectiveCardProps {
-    objective: Objective;
-    roleId: number;
-    goToAddResultPage: (objectiveId: number) => void;
-    goToOneObjectivePerformance: (objectiveId: number) => void;
-}
-
-const getSwimNameById = (swim: number | { id: number; name: string }) => {
-    const swimId = typeof swim === "object" ? swim.id : swim;
-    const found = SwimMapping.find((s) => s.id === swimId);
-    return found ? found.name : "Inconnu";
-};
+import { ObjectiveCardProps } from '../data/ObjectiveCardDataProps';
+import { getSwimNameById } from '../utils/getSwimName';
 
 function ObjectiveCard({ objective, roleId, goToAddResultPage, goToOneObjectivePerformance }: ObjectiveCardProps) {
 
