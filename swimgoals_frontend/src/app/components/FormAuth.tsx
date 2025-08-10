@@ -49,13 +49,6 @@ const FormAuth: React.FC<FormAuthProps> = ({ mainTitle }) => {
                         <fieldset className="role-buttons" aria-labelledby="role-selection">
                             <legend className="legend" id="role-selection">Choisissez votre rôle</legend>
                             <button
-                                onClick={() => setRole("admin")}
-                                className={role === "admin" ? "role-button active" : "role-button"}
-                                aria-pressed={role === "admin"}
-                            >
-                                Admin
-                            </button>
-                            <button
                                 onClick={() => setRole("coach")}
                                 className={role === "coach" ? "role-button active" : "role-button"}
                                 aria-pressed={role === "coach"}

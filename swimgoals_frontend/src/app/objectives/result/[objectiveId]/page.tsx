@@ -32,7 +32,7 @@ const ObjectiveResult = () => {
     const fetchObjectiveData = async () => {
         if (objectiveId) {
             const objectiveDetails = await getObjectiveDetails({ id: parseInt(objectiveId as string) });
-            setObjectiveDetail(objectiveDetails);
+            setObjectiveDetail(objectiveDetails ?? "");
         }
     }
 
