@@ -11,8 +11,9 @@ Ce document explique étape par étape comment configurer et lancer le projet co
 2. [1. Cloner le projet](#1-cloner-le-projet)  
 3. [2. Configuration de la base de données MySQL](#2-configuration-de-la-base-de-données-mysql)  
 4. [3. Configuration du backend (Spring Boot)](#3-configuration-du-backend-spring-boot)  
-5. [4. Configuration du frontend (Nextjs--react--typescript)](#4-configuration-du-frontend-nextjs--react--typescript)  
-6. [Remarques](#5-remarques)  
+4. [4. Configuration des tests (JUnit / H2)](#4-configuration-des-tes-junit--h2)  
+5. [5. Configuration du frontend (Next.js + React + TypeScript)](#5-configuration-du-frontend-nextjs--react--typescript)  
+6. [6. Remarques](#6-remarques)  
 
 ## Prérequis
 
@@ -85,7 +86,35 @@ spring.jpa.show-sql=true
 - Si tout est correct, vous pourrez accéder à la documentation Swagger via cette URL dans votre navigateur :
   http://localhost:8080/swagger-ui/index.html
 
-## 4. Configuration du frontend (Next.js + React + TypeScript)
+## 4. Configuration des tests (JUnit / H2)
+- Le projet utilise H2 pour les tests unitaires. Assurez-vous que le fichier src/test/resources/application-test.properties contient les bonnes configurations :
+
+```bash
+spring.datasource.url=jdbc:h2:mem:swimgoals_bdd_test;MODE=MYSQL
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.defer-datasource-initialization=true
+
+spring.h2.console.enabled=true
+spring.jpa.show-sql=true
+spring.sql.init.mode=always
+```
+
+Comme pour la configuration du backend, vous pouvez adapter les paramètres de test/ressources/application.properties si nécessaires :
+
+  - Le spring.datasource.username (ex : root ou autre)
+  - Le spring.datasource.password
+
+- Pour lancer les tests unitaires, ouvrez un terminal dans le dossier swimgoals_backend et exécutez :
+```bash
+./gradlew test
+```
+
+## 5. Configuration du frontend (Next.js + React + TypeScript)
 
 - Ouvrez le répertoire swimgoals_frontend avec Visual Studio Code.
 - Ouvrez un terminal dans ce dossier et exécutez ces commandes dans l’ordre :
@@ -145,7 +174,7 @@ npm install --save-dev typescript @types/react @types/node
 
 ```
 
-## 5. Remarques
+## 6. Remarques
 - Merci de toujours utiliser la version Node recommandée (v18.18.0) pour éviter les problèmes de compatibilité.
 - Le backend doit tourner sur le port 8080 (Spring Boot) et le frontend sur le port 3000 (Next.js).
 - En cas d’erreur lors de la connexion à la base MySQL, vérifiez bien vos paramètres dans applications.properties.
