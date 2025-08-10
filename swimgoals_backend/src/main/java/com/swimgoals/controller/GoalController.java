@@ -77,7 +77,7 @@ public class GoalController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
             
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur est survenue");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
         }
     }
 

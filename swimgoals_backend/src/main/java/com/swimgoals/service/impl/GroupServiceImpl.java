@@ -49,10 +49,10 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void joinGroup(int swimmerId, int groupId) {
         User user = userRepository.findById(swimmerId)
-            .orElseThrow(() -> new RuntimeException("Nageur non trouvé"));
+            .orElseThrow(() -> new RuntimeException("Swimmer not found"));
 
         Group group = groupRepository.findById(groupId)
-            .orElseThrow(() -> new RuntimeException("Groupe non trouvé"));
+            .orElseThrow(() -> new RuntimeException("Group not found"));
 
         user.setGroup(group);
         userRepository.save(user);

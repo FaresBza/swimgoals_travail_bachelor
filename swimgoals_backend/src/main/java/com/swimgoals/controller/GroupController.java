@@ -122,7 +122,7 @@ public class GroupController {
     public ResponseEntity<?> joinGroup(@RequestBody JoinGroupDTO joinGroupDTO) {
         try {
             groupService.joinGroup(joinGroupDTO.getSwimmerId(), joinGroupDTO.getGroupId());
-            return ResponseEntity.ok(Map.of("message", "Swimmer ajouté au groupe avec succès"));
+            return ResponseEntity.ok(Map.of("message", "Swimmer successfully added to group"));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
