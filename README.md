@@ -11,7 +11,7 @@ Ce document explique étape par étape comment configurer et lancer le projet co
 2. [1. Cloner le projet](#1-cloner-le-projet)
 3. [2. Configuration de la base de données MySQL](#2-configuration-de-la-base-de-données-mysql)
 4. [3. Configuration du backend (Spring Boot)](#3-configuration-du-backend-spring-boot)
-5. [4. Configuration des tests (JUnit + H2)](#4-configuration-des-test-junit--h2)
+5. [4. Configuration des tests (JUnit + H2)](#4-configuration-des-tests-junit--h2)
 6. [5. Configuration du frontend (Next.js + React + TypeScript)](#5-configuration-du-frontend-nextjs--react--typescript)
 7. [6. Remarques](#6-remarques)
 
