@@ -39,4 +39,21 @@ public interface UserService {
      * @return The User object if authentication is successful; otherwise, null or an exception may be thrown
      */
     public User loginUser(String email, String password);
+
+    /**
+     * Updates the password of an existing user.
+     *
+     * @param id The unique identifier of the user whose password will be updated
+     * @param newPassword The new password (will be hashed before saving)
+     * @return true if the password was successfully updated, false if the user does not exist
+     */
+    public boolean updateUserPassword(Integer id, String newPassword);
+
+    /**
+     * Deletes a user from the database.
+     *
+     * @param userId The unique identifier of the user to delete.
+     * @return true if the user was successfully deleted, false if the user does not exist.
+     */
+    public boolean deleteUser(Integer userId);
 }

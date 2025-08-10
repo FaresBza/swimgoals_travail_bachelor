@@ -67,4 +67,27 @@ public class UserServiceImpl implements UserService{
     public Optional<User> getUserById(Integer id) {
         return userRepository.findById(id);
     }
+
+    @Override
+    public boolean  updateUserPassword(Integer id, String newPassword) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            String hashedPassword = passwordEncoder.encode(newPassword);
+            user.setPassword(hashedPassword);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    // Supprimer l'utilisateur
+    public boolean deleteUser(Integer userId) {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            return true;
+        }
+        return false;
+    }
 }

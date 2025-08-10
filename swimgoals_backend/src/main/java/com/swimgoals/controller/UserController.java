@@ -7,11 +7,14 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swimgoals.dto.UserDTO;
@@ -157,6 +160,71 @@ public class UserController {
             return ResponseEntity.ok(swimmer);
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @Operation(
+    summary = "Update user password", 
+    description = "Updates the password of a user identified by their unique ID.", 
+    tags = { "User Authentification" }
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "Password updated successfully", 
+        content = @Content(schema = @Schema(implementation = String.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "404", 
+        description = "User not found", 
+        content = @Content
+    )
+    @PutMapping("/{id}/password")
+    public ResponseEntity<String> updatePassword(@PathVariable Integer id, @RequestParam String newPassword) {
+        try {
+        boolean userPasswordToUpdated = userService.updateUserPassword(id, newPassword);
+
+        if (userPasswordToUpdated) {
+            return ResponseEntity.ok("Password updated successfully");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("An error occurred while updating the password: " + e.getMessage());
+        }
+    }
+
+
+    @Operation(
+        summary = "Delete a user by ID", 
+        description = "Deletes a user from the database using their unique ID.", 
+        tags = { "User Authentification" }
+    )
+    @ApiResponse(
+        responseCode = "200", 
+        description = "User deleted successfully", 
+        content = @Content(schema = @Schema(implementation = String.class), 
+        mediaType = "application/json")
+    )
+    @ApiResponse(
+        responseCode = "404", 
+        description = "User not found", 
+        content = @Content
+    )
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
+        try {
+        boolean userToDeleted = userService.deleteUser(id);
+
+        if (userToDeleted) {
+            return ResponseEntity.ok("User deleted successfully");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("An error occurred while deleting the user: " + e.getMessage());
         }
     }
 
